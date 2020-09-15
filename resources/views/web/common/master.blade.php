@@ -209,7 +209,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title="">HEMOON Men’s casual sportswear..</a></h3>
+											<h3><a href="#" title="">HEMOON Men</a></h3>
 											<span>started at $32.99</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -222,7 +222,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title=""> Men's Insulated Front-Zip Jacket </a></h3>
+											<h3><a href="#" title=""> MenK</a></h3>
 											<span class="pr-d">started at $34.90</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -235,7 +235,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -248,7 +248,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -261,7 +261,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -274,7 +274,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -302,7 +302,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title="">HEMOON Men’s casual sportswear..</a></h3>
+											<h3><a href="#" title="">HEMOON Men</a></h3>
 											<span>started at $32.99</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -315,7 +315,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title=""> Men's Insulated Front-Zip Jacket </a></h3>
+											<h3><a href="#" title=""> MenK</a></h3>
 											<span class="pr-d">started at $34.90</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -328,7 +328,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -341,7 +341,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -354,7 +354,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -367,7 +367,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -395,7 +395,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title="">HEMOON Men’s casual sportswear..</a></h3>
+											<h3><a href="#" title="">HEMOON Men</a></h3>
 											<span>started at $32.99</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -408,7 +408,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3><a href="#" title=""> Men's Insulated Front-Zip Jacket </a></h3>
+											<h3><a href="#" title=""> MenK</a></h3>
 											<span class="pr-d">started at $34.90</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -421,7 +421,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -434,7 +434,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -447,7 +447,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Dickies Men's Sanded Duck Jacket </a></h3>
+											<h3> <a href="#" title="">Dickies </a></h3>
 											<span class="pr-d">started at $17.49</span>
 										</div>
 									</div><!--mg-inf end-->
@@ -460,7 +460,7 @@
 											</a>
 										</div>
 										<div class="info-sr">
-											<h3> <a href="#" title="">Men's Big-Tall Lined Eisenhower Jacket </a></h3>
+											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
 											<span class="pr-d">started at $39.00</span>
 										</div>
 									</div><!--mg-inf end-->
