@@ -35,7 +35,7 @@
 							<a href="#" title="" class="menu">
 								<i class="icon-menu"></i>
 							</a>
-							<a href="index.html" title="" class="logo">
+							<a href="#" title="" class="logo">
 								<img src="{{asset('web/images/logo.png')}}" alt="">
 							</a>
 						</div><!--menu_logo end-->
@@ -180,8 +180,8 @@
 		<section class="banner-section">
 			<div class="container">
 				<div class="banner-text">
-					<h2>make birthday special</h2>
-					<a href="#" title="">Create account</a>
+					<h2>we make your special day unforgettable</h2>
+					<a href="#" title="">Lets start</a>
 				</div><!--banner-text end-->
 				<h3 class="headline">Video of the Day by <a href="#" title="">newfox media</a></h3>
 			</div>
@@ -210,7 +210,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title="">HEMOON Men</a></h3>
-											<span>started at $32.99</span>
+											<span>started at ৳3200</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -223,7 +223,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title=""> MenK</a></h3>
-											<span class="pr-d">started at $34.90</span>
+											<span class="pr-d">started at ৳3400</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -236,7 +236,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -249,7 +249,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -262,7 +262,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -275,7 +275,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -303,7 +303,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title="">HEMOON Men</a></h3>
-											<span>started at $32.99</span>
+											<span>started at ৳3200</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -316,7 +316,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title=""> MenK</a></h3>
-											<span class="pr-d">started at $34.90</span>
+											<span class="pr-d">started at ৳3400</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -329,7 +329,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -342,7 +342,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -355,7 +355,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -368,7 +368,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -396,7 +396,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title="">HEMOON Men</a></h3>
-											<span>started at $32.99</span>
+											<span>started at ৳3200</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -409,7 +409,7 @@
 										</div>
 										<div class="info-sr">
 											<h3><a href="#" title=""> MenK</a></h3>
-											<span class="pr-d">started at $34.90</span>
+											<span class="pr-d">started at ৳3400</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -422,7 +422,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -435,7 +435,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -448,7 +448,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Dickies </a></h3>
-											<span class="pr-d">started at $17.49</span>
+											<span class="pr-d">started at ৳1700</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
@@ -461,7 +461,7 @@
 										</div>
 										<div class="info-sr">
 											<h3> <a href="#" title="">Men's Big-Tall</a></h3>
-											<span class="pr-d">started at $39.00</span>
+											<span class="pr-d">started at ৳3900</span>
 										</div>
 									</div><!--mg-inf end-->
 								</div>
