@@ -1,0 +1,7 @@
+.decp_cotnet, .link-pr{
+	max-width: 100%;
+}
+.link-pr ul li{
+	display: inline-block;
+	margin: 0px 15px;
+}

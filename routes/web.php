@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('web.common.master');
+    return view('web.home');
+});
+Route::get('/profile', function () {
+    return view('web.profile');
 });
