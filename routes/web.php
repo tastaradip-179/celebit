@@ -19,3 +19,16 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('web.profile');
 });
+
+/* Admin routes 
+===============================================
+*/
+Route::middleware([])->name('admin.')->namespace('Admin')->prefix('admin')->group(function () {
+	Route::get('dashboard', function () {
+	    return view('backend.dashboard');
+	});
+
+	Route::resource('celebrities', 'CelebrityController');
+});
+
+
