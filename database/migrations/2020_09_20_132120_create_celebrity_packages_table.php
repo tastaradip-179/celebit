@@ -16,7 +16,7 @@ class CreateCelebrityPackagesTable extends Migration
         Schema::create('celebrity_packages', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('celebrity_id')->unsigned();
-            $table->string('video_type');
+            $table->string('video_type')->default(1)->comment('1 fixed video, 2 video call');
             $table->integer('per_minute_fee')->default(0);
             $table->integer('extra_per_minute_fee')->default(0);
             $table->timestamps();

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Spatie\Tags\Tag;
+use App\Models\Image;
 use App\Models\Celebrity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class CelebrityController extends Controller
 {
@@ -15,7 +19,8 @@ class CelebrityController extends Controller
         $this->title = 'Add celebrity';
         $this->route = 'admin.celebrities.';
         $this->view  = 'backend.celebrity.';
-        $this->file_path = 'celebrity';
+        $this->file_path = storage_path('app/public/celebrities');
+        $this->file_path_view = \Request::root().'/storage/celebrities/';
     }
     /**
      * Display a listing of the resource.
@@ -37,6 +42,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         
+        $data['tags'] = Tag::latest()->get();
         return view($this->view.'create', $data);
     }
 
@@ -49,15 +55,47 @@ class CelebrityController extends Controller
     public function store(Request $request)
     {
         if ($request->has('create_type') && $request->create_type == 'celebrity_info') {
-            $this->validate($request,[
+           $request->validate([
                 'name' => 'required | string',
-                'email' => 'required | email |unique:celebrities,email',
+                'email' => 'nullable | email |unique:celebrities,email',
                 'designation' => 'required | string',
-                'password' => 'required | confirmed',
+                'gender' => 'required',
+                'password' => 'nullable | confirmed',
                 'file' => 'required',
+                'tags' => 'required',
             ]);
+            $input = $request->only(['name','email','designation','gender','mobile','social_link']);
+            if ($request->has('password')) {
+                $input = $input + ['password' => Hash::make($request->password)];
+            }
+            // dd($input);
+
+            $celebrity = Celebrity::create($input);
+            if ($request->hasFile('file')) {
+                $uploadedFile = $request->file('file');
+                $realPath = $request->file('file')->getRealPath();
+                $filename = $celebrity->username.'_'.time().'.'.$request->file('file')->extension();
+                
+                if (!is_dir($this->file_path)) {
+                    mkdir($this->file_path, 0777);
+                }
+
+                InterventionImage::cache(function($image) use ($filename, &$realPath) {
+                   $image->make($realPath)->resize(170, 170)->save($this->file_path.'/'.$filename);
+                });
+
+                $imageUpload= new Image([
+                    'url' => $filename,
+                    'type' => 1
+                ]);
+
+                $celebrity->images()->save($imageUpload);
+                
+            }
+            $celebrity->syncTags($request->tags);
+            alert()->success('Data has been saved successfully!');
+            return back();
         }
-        alert()->info('Info Message', 'Optional Title');
         dd($request->all());
     }
 

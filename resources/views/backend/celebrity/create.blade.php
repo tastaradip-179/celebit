@@ -2,7 +2,8 @@
 
 @section('page-css')
 <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/dropify.min.css')}}">
-<link href="{{asset('backend/assets/plugins/select2/select2.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 @section('content')
@@ -37,7 +38,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                          <label class="form-label" for="email">Email *</label>
+                                          <label class="form-label" for="email">Email</label>
                                           <span class="desc">e.g. "some@example.com"</span>
                                           <div class="controls">
                                                 <input type="text" class="form-control" id="email" name="email" >
@@ -53,7 +54,7 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="form-label" for="password">Password *</label>
+                                        <label class="form-label" for="password">Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
                                             <input type="password" class="form-control" id="password" name="password" >
@@ -61,14 +62,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="form-label" for="password_confirmed">Confirm Password *</label>
+                                        <label class="form-label" for="password_confirmed">Confirm Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
                                             <input type="password" class="form-control" id="password_confirmed" name="password_confirmation" >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="file">Avatar</label>
+                                        <label class="form-label" for="file">Avatar *</label>
                                         <span class="desc">e.g. "character.jpg"</span>
                                         <div class="controls">
                                             <input type="file" class="dropify" name="file" data-max-file-size="3M" data-height="120" data-allowed-file-extensions="jpg png jpeg"/>
@@ -95,7 +96,7 @@
                                           </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="designation">Designation</label>
+                                        <label class="form-label" for="designation">Designation *</label>
                                         <span class="desc">e.g. singer, actor</span>
                                         <div class="controls">
                                             <input type="text" class="form-control" id="designation" name="designation">
@@ -125,13 +126,11 @@
                                     <div class="form-group">
                                         <label class="form-label">Select Tags</label>
                                           <div class="controls">
-                                                <select class="select2"  multiple>
-                                                      <option></option>
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>Arizona</option>
-                                                      <option>Arkansas</option>
-                                                      <option selected>California</option>
+                                                <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                      <option value=""></option>
+                                                      @foreach($tags as $tag)
+                                                        <option>{{$tag->name}}</option>
+                                                      @endforeach
                                                 </select>
                                           </div>
                                     </div>
@@ -161,7 +160,7 @@
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
 <script src="{{asset('backend/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script> 
 <script src="{{asset('backend/assets/js/dropify.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('backend/assets/plugins/select2/select2.min.js')}}" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 <script type="text/javascript">
       $('#form').validate({
@@ -169,18 +168,16 @@
               name: {
                   required: true
               },
-              email: {
-                  required: true,
-                  email: true
+              designation: {
+                  required: true
               },
               mobile: {
                   number: true,
-                  required: true,
+              },
+              gender: {
+                  required: true
               },
               file: {
-                  required: true,
-              },
-              password: {
                   required: true,
               },
               password_confirmed: {
@@ -194,8 +191,11 @@
 <script type="text/javascript">
       $(document).ready(function() {
           $('.dropify').dropify();
-          $('.select2').select2();
+          $('.select2').select2({
+            placeholder: "Select tags or type and enter",
+            tags: true,
+            tokenSeparators: [',', ' ']
+          });
       });
-      
 </script>
 @endsection

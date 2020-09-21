@@ -23,7 +23,7 @@ Route::get('/profile', function () {
 /* Admin routes 
 ===============================================
 */
-Route::middleware([])->name('admin.')->namespace('Admin')->prefix('admin')->group(function () {
+Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('admin')->group(function () {
 	Route::get('dashboard', function () {
 	    return view('backend.dashboard');
 	});

@@ -23,3 +23,44 @@
 <script src="{{asset('backend/assets/js/chart-sparkline.js')}}" type="text/javascript"></script>
 <!-- Sidebar Graph - END --> 
 
+<script type="text/javascript">
+	@if($errors->any())
+        @foreach($errors->all() as $error)
+        	$(document).ready(function() {
+        		swal({
+        		      text: "{!! $error !!}",
+        		      title: "Error",
+        		      icon: "error"
+        		  });
+        	});
+        @endforeach
+    @endif
+	
+</script>
+<script type="text/javascript">
+    function alertFunction(action,id){
+        Swal.fire({
+            title: "Are you sure to "+action+"?",
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((willDelete) => {
+            console.log(willDelete);
+          if (willDelete.value) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+            setTimeout(function(){
+                document.getElementById(action+id).submit();
+            },1000)
+
+          }
+        });
+    }
+</script>
