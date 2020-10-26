@@ -20,7 +20,10 @@
                 </a>
                 <ul class="sub-menu" >
                     <li>
-                        <a class="" href="#" >All Celebrities</a>
+                        <a class="" href="{{url('/admin/celebrities')}}" >All Celebrities</a>
+                    </li>
+                    <li>
+                        <a class="" href="{{url('/admin/celebrities/create')}}" >Add Celebrity</a>
                     </li>
                     <li>
                         <a class="" href="#" >Manage Tags</a>

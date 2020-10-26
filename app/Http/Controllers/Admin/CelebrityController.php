@@ -16,7 +16,7 @@ class CelebrityController extends Controller
     public function __construct () 
     {
         
-        $this->title = 'Add celebrity';
+        $this->title = 'Celebrity';
         $this->route = 'admin.celebrities.';
         $this->view  = 'backend.celebrity.';
         $this->file_path = storage_path('app/public/celebrities');
@@ -29,7 +29,11 @@ class CelebrityController extends Controller
      */
     public function index()
     {
-        return view($this->view.'index');
+        $data['title']     = $this->title;
+        $data['route']     = $this->route;
+        $data['celebrities'] = Celebrity::orderBy('name', 'asc')->paginate(15);
+       // dd($data['celebrities'] );
+        return view($this->view.'index', $data);
     }
 
     /**
@@ -105,9 +109,8 @@ class CelebrityController extends Controller
      * @param  \App\Models\Celebrity  $celebrity
      * @return \Illuminate\Http\Response
      */
-    public function show(Celebrity $celebrity)
+    public function show()
     {
-        //
     }
 
     /**
@@ -118,7 +121,12 @@ class CelebrityController extends Controller
      */
     public function edit(Celebrity $celebrity)
     {
-        //
+        $data['title'] = $this->title;
+        $data['route'] = $this->route;
+        $data['celebrity'] = $celebrity;
+        
+        $data['tags'] = Tag::latest()->get();
+        return view($this->view.'.edit', $data);
     }
 
     /**
