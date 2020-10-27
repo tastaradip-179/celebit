@@ -75,6 +75,7 @@ class CelebrityController extends Controller
             // dd($input);
 
             $celebrity = Celebrity::create($input);
+            
             if ($request->hasFile('file')) {
                 $uploadedFile = $request->file('file');
                 $realPath = $request->file('file')->getRealPath();
@@ -124,8 +125,8 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['celebrity'] = $celebrity;
-        
         $data['tags'] = Tag::latest()->get();
+
         return view($this->view.'.edit', $data);
     }
 
@@ -137,8 +138,13 @@ class CelebrityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Celebrity $celebrity)
-    {
-        //
+    {    
+        $input = $request->only(['name','email','designation','gender','mobile','social_link']); 
+        //dd ($input);
+        $celebrity->update($input);
+
+        alert()->success('Data has been updated successfully!');
+        return redirect()->back();
     }
 
     /**

@@ -8,6 +8,7 @@
 
 @section('content')
 
+
 <section id="main-content" class=" ">
     <section class="wrapper main-wrapper" style=''>
 
@@ -15,7 +16,7 @@
             <div class="page-title">
 
                 <div class="float-left">
-                    <h1 class="title">{{$title}}</h1>
+                    <h1 class="title">Edit {{$celebrity->name}}</h1>
                 </div>
             </div>
         </div>
@@ -23,17 +24,17 @@
 
         <div class="row margin-0 mb-5">
             <div class="col-lg-12 col-md-12 col-12">
-
-            	<form id="form" method="post" action="{{route($route.'store')}}" style="width: 100%;" enctype="multipart/form-data">
+            	<form id="form" method="post" action="{{ route($route.'update',[$celebrity->username]) }}" style="width: 100%;" enctype="multipart/form-data"> 
+                      {{ method_field('PUT') }}
                       {{csrf_field()}}
-                        <div class="row margin-0">
+                         <div class="row margin-0">
                               <div class="col-lg-6 col-md-6 col-6">
 
                                     <div class="form-group">
                                           <label class="form-label" for="name">Name *</label>
                                           <span class="desc">e.g. "Sakib Al Hasan"</span>
                                           <div class="controls">
-                                                <input type="text" class="form-control" id="name" name="name" >
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ $celebrity->name ? $celebrity->name:'' }}" required="required">
                                           </div>
                                     </div>
 
@@ -41,7 +42,7 @@
                                           <label class="form-label" for="email">Email</label>
                                           <span class="desc">e.g. "some@example.com"</span>
                                           <div class="controls">
-                                                <input type="text" class="form-control" id="email" name="email" >
+                                                <input type="text" class="form-control" id="email" name="email" value="{{ $celebrity->email ? $celebrity->email:'' }}" >
                                           </div>
                                     </div>
 
@@ -49,7 +50,7 @@
                                         <label class="form-label" for="mobile">Mobile Number</label>
                                         <span class="desc">e.g. "017123456789"</span>
                                         <div class="controls">
-                                            <input type="text" class="form-control" id="mobile" name="mobile" >
+                                            <input type="text" class="form-control" id="mobile" name="mobile" value="{{ $celebrity->mobile ? $celebrity->mobile:'' }}" required="required">
                                         </div>
                                     </div>
                                     
@@ -57,7 +58,7 @@
                                         <label class="form-label" for="password">Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
-                                            <input type="password" class="form-control" id="password" name="password" >
+                                            <input type="password" class="form-control" id="password" name="password" value="" >
                                         </div>
                                     </div>
 
@@ -65,14 +66,14 @@
                                         <label class="form-label" for="password_confirmed">Confirm Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
-                                            <input type="password" class="form-control" id="password_confirmed" name="password_confirmation" >
+                                            <input type="password" class="form-control" id="password_confirmed" name="password_confirmation" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="file">Avatar *</label>
                                         <span class="desc">e.g. "character.jpg"</span>
-                                        <div class="controls">
-                                            <input type="file" class="dropify" name="file" data-max-file-size="3M" data-height="120" data-allowed-file-extensions="jpg png jpeg"/>
+                                        <div class="controls">  
+                                            <input type="file" class="dropify" name="file" data-max-file-size="3M" data-height="120" data-allowed-file-extensions="jpg png jpeg" data-default-file="{{ asset( '/storage/celebrities/'.$celebrity->images[0]->url) }}"/>
                                         </div>
                                     </div>
 
@@ -83,14 +84,17 @@
                                           <span class="desc">e.g. "Male"</span>
                                           <div class="controls">
                                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                  @php
+                                                    $gender = $celebrity->gender ? $celebrity->gender:'';
+                                                  @endphp
                                                       <label class="btn btn-secondary">
-                                                            <input type="radio" name="gender" id="gender1" value="male" autocomplete="off" checked=""> Male
+                                                            <input type="radio" name="gender" id="gender1" value="male" autocomplete="off" @if($gender == 'male') checked="" @endif> Male
                                                       </label>
                                                       <label class="btn btn-secondary active">
-                                                            <input type="radio" name="gender" id="gender2" value="female" autocomplete="off"> Female
+                                                            <input type="radio" name="gender" id="gender2" value="female" autocomplete="off" @if($gender == 'female') checked="" @endif> Female
                                                       </label>
                                                       <label class="btn btn-secondary">
-                                                            <input type="radio" name="gender" id="gender3" value="others" autocomplete="off"> Others
+                                                            <input type="radio" name="gender" id="gender3" value="others" autocomplete="off" @if($gender == 'others') checked="" @endif> Others
                                                       </label>
                                                 </div>
                                           </div>
@@ -99,37 +103,49 @@
                                         <label class="form-label" for="designation">Designation *</label>
                                         <span class="desc">e.g. singer, actor</span>
                                         <div class="controls">
-                                            <input type="text" class="form-control" id="designation" name="designation">
+                                            <input type="text" class="form-control" id="designation" name="designation" value="{{ $celebrity->designation ? $celebrity->designation:'' }}" required="required">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="social_link">Facebook</label>
-                                        <span class="desc">e.g. "https://www.facebook.com/abcd"</span>
-                                        <div class="controls">
-                                            <input type="text" class="form-control" id="social_link" name="social_link['facebook']">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="social_link_twitter">Twitter</label>
-                                        <span class="desc">e.g. "https://www.twitter.com/abcd"</span>
-                                        <div class="controls">
-                                            <input type="text" class="form-control" id="social_link_twitter" name="social_link['twitter']">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="social_link_insta">Instagram</label>
-                                        <span class="desc">e.g. "https://www.instagram.com/abcd"</span>
-                                        <div class="controls">
-                                            <input type="text" class="form-control" id="social_link_insta" name="social_link['instagram']">
-                                        </div>
-                                    </div>
+                                    @php
+                                      $social_links = $celebrity->social_link;
+                                    @endphp
+                                    @foreach($social_links as $key=>$social_link)
+                                      @if($key== '\'facebook\'')
+                                      <div class="form-group">
+                                          <label class="form-label" for="social_link">Facebook</label> 
+                                          <span class="desc">e.g. "https://www.facebook.com/abcd"</span>
+                                          <div class="controls">
+                                              <input type="text" class="form-control" id="social_link" name="social_link['facebook']" value="{{$social_link ? $social_link:''}}">
+                                          </div>
+                                      </div>
+                                      @elseif($key=='\'twitter\'')
+                                      <div class="form-group">
+                                          <label class="form-label" for="social_link_twitter">Twitter</label>
+                                          <span class="desc">e.g. "https://www.twitter.com/abcd"</span>
+                                          <div class="controls">
+                                              <input type="text" class="form-control" id="social_link_twitter" name="social_link['twitter']" value="{{$social_link ? $social_link:''}}">
+                                          </div>
+                                      </div>
+                                      @elseif($key=='\'instagram\'')
+                                      <div class="form-group">
+                                          <label class="form-label" for="social_link_insta">Instagram</label>
+                                          <span class="desc">e.g. "https://www.instagram.com/abcd"</span>
+                                          <div class="controls">
+                                              <input type="text" class="form-control" id="social_link_insta" name="social_link['instagram']" value="{{$social_link ? $social_link:''}}">
+                                          </div>
+                                      </div>
+                                      @endif
+                                    @endforeach
                                     <div class="form-group">
                                         <label class="form-label">Select Tags</label>
                                           <div class="controls">
                                                 <select class="form-control select2" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
                                                       @foreach($tags as $tag)
-                                                        <option>{{$tag->name}}</option>
+                                                        <option value="{{$tag->name}}"
+                                                            @if ($tag->id == $celebrity->tags[0]->id) selected="selected" @endif >
+                                                            {{$tag->name}}
+                                                        </option>
                                                       @endforeach
                                                 </select>
                                           </div>
@@ -137,11 +153,11 @@
                               </div>
                         </div>
 
-                        <input type="hidden" name="create_type" value="celebrity_info">
+                        <input type="hidden" name="create_type" value="celebrity_info"> 
                   	    <div class="col-lg-12 col-md-12 col-12">
                   	        <div class="float-right ">
-                                <button type="submit" class="btn btn-success">Create</button>
-                                <button type="button" class="btn">Cancel</button>
+                                <button type="submit" class="btn btn-success">Update</button>
+                                <a type="button" href="{{url('/admin/celebrities')}}" class="btn">Cancel</a>
                   	        </div>
                   	    </div>
 
@@ -154,6 +170,7 @@
 </section>
 
 @endsection
+
 
 @section('page-js')
 
@@ -177,20 +194,13 @@
               gender: {
                   required: true
               },
-              file: {
-                  required: true,
-              },
-              password_confirmed: {
-                  required: true,
-                  equalTo: "#password"
-              },
-
           }
       });
 </script>
 <script type="text/javascript">
       $(document).ready(function() {
           $('.dropify').dropify();
+
           $('.select2').select2({
             placeholder: "Select tags or type and enter",
             tags: true,

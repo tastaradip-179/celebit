@@ -37,7 +37,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('celebrity', function ($value) {
             return \App\Models\Celebrity::where('username', $value)->first() ?? abort(404);
         });
+
     }
+
 
     /**
      * Define the routes for the application.

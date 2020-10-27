@@ -53,7 +53,10 @@
                                                 <h4>
                                                     <a href="mus-album-view.html">{{$celebrity->name}}</a>
                                                 </h4>
-                                                <span><a href="mus-artist-profile.html"></a></span>
+                                                <span><a href="mus-artist-profile.html">{{$celebrity->designation}}</a></span>    
+                                            </div>
+                                            <div class="action">
+                                                <a class="" href="{{ route($route.'edit', [$celebrity->username]) }}"><i class="fa fa-edit"></i></a>
                                             </div>
                                         </div>
                                     </div>
