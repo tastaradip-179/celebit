@@ -139,15 +139,21 @@
                                     <div class="form-group">
                                         <label class="form-label">Select Tags</label>
                                           <div class="controls">
+                                            @if( !empty($tags) ) 
                                                 <select class="form-control select2" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
-                                                      @foreach($tags as $tag)
+                                                      @foreach($tags as $key=>$tag) 
                                                         <option value="{{$tag->name}}"
-                                                            @if ($tag->id == $celebrity->tags[0]->id) selected="selected" @endif >
-                                                            {{$tag->name}}
+                                                           @foreach($celebrity->tags as $key2=>$tg )
+                                                               @if(!empty($celebrity->tags[$key2]->id) && ($celebrity->tags[$key2]->id) == $tag->id) selected=="selected" @endif
+                                                           @endforeach  
+                                                              
+                                                            >
+                                                            {{$tag->name}} 
                                                         </option>
-                                                      @endforeach
-                                                </select>
+                                                       @endforeach                                                       
+                                                  </select>
+                                            @endif 
                                           </div>
                                     </div>
                               </div>

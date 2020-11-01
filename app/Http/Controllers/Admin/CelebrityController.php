@@ -57,7 +57,7 @@ class CelebrityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         if ($request->has('create_type') && $request->create_type == 'celebrity_info') {
            $request->validate([
                 'name' => 'required | string',
@@ -97,6 +97,7 @@ class CelebrityController extends Controller
                 $celebrity->images()->save($imageUpload);
                 
             }
+
             $celebrity->syncTags($request->tags);
             alert()->success('Data has been saved successfully!');
             return back();
@@ -140,8 +141,38 @@ class CelebrityController extends Controller
     public function update(Request $request, Celebrity $celebrity)
     {    
         $input = $request->only(['name','email','designation','gender','mobile','social_link']); 
-        //dd ($input);
         $celebrity->update($input);
+
+          if ($request->hasFile('file')) {
+                $uploadedFile = $request->file('file');
+                $realPath = $request->file('file')->getRealPath();
+                $filename = $celebrity->username.'_'.time().'.'.$request->file('file')->extension();
+      
+                if (!is_dir($this->file_path)) {
+                    mkdir($this->file_path, 0777);
+                }
+
+                InterventionImage::cache(function($image) use ($filename, &$realPath) {
+                   $image->make($realPath)->resize(170, 170)->save($this->file_path.'/'.$filename);
+                });
+
+               
+                $celebrity_image = $celebrity->images[0] ;
+                $old_image = $celebrity->images[0]->url;
+                 
+                unlink($this->file_path.'/'.$old_image);
+                
+                $celebrity_image->update([
+                    'url' => $filename,
+                ]);
+
+                $celebrity->images()->save($celebrity_image);
+                
+            }
+
+        
+
+        $celebrity->syncTags($request->tags);    
 
         alert()->success('Data has been updated successfully!');
         return redirect()->back();
@@ -155,6 +186,9 @@ class CelebrityController extends Controller
      */
     public function destroy(Celebrity $celebrity)
     {
-        //
+        $celebrity->delete();
+
+        alert()->success('Data has been deleted successfully!');
+        return redirect()->back();
     }
 }

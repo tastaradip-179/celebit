@@ -56,7 +56,13 @@
                                                 <span><a href="mus-artist-profile.html">{{$celebrity->designation}}</a></span>    
                                             </div>
                                             <div class="action">
-                                                <a class="" href="{{ route($route.'edit', [$celebrity->username]) }}"><i class="fa fa-edit"></i></a>
+                                                
+                                                <form id="delete-{{$celebrity->username}}" action="{{ route($route.'destroy', [$celebrity->username]) }}" method="POST" style="display: inline;">
+                                                    {{ csrf_field() }}
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
+                                                <a class="btn btn-defualt" href="{{ route($route.'edit', [$celebrity->username]) }}">Edit</a>
                                             </div>
                                         </div>
                                     </div>

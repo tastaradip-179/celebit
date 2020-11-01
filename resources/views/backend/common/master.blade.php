@@ -23,6 +23,7 @@
         <!-- CORE CSS TEMPLATE - START -->
         <link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('backend/assets/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('backend/assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
         <!-- CORE CSS TEMPLATE - END -->
         
     </head>
