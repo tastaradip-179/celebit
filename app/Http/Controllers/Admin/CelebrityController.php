@@ -141,6 +141,9 @@ class CelebrityController extends Controller
     public function update(Request $request, Celebrity $celebrity)
     {    
         $input = $request->only(['name','email','designation','gender','mobile','social_link']); 
+        if ($request->has('password')) {
+                $input = $input + ['password' => Hash::make($request->password)];
+        }
         $celebrity->update($input);
 
           if ($request->hasFile('file')) {

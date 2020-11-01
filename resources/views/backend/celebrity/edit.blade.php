@@ -58,7 +58,7 @@
                                         <label class="form-label" for="password">Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
-                                            <input type="password" class="form-control" id="password" name="password" value="" >
+                                            <input type="password" class="form-control" id="password" name="password" value="{{ $celebrity->password ? $celebrity->password:'' }}"  >
                                         </div>
                                     </div>
 
@@ -66,7 +66,7 @@
                                         <label class="form-label" for="password_confirmed">Confirm Password </label>
                                         <span class="desc">e.g. "TempPassword"</span>
                                         <div class="controls">
-                                            <input type="password" class="form-control" id="password_confirmed" name="password_confirmation" value="">
+                                            <input type="password" class="form-control" id="password_confirmed" name="password_confirmation" value="{{ $celebrity->password ? $celebrity->password:'' }}" >
                                         </div>
                                     </div>
                                     <div class="form-group">
