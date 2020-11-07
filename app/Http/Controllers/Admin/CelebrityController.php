@@ -31,6 +31,7 @@ class CelebrityController extends Controller
     {
         $data['title']     = $this->title;
         $data['route']     = $this->route;
+        $data['tags'] = Tag::latest()->get();
         $data['celebrities'] = Celebrity::orderBy('name', 'asc')->paginate(15);
        // dd($data['celebrities'] );
         return view($this->view.'index', $data);

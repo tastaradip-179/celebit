@@ -28,6 +28,9 @@
                     <li>
                         <a class="" href="#" >Manage Tags</a>
                     </li>
+                    <li>
+                        <a class="" href="{{url('/admin/packages')}}" >Manage Packages</a>
+                    </li>
                 </ul>
             </li>
 

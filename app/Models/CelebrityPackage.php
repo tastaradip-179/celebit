@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class CelebrityPackage extends Model
 {
     protected $fillable = [
-    	'celebrity_id','video_type','per_minute_fee','extra_per_minute_fee'
+    	'celebrity_id','package_id','duration','per_minute_fee','extra_per_minute_fee'
     ];
 
+    public function celebrity()
+    {
+        return $this->belongsTo('App\Models\Celebrity');
+    }
+
+     public function packages()
+    {
+        return $this->hasMany('App\Models\Package');
+    }
     
 }

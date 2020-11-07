@@ -29,6 +29,8 @@ Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('
 	});
 
 	Route::resource('celebrities', 'CelebrityController');
+	Route::resource('celebritypackages', 'CelebrityPackageController');
+	Route::resource('packages', 'PackageController');
 });
 
 

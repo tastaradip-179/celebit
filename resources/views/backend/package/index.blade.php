@@ -1,0 +1,128 @@
+@extends('backend.common.master')
+
+@section('content')
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+
+        <div class='col-xl-12 col-lg-12 col-md-12 col-12'>
+            <div class="page-title">
+
+                <div class="float-left">
+                    <h1 class="title">{{$title}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+         <div class="row margin-0">
+
+            <div class="col-xl-6">
+                <section class="box ">
+                    <header class="panel_header">
+                        <h2 class="title float-left">Package List</h2>
+                        <div class="actions panel_actions float-right">
+                            <i class="box_toggle fa fa-chevron-down"></i>
+                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
+                            <i class="box_close fa fa-times"></i>
+                        </div>
+                    </header>
+                    <div class="content-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">Id</th>
+                                    <th style="width:50%">Name</th>
+                                    <th style="width:30%">Action</th>
+                                </tr>
+                            </thead>
+                            @foreach($packages as $key=>$package)
+                          	<tbody>
+                                <tr>
+                                    <td>{{$packages[$key]->id}}</td>
+                                    <td>{{$packages[$key]->name}}</td>
+                                    <td>
+                                    	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
+                                            {{ csrf_field() }}
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                        <a class="btn btn-defualt" href="{{ route($route.'edit', [$package->id]) }}" data-toggle="modal" data-target="#PackageEditModal">Edit</a>
+                                    </td>
+                                </tr>  
+                            </tbody>
+                            <!-- The Modal -->
+							<div class="modal" id="PackageEditModal">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+
+							      <!-- Modal Header -->
+							      <div class="modal-header">
+							        <h4 class="modal-title">Edit {{$package->name}}</h4>
+							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+							      </div>
+
+							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
+					                      {{ method_field('PUT') }}
+					                      {{csrf_field()}}
+									      <!-- Modal body -->
+									      <div class="modal-body">
+											    <div class="form-group">
+							                          <label class="form-label" for="name">Package name</label>
+							                          <span class="desc">e.g. "Video Recording"</span>
+							                          <div class="controls">
+							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
+							                          </div>
+							                    </div>
+							                    <div class="form-group float-right">
+							                    	<button type="submit" class="btn btn-success">Update</button>
+									       			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+									    		</div>
+									      </div>				      	
+							      </form>
+
+							    </div>
+							  </div>
+							</div>
+                            @endforeach 
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-xl-6">
+            	<section class="box ">
+                    <header class="panel_header">
+                        <h2 class="title float-left">Add Package</h2>
+                        <div class="actions panel_actions float-right">
+                            <i class="box_toggle fa fa-chevron-down"></i>
+                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
+                            <i class="box_close fa fa-times"></i>
+                        </div>
+                    </header>
+                    <div class="content-body">
+		            	<form id="form" method="post" action="{{route($route.'store')}}" style="width: 100%;">
+		                      {{csrf_field()}}
+
+		                    <div class="form-group">
+		                          <label class="form-label" for="name">Package name</label>
+		                          <span class="desc">e.g. "Video Recording"</span>
+		                          <div class="controls">
+		                                <input type="text" class="form-control" id="name" name="name" >
+		                          </div>
+		                    </div>
+		                
+		                    <div class="form-group float-right ">
+		                        <button type="submit" class="btn btn-success">Create</button>
+		                        <button type="button" class="btn">Cancel</button>
+		          	        </div>
+
+		                </form>
+		            </div>
+	            </section>
+            </div>
+
+        </div>
+    </section>
+</section>
+@endsection

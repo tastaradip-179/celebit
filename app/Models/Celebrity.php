@@ -32,6 +32,11 @@ class Celebrity extends Model
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
+     public function celebritypackages()
+    {
+        return $this->hasMany('App\Models\CelebrityPackage');
+    }
+
     public function setSocialLinkAttribute( $value ) {
         $this->attributes['social_link'] = json_encode( $value );
     }

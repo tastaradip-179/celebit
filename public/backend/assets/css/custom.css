@@ -1,3 +1,7 @@
 .ecommerce_product img, .music_genre img {
     width: auto;
- }   
+}
+
+section .content-body {
+	overflow: hidden;
+}   

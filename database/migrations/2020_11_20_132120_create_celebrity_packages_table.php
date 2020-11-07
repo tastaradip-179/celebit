@@ -16,10 +16,17 @@ class CreateCelebrityPackagesTable extends Migration
         Schema::create('celebrity_packages', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('celebrity_id')->unsigned();
-            $table->string('video_type')->default(1)->comment('1 fixed video, 2 video call');
+            $table->bigInteger('package_id')->unsigned();     
+            $table->integer('duration')->nullable();
             $table->integer('per_minute_fee')->default(0);
             $table->integer('extra_per_minute_fee')->default(0);
             $table->timestamps();
+            $table->foreign('celebrity_id')
+                  ->references('id')->on('celebrities')
+                  ->onDelete('cascade');
+            $table->foreign('package_id')
+                  ->references('id')->on('packages')
+                  ->onDelete('cascade');
         });
     }
 
