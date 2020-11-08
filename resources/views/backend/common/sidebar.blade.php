@@ -33,6 +33,18 @@
                     </li>
                 </ul>
             </li>
+            <li class=""> 
+                <a href="javascript:;">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Customers</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu" >
+                    <li>
+                        <a class="" href="{{url('/admin/customers')}}" >All Customers</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
 
