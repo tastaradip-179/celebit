@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -33,6 +35,34 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+
+            
+            return view('backend.dashboard');
+        }
+        return redirect()->back()->withErrors([
+            'msg'   =>  'Please check your credentials'
+        ]);
+    }
+
+
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
