@@ -32,7 +32,7 @@
 						<input type="email" name="email" placeholder="Email address" required="required">
 					</div>
 					<div class="input-sec">
-						<input type="Password" name="password" placeholder="Password" required="required">
+						<input type="password" name="password" placeholder="Password" required="required">
 					</div>
 					<div class="input-sec">
 						<input type="password" name="confirm-password" placeholder="Re-enter password" required="required">

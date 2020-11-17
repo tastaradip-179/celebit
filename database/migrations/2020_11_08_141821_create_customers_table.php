@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('fullname');
             $table->string('username')->nullable();
             $table->string('email');
-            $table->string('password')->default(Hash::make(Str::uuid()));
+            $table->string('password');
             $table->string('gender');
             $table->string('mobile')->nullable();
             $table->string('designation');
