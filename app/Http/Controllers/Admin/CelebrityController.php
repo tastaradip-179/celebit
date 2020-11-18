@@ -69,7 +69,7 @@ class CelebrityController extends Controller
                 'file' => 'required',
                 'tags' => 'required',
             ]);
-            $input = $request->only(['name','email','designation','gender','mobile','social_link']);
+            $input = $request->only(['name','email','designation','gender','mobile','social_link','about']);
             if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }
@@ -141,7 +141,7 @@ class CelebrityController extends Controller
      */
     public function update(Request $request, Celebrity $celebrity)
     {    
-        $input = $request->only(['name','email','designation','gender','mobile','social_link']); 
+        $input = $request->only(['name','email','designation','gender','mobile','social_link','about']); 
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
         }

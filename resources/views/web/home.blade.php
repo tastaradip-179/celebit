@@ -13,6 +13,38 @@
 	<section class="more_items_sec">
   		<div class="container">
 	  		<div class="amz_products_content">
+
+	  			<div class="amazon">
+					<div class="brws-head">
+						<h3>All the celebrities </h3>
+						<div class="amz-lg">
+							<a href="#" title>View all</a>
+						</div><!--amz-lg end-->
+						<div class="clearfix"></div>
+					</div><!--abt-amz end-->
+					<div class="amz-img-inf">
+						<div class="row">
+							@foreach($celebrities as $celebrity)
+							<div class="col-lg-2 col-md-4 col-sm-6 col-6 full_wdth">
+								<div class="mg-inf">
+									<div class="img-sr">
+										@foreach($celebrity->images as $image)
+                                            <a href="{{URL::to('/profile')}}" title="">
+                                                <img src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="Thumbnail">
+                                            </a>
+                                        @endforeach
+									</div>
+									<div class="info-sr">
+										<h3><a href="{{URL::to('/profile')}}" title="">{{$celebrity->name}}</a></h3>
+										<span>started at ৳3200</span>
+									</div>
+								</div><!--mg-inf end-->
+							</div>
+							@endforeach
+						</div>
+					</div><!--amz-img-in-->
+				</div><!--amazon end-->
+
 	  			<div class="amazon">
 					<div class="brws-head">
 						<h3>Top rated celebrity </h3>

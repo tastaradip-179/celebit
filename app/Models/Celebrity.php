@@ -9,7 +9,7 @@ class Celebrity extends Model
 	use \Spatie\Tags\HasTags;
 	
     protected $fillable = [
-    	'name','username','email','designation','gender','mobile','social_link', 'status'
+    	'name','username','email','designation','gender','mobile','social_link', 'status', 'about'
     ];
 
     public static function boot()

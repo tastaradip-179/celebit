@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('web.home');
-});
+
+Route::get('/','Web\HomeController@index')->name('web.home');
 Route::get('/profile', function () {
     return view('web.profile');
 });

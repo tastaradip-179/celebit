@@ -70,6 +70,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="form-label" for="designation">Designation *</label>
+                                        <span class="desc">e.g. singer, actor</span>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="designation" name="designation" value="{{ $celebrity->designation ? $celebrity->designation:'' }}" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="form-label" for="file">Avatar *</label>
                                         <span class="desc">e.g. "character.jpg"</span>
                                         <div class="controls">  
@@ -100,12 +107,12 @@
                                           </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="designation">Designation *</label>
-                                        <span class="desc">e.g. singer, actor</span>
+                                        <label class="form-label" for="about">About</label>
                                         <div class="controls">
-                                            <input type="text" class="form-control" id="designation" name="designation" value="{{ $celebrity->designation ? $celebrity->designation:'' }}" required="required">
+                                          <textarea name="about" class="form-control" rows="4" style="margin-bottom: 30px">{{$celebrity->about ? $celebrity->about:''}}</textarea>
                                         </div>
                                     </div>
+                                    
                                     @php
                                       $social_links = $celebrity->social_link;
                                     @endphp

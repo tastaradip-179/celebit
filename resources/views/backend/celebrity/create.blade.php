@@ -69,6 +69,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="form-label" for="designation">Designation *</label>
+                                        <span class="desc">e.g. singer, actor</span>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="designation" name="designation">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="form-label" for="file">Avatar *</label>
                                         <span class="desc">e.g. "character.jpg"</span>
                                         <div class="controls">
@@ -96,11 +103,21 @@
                                           </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="designation">Designation *</label>
-                                        <span class="desc">e.g. singer, actor</span>
+                                        <label class="form-label" for="about">About</label>
                                         <div class="controls">
-                                            <input type="text" class="form-control" id="designation" name="designation">
+                                          <textarea class="form-control" rows="4" style="margin-bottom: 30px" name="about"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="tags">Select Tags</label>
+                                          <div class="controls">
+                                                <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                      <option value=""></option>
+                                                      @foreach($tags as $tag)
+                                                        <option>{{$tag->name}}</option>
+                                                      @endforeach
+                                                </select>
+                                          </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="social_link">Facebook</label>
@@ -122,18 +139,7 @@
                                         <div class="controls">
                                             <input type="text" class="form-control" id="social_link_insta" name="social_link['instagram']">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Select Tags</label>
-                                          <div class="controls">
-                                                <select class="form-control select2" name="tags[]" multiple="multiple">
-                                                      <option value=""></option>
-                                                      @foreach($tags as $tag)
-                                                        <option>{{$tag->name}}</option>
-                                                      @endforeach
-                                                </select>
-                                          </div>
-                                    </div>
+                                    </div> 
                               </div>
                         </div>
 
