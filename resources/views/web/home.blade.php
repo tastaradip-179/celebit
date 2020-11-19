@@ -29,7 +29,7 @@
 								<div class="mg-inf">
 									<div class="img-sr">
 										@foreach($celebrity->images as $image)
-                                            <a href="{{URL::to('/profile')}}" title="">
+                                            <a href="{{route('web.profile',['id'=>$celebrity->id])}}" title="">
                                                 <img src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="Thumbnail">
                                             </a>
                                         @endforeach

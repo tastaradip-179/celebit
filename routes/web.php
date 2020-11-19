@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/','Web\HomeController@index')->name('web.home');
-Route::get('/profile', function () {
-    return view('web.profile');
-});
+Route::get('/profile/{id}','Web\HomeController@show')->name('web.profile');
 Route::get('customer/signup', 'Customer\CustomerController@create')->name('customer.create');
 Route::post('customer/store', 'Customer\CustomerController@store')->name('customer.store');
 Route::get('customer/edit', 'Customer\CustomerController@edit')->name('customer.edit');

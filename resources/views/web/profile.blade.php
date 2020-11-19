@@ -10,11 +10,11 @@
 		<div class="container">
 			<div class="vcp_inf cr">
 				<span class="vc_hd">
-					<img src="{{asset('web/images/resources/sn.png')}}" alt="">
+					<img src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="">
 				</span>
 				<div class="vc_info pr">
-					<h4>ScereBro <span class="verify_ic"><i class="icon-tick"></i></span></h4>
-					<span>Reality TV Star - Big Brother, Amazing Race, Fear Factor</span>
+					<h4>{{$celebrity->name}} <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+					<span>{{$celebrity->designation}}</span>
 				</div>
 			</div><!--vcp_inf end-->
 			<ul class="chan_cantrz">
@@ -33,7 +33,7 @@
 				<div class="col-lg-12">
 					<div class="decp_cotnet">
 						<h2 class="ab-fd">About </h2>
-						<p>Welcome to the official Saturday Night Live channel on YouTube!  Here you will find your favorite sketches, behind the scenes clips and web exclusives, featuring all your favorite hosts and cast members.  Check out more SNL at http://www.nbc.com/</p>
+						<p>{{$celebrity->about}}</p>
 					</div><!--abt-founder end-->
 
 					<div class="link-pr">
