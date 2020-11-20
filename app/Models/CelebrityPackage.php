@@ -15,9 +15,9 @@ class CelebrityPackage extends Model
         return $this->belongsTo('App\Models\Celebrity');
     }
 
-     public function packages()
+     public function package()
     {
-        return $this->hasMany('App\Models\Package');
+        return $this->belongsTo('App\Models\Package');
     }
     
 }

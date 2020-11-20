@@ -37,21 +37,21 @@
                                     <th style="width:20%">Action</th>
                                 </tr>
                             </thead>
-                            @foreach($packages as $key=>$package)
+                            @foreach($celebrity_packages as $key=>$celebrity_package)
                             <tbody>
-                                @if(!empty($packages))
+                                @if(!empty($celebrity_packages))
                                 <tr>
-                                    <td>{{$package_name->name}}</td>
-                                    <td>{{$packages[$key]->duration}}</td>
-                                    <td>{{$packages[$key]->per_minute_fee}}</td>
-                                    <td>{{$packages[$key]->extra_per_minute_fee}}</td>
+                                    <td>{{$celebrity_packages[$key]->package->name}}</td>
+                                    <td>{{$celebrity_packages[$key]->duration}}</td>
+                                    <td>{{$celebrity_packages[$key]->per_minute_fee}}</td>
+                                    <td>{{$celebrity_packages[$key]->extra_per_minute_fee}}</td>
                                     <td>
-                                    <form id="delete-celebritypackage" action="{{ route($route.'destroy', [$packages[$key]->id]) }}" method="POST" style="display: inline;">
+                                    <form id="delete-celebritypackage" action="{{ route($route.'destroy', [$celebrity_packages[$key]->id]) }}" method="POST" style="display: inline;">
                                             {{ csrf_field() }}
                                             @method('DELETE')
                                             <button class="btn btn-danger">Delete</button>
                                     </form>
-                                    <a class="btn btn-defualt" href="{{ route($route.'edit', [$packages[$key]->id]) }}">Edit</a>
+                                    <a class="btn btn-defualt" href="{{ route($route.'edit', [$celebrity_packages[$key]->id]) }}">Edit</a>
                                     </td>
                                 </tr> 
                                 @endif 

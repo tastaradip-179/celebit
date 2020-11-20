@@ -13,6 +13,6 @@ class Package extends Model
 
     public function celebritypackage()
     {
-        return $this->belongsTo('App\Models\CelebrityPackage');
+        return $this->hasMany('App\Models\CelebrityPackage');
     }
 }
