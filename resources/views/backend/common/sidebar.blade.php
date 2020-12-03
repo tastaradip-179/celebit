@@ -7,7 +7,7 @@
         <ul class='wraplist'>	
 
             <li class="open"> 
-                <a href="#">
+                <a href="{{route('admin.backend.dashboard')}}">
                     <i class="fa fa-dashboard"></i>
                     <span class="title">Dashboard</span>
                 </a>
@@ -20,16 +20,16 @@
                 </a>
                 <ul class="sub-menu" >
                     <li>
-                        <a class="" href="{{url('/admin/celebrities')}}" >All Celebrities</a>
+                        <a class="" href="{{route('admin.celebrities.index')}}" >All Celebrities</a>
                     </li>
                     <li>
-                        <a class="" href="{{url('/admin/celebrities/create')}}" >Add Celebrity</a>
+                        <a class="" href="{{route('admin.celebrities.create')}}" >Add Celebrity</a>
                     </li>
                     <li>
                         <a class="" href="#" >Manage Tags</a>
                     </li>
                     <li>
-                        <a class="" href="{{url('/admin/packages')}}" >Manage Packages</a>
+                        <a class="" href="{{route('admin.packages.index')}}" >Manage Packages</a>
                     </li>
                 </ul>
             </li>
@@ -41,7 +41,7 @@
                 </a>
                 <ul class="sub-menu" >
                     <li>
-                        <a class="" href="{{url('/admin/customers')}}" >All Customers</a>
+                        <a class="" href="{{route('admin.customers.index')}}" >All Customers</a>
                     </li>
                 </ul>
             </li>

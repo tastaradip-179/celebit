@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/backend/dashboard";
 
     /**
      * Create a new controller instance.
@@ -36,9 +36,15 @@ class LoginController extends Controller
      * @return void
      */
 
+
     public function showLoginForm()
     {
-        return view('auth.login');
+        if(Auth::check()){
+            return redirect()->route('admin.backend.dashboard');
+        }
+        else{
+            return view('backend.auth.login');
+        }
     }
 
     /**
@@ -51,18 +57,25 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
-
-            
-            return view('backend.dashboard');
+        if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){ 
+            return redirect(route('admin.backend.dashboard'));
         }
         return redirect()->back()->withErrors([
             'msg'   =>  'Please check your credentials'
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+         $this->middleware('guest')->except('logout');
+         $this->redirectTo = route('admin.backend.dashboard');
     }
+
+ 
 }

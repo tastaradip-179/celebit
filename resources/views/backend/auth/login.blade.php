@@ -1,4 +1,4 @@
-@extends('auth.common.master')
+@extends('backend.auth.master')
 
 @section('content')
 
@@ -13,7 +13,7 @@
             <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
                 <h1><a href="#" title="Login Page" tabindex="-1">Ultra Admin</a></h1>
 
-                <form method="POST" action="{{ route('login') }}" name="loginform" id="loginform">
+                <form method="POST" action="{{ route('admin.check') }}" name="loginform" id="loginform">
                     @csrf
                     <p>
                         <label for="email">{{ __('E-Mail Address') }}<br />
@@ -53,16 +53,15 @@
                     </p>
                 </form>
 
-                <p id="nav">
-                    <button type="submit" class="btn btn-primary float-right" title="Sign Up">
-                                    {{ __('Login') }}
-                    </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link float-left" href="{{ route('password.request') }}" title="Password Lost and Found">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                <p id="nav" class="passreset">
+                    <a class="btn btn-link" href="#" title="Password Lost and Found">
+                            {{ __('Forgot Your Password?') }}
+                    </a>
+                    <!-- @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}" title="Password Lost and Found">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif -->
                 </p>
 
 

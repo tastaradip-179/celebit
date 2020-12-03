@@ -25,26 +25,39 @@ Route::post('customer/signin/submit', 'Auth\CustomerLoginController@login')->nam
 Route::get('/customer/profile', function () {
     return view('web.customer.profile');})->name('customer.profile');
 
+Route::resource('orders', 'Customer\OrderController')->except('create');
+Route::get('/request/{id}', 'Customer\OrderController@create')->name('request.create');
 
 
-/* Admin routes 
+
+
+
+/* Backend routes 
 ===============================================
 */
-Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('admin')->group(function () {
-	Route::get('dashboard', function () {
-	    return view('backend.dashboard');
-	});
 
+/*Admin Login-logout*/
+Route::group(['prefix'=>'backend', 'namespace'=>'Auth'], function(){
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::post('/login-check', 'LoginController@login')->name('admin.check');
+    Route::post('/logout', 'LoginController@logout')->name('admin.logout');
+   
+});
+
+/*Dasboard, Celebrity & Packages*/
+Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
+	Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
 	Route::resource('celebrities', 'CelebrityController');
 	Route::resource('celebritypackages', 'CelebrityPackageController');
 	Route::resource('packages', 'PackageController');
 });
-Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('admin')->group(function () {
+
+Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {
 	Route::resource('customers', 'CustomerController')->only(['index','destroy']);
 });
 
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

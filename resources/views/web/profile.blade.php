@@ -57,7 +57,32 @@
 		<div class="tab-pane fade  show active" id="packages_tab" role="tabpanel" aria-labelledby="packages_tab">
 			<div class="packages_tab_content">
 				<div class="container">
-							
+					<div class="content-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">Name</th>
+                                    <th style="width:20%">Offered Duration</th>
+                                    <th style="width:20%">Per Min Fee</th>
+                                    <th style="width:20%">Extra Per Min Free</th>
+                                    <th style="width:20%">Choose</th>
+                                </tr>
+                            </thead>
+                            @foreach($celebrity_packages as $key=>$celebrity_package)
+                            <tbody>
+                                @if(!empty($celebrity_packages))
+                                <tr>
+                                    <td>{{$celebrity_packages[$key]->package->name}}</td>
+                                    <td>{{$celebrity_packages[$key]->duration}}</td>
+                                    <td>{{$celebrity_packages[$key]->per_minute_fee}}</td>
+                                    <td>{{$celebrity_packages[$key]->extra_per_minute_fee}}</td> 
+                                    <td><a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}" class="btn btn-default">Choose</a></td>
+                                </tr> 
+                                @endif 
+                            </tbody>
+                            @endforeach 
+                        </table>
+                    </div>
 				</div>
 			</div><!--package_tab_content end-->
 		</div>

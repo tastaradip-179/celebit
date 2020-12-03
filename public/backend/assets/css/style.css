@@ -4292,17 +4292,21 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
 ------------------------------------------------------------------*/
 
 .loginpage {
-    padding: 0 50px;
+    background: #111111;
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px) {
     .loginpage {
         padding: 0 90px;
+        position: absolute;
+        top: 20%;
     }
 }
 
-@media (max-width: 992px){
+@media (max-width: 992px) and (min-width: 767px){
     .loginpage {
         padding: 0 15px;
+        position: absolute;
+        top: 12%;
     }
 }
 
@@ -4389,13 +4393,15 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
     ;
     background: #fbfbfb;
 }
+.loginpage .passreset{
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 14px;
+}
 .loginpage #nav a, .loginpage a {
-    color: rgba(255, 255, 255, 1)
-    /*#ffffff*/
-    
-    ;
+    color: rgba(255, 255, 255, 1) /*#ffffff*/;
     font-size: 15px;
-    color: #dddddd;
+    color: #dddddd;   
 }
 .loginpage #nav a:hover, .loginpage a:hover, .loginpage #nav a:active, .loginpage a:active {
     color: rgba(255, 255, 255, 1)
@@ -4440,17 +4446,15 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
     margin: 5px 5px 5px 5px;
 }
 body.login_page {
-    background-color: rgba(116, 77, 144, 1.0)
-    /*#744d90*/
-    
-    ;
-    background-image: url('../images/login-bg.png');
+    background-color: rgba(116, 77, 144, 1.0)/*#744d90*/;
+    background-image: url('../images/fireworks.jpg');
     background-attachment: fixed;
     height: 100%;
     max-height: 100%;
     min-height: 99%;
     /* overflow: hidden; */
     width: 100%;
+    background-size: 100% auto;
 }
 .register-wrapper {
     height: 100%;

@@ -150,7 +150,7 @@
                 <li class="profile list-inline-item">
                     <a href="#" data-toggle="dropdown" class="toggle">
                         <img src="data/profile/profile-music.jpg" alt="user-image" class="rounded-circle img-inline">
-                        <span>Alan Wilson <i class="fa fa-angle-down"></i></span>
+                        <span>@if(Auth::user()) {{ Auth::user()->name }} @endif<i class="fa fa-angle-down"></i></span>
                     </a>
                     <ul class="dropdown-menu profile animated fadeIn">
                         <li class="dropdown-item">
@@ -172,11 +172,15 @@
                             </a>
                         </li>
                         <li class="last dropdown-item">
-                            <a href="ui-login.html">
+                            <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-lock"></i>
                                 Logout
                             </a>
+                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                            </form>
                         </li>
+                          
                     </ul>
                 </li>
             </ul>			

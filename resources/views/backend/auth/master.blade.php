@@ -21,7 +21,17 @@
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('backend/assets/images/apple-touch-icon-144-precomposed.png')}}">    <!-- For iPad Retina display -->
 
 
-        @include('auth.common.includes.styles')
+        @include('backend.common.includes.style')
+
+        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+        <link href="{{asset('backend/assets/plugins/morris-chart/css/morris.css')}}" rel="stylesheet" type="text/css" media="screen"/><link href="assets/plugins/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+
+        <!-- CORE CSS TEMPLATE - START -->
+        <link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('backend/assets/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('backend/assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
+        <!-- CORE CSS TEMPLATE - END -->
 
     </head>
     <!-- END HEAD -->
@@ -30,7 +40,7 @@
 
     @yield('content')
 
-    @include('auth.common.includes.scripts')
+    @include('backend.common.includes.script')
 
     @yield('page-js')
    

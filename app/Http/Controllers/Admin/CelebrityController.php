@@ -15,7 +15,7 @@ class CelebrityController extends Controller
 
     public function __construct () 
     {
-        
+        $this->middleware('auth');
         $this->title = 'Celebrity';
         $this->route = 'admin.celebrities.';
         $this->view  = 'backend.celebrity.';
