@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -18,7 +18,7 @@ class CustomerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/customer/signin';
 
     /**
      * Create a new controller instance.
@@ -33,8 +33,14 @@ class CustomerLoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('web.customer.login');
+        if(Auth::guard('customer')->check()){
+            return redirect()->route('customer.profile');
+        }
+        else{
+            return view('web.customer.login');
+        }
     }
+
 
     public function login(Request $request)
     {
@@ -50,13 +56,11 @@ class CustomerLoginController extends Controller
         ]);
     }
 
-	public function __construct()
+	public function logout(Request $request)
     {
-        $this->middleware('guest:customer')->except('logout');
+        Auth::guard('customer')->logout();
+        return redirect()->route('web.home');
     }
 
     
-
-
-
 }

@@ -21,6 +21,7 @@ Route::post('customer/store', 'Customer\CustomerController@store')->name('custom
 Route::get('customer/edit', 'Customer\CustomerController@edit')->name('customer.edit');
 Route::get('customer/signin', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
 Route::post('customer/signin/submit', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
+Route::get('customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
 
 Route::get('/customer/profile', function () {
     return view('web.customer.profile');})->name('customer.profile');
@@ -59,5 +60,4 @@ Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefi
 
 
 //Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

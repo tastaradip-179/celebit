@@ -24,7 +24,7 @@ class HomeController extends Controller
             $data['package'] = $data['celebrity_package']->package;
         }
         
-    	return view ('web.profile', $data);
+    	return view ('web.celebrity.profile', $data);
     }
 
 

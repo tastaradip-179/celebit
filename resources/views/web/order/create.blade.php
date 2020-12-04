@@ -21,31 +21,35 @@
 			<div class="user-account-pr">
 				<form action="{{route('orders.store')}}" method="post">
 					{{csrf_field()}}
+					<div class="chekbox-lg" id="checkbox-lg">
+						<ul>
+							<li>
+								<label>
+									<input type="radio" name="gender" value="myself">
+									<b class="checkmark"> </b>
+									<span>Myself</span>
+								</label>		
+							</li>
+							<li>
+								<label>
+									<input type="radio" name="gender" value="other">
+									<b class="checkmark"> </b>
+									<span>Someone else</span>
+								</label>		
+							</li>
+						</ul>
+					</div>
 					<input type="hidden" name="celebrity_package_id" value="{{$celebrity_package->id}}" />
-
+					@if(Auth::guard('customer')->check())
+						@php($logged_id= Auth::guard('customer')->user()->id)
+						<input type="hidden" name="customer_id" value="{{$logged_id}}" />
+					@endif
 					<div class="input-sec">
 						<input type="text" name="subject" placeholder="Subject" required="required">
 					<div class="input-sec">
 						<textarea id="upload_time" rows="4" name="message" style="width: 100%" placeholder="Message"></textarea>
 					</div>
-					<div class="chekbox-lg">
-						<ul>
-							<li>
-								<label>
-									<input type="radio" name="gender" value="Male">
-									<b class="checkmark"> </b>
-									<span>Ownself</span>
-								</label>		
-							</li>
-							<li>
-								<label>
-									<input type="radio" name="gender" value="Female">
-									<b class="checkmark"> </b>
-									<span>Other</span>
-								</label>		
-							</li>
-						</ul>
-					</div>
+					
 					<div class="input-sec flatpickr">
 						<input type="number" name="upload_time" class="flatpickr-input" placeholder="When it will be uploaded" data-input required="required">
 					</div>
@@ -63,3 +67,5 @@
 
 
 @endsection
+
+

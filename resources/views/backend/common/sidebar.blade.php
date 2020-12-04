@@ -31,6 +31,9 @@
                     <li>
                         <a class="" href="{{route('admin.packages.index')}}" >Manage Packages</a>
                     </li>
+                    <li>
+                        <a class="" href="{{route('admin.celebritypackages.create')}}" >Celebrity Packages</a>
+                    </li>
                 </ul>
             </li>
             <li class=""> 

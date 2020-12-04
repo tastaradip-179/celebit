@@ -150,7 +150,7 @@
                 <li class="profile list-inline-item">
                     <a href="#" data-toggle="dropdown" class="toggle">
                         <img src="data/profile/profile-music.jpg" alt="user-image" class="rounded-circle img-inline">
-                        <span>@if(Auth::user()) {{ Auth::user()->name }} @endif<i class="fa fa-angle-down"></i></span>
+                        <span>@if(Auth::check()) {{ Auth::user()->name }} @endif<i class="fa fa-angle-down"></i></span>
                     </a>
                     <ul class="dropdown-menu profile animated fadeIn">
                         <li class="dropdown-item">

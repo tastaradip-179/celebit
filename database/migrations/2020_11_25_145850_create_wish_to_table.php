@@ -18,8 +18,6 @@ class CreateWishToTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->string('fullname');
             $table->string('gender');
-            $table->string('designation');
-            $table->string('dob');
             $table->timestamps();
         });
     }

@@ -4,8 +4,12 @@
 	<section class="banner-section">
 		<div class="container">
 			<div class="banner-text">
-				<h2>we make your special day unforgettable</h2>
-				<a href="{{URL::to('/profile')}}" title="">Lets start</a>
+				<h2>We make your special day unforgettable</h2>
+				@if(Auth::guard('customer')->check())
+					<a href="{{route('customer.profile')}}" title="">Let's start</a>
+				@else
+					<a href="{{route('customer.create')}}" title="">Let's start</a>
+				@endif
 			</div><!--banner-text end-->
 			<h3 class="headline">Video of the Day by <a href="{{URL::to('/profile')}}" title="">newfox media</a></h3>
 		</div>

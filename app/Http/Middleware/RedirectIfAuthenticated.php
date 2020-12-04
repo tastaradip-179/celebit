@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                     return redirect()->route('customer.profile');
                 }
                 else {
-                    return redirect()->guest('web.home');
+                    return redirect()->guest(route('customer.login'));
                 }
                 break;
             default:

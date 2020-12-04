@@ -78,6 +78,7 @@ class CelebrityController extends Controller
             $celebrity = Celebrity::create($input);
             
             if ($request->hasFile('file')) {
+
                 $uploadedFile = $request->file('file');
                 $realPath = $request->file('file')->getRealPath();
                 $filename = $celebrity->username.'_'.time().'.'.$request->file('file')->extension();

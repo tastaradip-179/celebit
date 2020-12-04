@@ -53,8 +53,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['celebrity_package_id', 'customer_id', 'subject', 'message', 'upload_time']);
-        
+        dd($request->all());
+        $input = $request->only(['celebrity_package_id', 'customer_id', 'subject', 'message', 'upload_time']);        
         return redirect()->back();
     }
 

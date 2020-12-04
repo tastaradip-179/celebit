@@ -27,7 +27,7 @@
 					</li>
 					<li class="user-log">
 						<div class="user-ac-img">
-							<img src="{{asset('web/images/resources/user-img.png')}}" alt="">
+							<img src="{{asset('web/images/user-icon.png')}}" alt="">
 						</div>
 						<div class="account-menu">
 							<h4>AZYRUSMAX <span class="usr-status">PRO</span></h4>
@@ -43,7 +43,7 @@
 										<span>
 											<i class="icon-logout"></i>
 										</span>
-										<a href="#" title="">Sign out</a>
+										<a href="{{route('customer.logout')}}" title="">Sign out</a>
 									</li>
 								</ul>
 							</div><!--sd_menu end-->

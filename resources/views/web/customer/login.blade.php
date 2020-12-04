@@ -18,7 +18,7 @@
 		 		<img src="images/logo.png" alt="">
 		 		<span>Signin your Oren account</span>
 		 	</div><!--hd-lg end-->
-			<div class="user-account-pr">
+			<div class="user-account-pr" id="login">
 				<form action="{{route('customer.login.submit')}}" method="post">
 					{{csrf_field()}}
 					<div class="input-sec">
@@ -36,7 +36,7 @@
 				</div>
 			</div><!--user-account end--->
 			<div class="fr-ps">
-				<h1>Don't have an account?<a href="login.html" title="" class="show_signup">&nbsp;Register here.</a></h1>
+				<h1>Don't have an account?<a href="{{route('customer.create')}}" title="" class="show_signup">&nbsp;Register here.</a></h1>
 			</div><!--fr-ps end-->
 		</div><!--login end--->
 

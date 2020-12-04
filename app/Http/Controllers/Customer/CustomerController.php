@@ -32,7 +32,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view ('web.customer.signup');
+        return view ('web.customer.create');
     }
 
     /**
@@ -72,6 +72,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function edit(Customer $customer)
     {
         $data['customer'] = $customer;
