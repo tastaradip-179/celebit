@@ -5,11 +5,50 @@
 	display: inline-block;
 	margin: 0px 15px;
 }
+.btn-default:hover {
+	color: #ffffff;
+	font-weight: 500;
+}
 
 .user-account-pr#signup{
 	max-width: 620px;
 }
-
 .user-account-pr#login{
 	max-width: 370px;
+}
+
+.mb-20{
+	margin-bottom: 20px;
+}
+.mt-20{
+	margin-top: 20px;
+}
+.mtb-20{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.modal-dialog .form-elegant .btn i {
+    color: #2196f3 !important;
+    font-size: 17px;
+}
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+.btn-rounded {
+    border-radius: 10em;
+}
+.btn-white {
+    color: #000;
+    background-color: #fff !important;
+}
+.dark-grey-text {
+    color: #4f4f4f !important;
+}
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+.modal-title{
+	font-size: 1.75rem;
 }

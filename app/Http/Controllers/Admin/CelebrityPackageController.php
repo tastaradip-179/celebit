@@ -73,12 +73,14 @@ class CelebrityPackageController extends Controller
         $data['route']     = $this->route;
 
         $data['celebrity'] = Celebrity::findOrFail($id);
+        $data['packages'] = Package::latest()->get();
         $data['celebrity_packages'] = $data['celebrity']->celebritypackages;
 
         foreach($data['celebrity_packages'] as $key=>$data['celebrity_package']){
             $data['package'] = $data['celebrity_package']->package;
         }
-        
+
+
         return view($this->view.'show', $data);
     }
 

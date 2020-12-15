@@ -76,7 +76,13 @@
                                     <td>{{$celebrity_packages[$key]->duration}}</td>
                                     <td>{{$celebrity_packages[$key]->per_minute_fee}}</td>
                                     <td>{{$celebrity_packages[$key]->extra_per_minute_fee}}</td> 
-                                    <td><a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}" class="btn btn-default">Choose</a></td>
+                                    <td>
+                                    	@if(Auth::guard('customer')->check())
+                                    		<a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}" class="btn btn-default">Request</a>
+                                    	@else
+                                    		<a href="#modalLoginAlert" type="button" class="btn btn-default" data-toggle="modal" data-target="#modalLoginAlert">Request</a>
+                                    	@endif                                   	
+                                    </td>
                                 </tr> 
                                 @endif 
                             </tbody>
@@ -117,6 +123,101 @@
 		</div>
 	</div>
 </section><!--Featured Videos end-->
+
+<!--Modal: modalLoginAlert-->
+<div class="modal fade right" id="modalLoginAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">Signin First</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <img src="{{asset('web/images/user-icon.png')}}" alt="">
+          </div>
+
+          <div class="col-9">
+            <p class="mb-20"><strong>Please Signin first to continue</strong></p>
+			<a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#elegantLoginModalForm">Sign in</a>
+            <p class="mtb-20">Don't have an account? <br>
+            	<a href="{{route('customer.create')}}" style="font-style: italic;">Create your account</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalLoginAlert-->
+
+
+<!-- Modal: elegantLoginModalForm -->
+<div class="modal fade" id="elegantLoginModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content form-elegant">
+      <!--Header-->
+      <div class="modal-header text-center">
+        <h3 class="modal-title w-100 dark-grey-text font-weight-bold mtb-20" id="myModalLabel"><strong>Sign in</strong></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{route('customer.login.submit')}}" method="post">
+					{{csrf_field()}}
+	      <!--Body-->
+	      <div class="modal-body mx-4">
+	        <!--Body-->
+	        <div class="md-form mb-5">
+	          <input type="email" id="Form-email1" name="email" class="form-control validate">
+	          <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
+	        </div>
+
+	        <div class="md-form pb-3">
+	          <input type="password" id="Form-pass1" name="password" class="form-control validate">
+	          <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
+	          <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#" class="blue-text ml-1">
+	              Password?</a></p>
+	        </div>
+
+	        <div class="text-center mb-3">
+	          <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
+	        </div>
+	        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+	          with:</p>
+
+	        <div class="row my-3 d-flex justify-content-center">
+	          <!--Facebook-->
+	          <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="icon-facebook-official"></i></button>
+	          <!--Twitter-->
+	          <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="icon-twitter"></i></button>
+	          <!--Google +-->
+	          <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="icon-instagram"></i></button>
+	        </div>
+	      </div>
+	      <!--Footer-->
+	      <div class="modal-footer mx-5 pt-3 mb-1">
+	        <p class="font-small grey-text d-flex justify-content-end">Not a member? 
+	        	<a href="{{route('customer.create')}}" class="blue-text ml-1">Sign Up</a>
+	        </p>
+	      </div>
+	  </form>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal: elegantLoginModalForm -->
 
 
 @endsection
