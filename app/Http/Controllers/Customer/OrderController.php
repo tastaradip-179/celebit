@@ -6,6 +6,7 @@ use Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\CelebrityPackage;
+use App\Models\Wishto;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -28,7 +29,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        //
+        return view ($this->view.'index');
     }
 
     /**
@@ -54,7 +55,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
-        $input = $request->only(['celebrity_package_id', 'customer_id', 'subject', 'message', 'upload_time']);        
+        $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
+        $input2 = $request->only(['fullname', 'pronoun']);  
+        $order = Order::create($input);   
+        $input2 = $input2 + ['order_id' => $order->id] ;
+        $wishto =  Wishto::create($input2);
         return redirect()->back();
     }
 

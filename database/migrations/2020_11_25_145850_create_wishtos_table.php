@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWishToTable extends Migration
+class CreateWishtosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateWishToTable extends Migration
      */
     public function up()
     {
-        Schema::create('wish_to', function (Blueprint $table) {
+        Schema::create('wishtos', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('order_id')->unsigned();
-            $table->string('fullname');
-            $table->string('gender');
+            $table->string('fullname')->nullable();
+            $table->string('pronoun');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateWishToTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish_to');
+        Schema::dropIfExists('wishto');
     }
 }

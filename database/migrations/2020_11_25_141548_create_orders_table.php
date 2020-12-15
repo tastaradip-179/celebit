@@ -17,8 +17,9 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->bigInteger('celebrity_package_id')->unsigned();
             $table->bigInteger('customer_id')->unsigned();
+            $table->string('from')->nullable();
             $table->string('subject');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->datetime('upload_time');
             $table->timestamps();
         });
