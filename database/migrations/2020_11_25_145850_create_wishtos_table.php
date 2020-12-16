@@ -29,6 +29,6 @@ class CreateWishtosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wishto');
+        Schema::dropIfExists('wishtos');
     }
 }

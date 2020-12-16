@@ -16,5 +16,25 @@ class Customer extends Authenticatable
     	'fullname','username','email','designation','gender','mobile','dob','address','password'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $make_slug = implode('', explode(' ', strtolower($model->fullname)));
+            $exists = $model->where('username', $make_slug)->count();
+            while ($exists > 0) {
+                $make_slug = $make_slug.''.rand(1, 9999);
+                $exists = $model->where('username', $make_slug)->count();
+            }
+            $model->username = $make_slug;
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     
 }

@@ -15,17 +15,7 @@ class HomeController extends Controller
 
 
 
-    public function show ($id){
-    	$data['celebrity'] = Celebrity::findOrFail($id);
-    	$data['image'] = $data['celebrity']->images[0] ;
-    	$data['celebrity_packages'] = $data['celebrity']->celebritypackages;
-
-        foreach($data['celebrity_packages'] as $key=>$data['celebrity_package']){
-            $data['package'] = $data['celebrity_package']->package;
-        }
-        
-    	return view ('web.celebrity.profile', $data);
-    }
+    
 
 
 }

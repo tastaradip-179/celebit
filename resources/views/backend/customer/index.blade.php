@@ -53,7 +53,7 @@
                                     <td>{{$customer->dob}}</td>
                                     <td>{{$customer->address}}</td>
                                     <td>
-	                                    <form id="delete-customer" action="{{ route($route.'destroy', [$customer->id]) }}" method="POST">
+	                                    <form id="delete-customer" action="{{ route($route.'destroy', [$customer->username]) }}" method="POST">
 	                                            {{ csrf_field() }}
 	                                            @method('DELETE')
 	                                            <button class="btn btn-danger">Delete</button>

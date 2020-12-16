@@ -44,14 +44,14 @@ class CustomerController extends Controller
     public function store(Request $request)
     {   
 
-        $input = $request->only(['fullname','username','email','gender','mobile','designation', 'address','dob' ]);
+        $input = $request->only(['fullname','email','gender','mobile','designation', 'address','dob' ]);
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }
 
         $customer = Customer::create($input);  
-
-        return redirect()->back();   
+        return redirect()->route('customer.profile', $customer) ;   
+        
         
     }
 
@@ -63,7 +63,8 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        $data['customer'] = $customer; 
+        return view('web.customer.profile', $data) ;  
     }
 
     /**

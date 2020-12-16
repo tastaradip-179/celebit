@@ -17,7 +17,7 @@ class CreateCelebritiesTable extends Migration
     {
         Schema::create('celebrities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('username');
             $table->string('email')->nullable();
             $table->string('password')->default(Hash::make(Str::uuid()));

@@ -33,13 +33,13 @@
 								<div class="mg-inf">
 									<div class="img-sr">
 										@foreach($celebrity->images as $image)
-                                            <a href="{{route('web.profile',['id'=>$celebrity->id])}}" title="">
+                                            <a href="{{route('celebrities.show',[$celebrity->username])}}" title="">
                                                 <img src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="Thumbnail">
                                             </a>
                                         @endforeach
 									</div>
 									<div class="info-sr">
-										<h3><a href="{{URL::to('/profile')}}" title="">{{$celebrity->name}}</a></h3>
+										<h3><a href="" title="">{{$celebrity->name}}</a></h3>
 										<span>started at ৳3200</span>
 									</div>
 								</div><!--mg-inf end-->
