@@ -39,12 +39,28 @@
 										</span>
 										<a href="#" title="">Settings</a>
 									</li>
-									<li>
-										<span>
-											<i class="icon-logout"></i>
-										</span>
-										<a href="{{route('customer.logout')}}" title="">Sign out</a>
-									</li>
+									@if(Auth::guard('customer')->check())
+									 	@php($logged_customer = Auth::guard('customer')->user())
+										<li>
+											<span>
+												<i class="icon-logout"></i>
+											</span>
+											<a href="{{route('customer.profile', $logged_customer->username)}}" title="">Profile</a>
+										</li>
+										<li>
+											<span>
+												<i class="icon-logout"></i>
+											</span>
+											<a href="{{route('customer.logout')}}" title="">Sign out</a>
+										</li>
+									@else
+										<li>
+											<span>
+												<i class="icon-login"></i>
+											</span>
+											<a href="{{route('customer.login')}}" title="">Sign In</a>
+										</li>
+									@endif	
 								</ul>
 							</div><!--sd_menu end-->
 							<div class="sd_menu scnd">

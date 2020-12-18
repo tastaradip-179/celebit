@@ -28,6 +28,16 @@
 	margin-bottom: 20px;
 }
 
+@media (min-width: 991px) {
+	.modal-dialog-registration{
+		max-width: 800px !important;
+	}
+}
+@media (max-width: 991px) {
+	modal-dialog-registration{
+		max-width: 500px !important;
+	}
+}
 .modal-dialog .form-elegant .btn i {
     color: #2196f3 !important;
     font-size: 17px;

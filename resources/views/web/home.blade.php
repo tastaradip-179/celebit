@@ -6,7 +6,8 @@
 			<div class="banner-text">
 				<h2>We make your special day unforgettable</h2>
 				@if(Auth::guard('customer')->check())
-					<a href="{{route('customer.profile')}}" title="">Let's start</a>
+					@php($logged_customer = Auth::guard('customer')->user())
+					<a href="{{route('customer.profile', $logged_customer->username)}}" title="">Let's start</a>
 				@else
 					<a href="{{route('customer.create')}}" title="">Let's start</a>
 				@endif

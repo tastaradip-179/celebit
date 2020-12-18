@@ -49,7 +49,8 @@ class CustomerLoginController extends Controller
 		    'password' => 'required|min:5'
 		   ]);
 	  	if( Auth::guard('customer')->attempt( ['email' => $request->email, 'password' => $request->password] )){
-       		return redirect()->intended(route('customer.profile'));
+            $customer = Auth::guard('customer')->user();
+       		return redirect()->intended(route('customer.profile', $customer));
         }
         return redirect()->back()->withErrors([
             'msg'   =>  'Please check your credentials'

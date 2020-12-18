@@ -13,7 +13,7 @@
 								<span class="vc_hd">
 									<img src="images/resources/sn.png" alt="">
 								</span>
-								<h4>ScereBro</h4>
+								<h4>{{$customer->fullname}}</h4>
 								<p>since: Dec 17, 2017 </p>
 								<span>Last Login: 42 minutes ago</span>
 							</div><!--video_info pr-->

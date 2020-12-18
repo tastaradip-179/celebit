@@ -24,7 +24,7 @@ Route::post('customer/signin/submit', 'Auth\CustomerLoginController@login')->nam
 Route::get('customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
 Route::get('customer/{customer}','Customer\CustomerController@show')->name('customer.profile');
 
-Route::resource('orders', 'Customer\OrderController')->except('create');
+Route::resource('books', 'Customer\OrderController')->except('create');
 Route::get('/request/{id}', 'Customer\OrderController@create')->name('request.create');
 
 

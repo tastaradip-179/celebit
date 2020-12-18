@@ -44,7 +44,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {   
 
-        $input = $request->only(['fullname','email','gender','mobile','designation', 'address','dob' ]);
+        $input = $request->only(['fullname','email','gender','mobile','dob']);
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }

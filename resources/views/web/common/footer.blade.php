@@ -55,4 +55,7 @@
 			<div class="clearfix"></div>
 		</div><!--bottom-strip end-->
 	</div>
-</footer><!--footer en
+</footer><!--footer -->
+
+@include('web.common.customer-login')
+@include('web.common.customer-registration')

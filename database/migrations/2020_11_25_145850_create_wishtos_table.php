@@ -15,9 +15,12 @@ class CreateWishtosTable extends Migration
     {
         Schema::create('wishtos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('book_id')->unsigned();
             $table->string('fullname')->nullable();
             $table->string('pronoun');
+            $table->foreign('book_id')
+                  ->references('id')->on('books')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
