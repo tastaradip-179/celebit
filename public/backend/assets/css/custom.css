@@ -4,4 +4,8 @@
 
 section .content-body {
 	overflow: hidden;
-}   
+}  
+
+.select2-container {
+	width: 100% !important;
+} 

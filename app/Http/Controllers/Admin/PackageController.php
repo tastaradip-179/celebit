@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use Spatie\Tags\Tag;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -27,7 +28,7 @@ class PackageController extends Controller
         $data['title']     = $this->title;
         $data['route']     = $this->route;
         $data['packages']  = Package::latest()->get();
-
+        $data['tags'] = Tag::latest()->get();
         return view($this->view.'index', $data);
     }
 
@@ -51,6 +52,7 @@ class PackageController extends Controller
     {
         $input = $request->only(['name']);
         $package = Package::create($input);  
+        $package->syncTags($request->tags);
 
         alert()->success('Data has been saved successfully!');
         return redirect()->back();    
@@ -89,6 +91,7 @@ class PackageController extends Controller
     {
         $input = $request->only(['name']); 
         $package->update($input);
+        $package->syncTags($request->tags);
 
         alert()->success('Data has been updated successfully!');
         return redirect()->back();

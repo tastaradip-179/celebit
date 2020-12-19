@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
+	use \Spatie\Tags\HasTags;
 
 	protected $fillable = [
     	'name'

@@ -49,6 +49,7 @@ Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('
 	Route::resource('celebrities', 'CelebrityController')->except(['show']);
 	Route::resource('celebritypackages', 'CelebrityPackageController');
 	Route::resource('packages', 'PackageController');
+	Route::resource('tags', 'TagController');
 });
 
 Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {

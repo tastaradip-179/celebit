@@ -1,5 +1,11 @@
 @extends('backend.common.master')
 
+
+@section('page-css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
+
 @section('content')
 
 <section id="main-content" class=" ">
@@ -31,28 +37,41 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width:20%">Id</th>
-                                    <th style="width:50%">Name</th>
+                                    <th style="width:10%">S/N</th>
+                                    <th style="width:30%">Name</th>
+                                    <th style="width:30%">Tags/Types</th>
                                     <th style="width:30%">Action</th>
                                 </tr>
                             </thead>
+                            @php
+                                $sn=0;
+                            @endphp
                             @foreach($packages as $key=>$package)
                           	<tbody>
                                 <tr>
-                                    <td>{{$packages[$key]->id}}</td>
-                                    <td>{{$packages[$key]->name}}</td>
+                                    <td>{{++$sn}}</td>
+                                    <td>{{$package->name}}</td>
+                                    <td>
+                                        @if( !empty($tags) ) 
+                                            @foreach($tags as $key2=>$tag) 
+                                                   @foreach($package->tags as $key3=>$tg )
+                                                       @if(!empty($package->tags[$key3]->id) && ($package->tags[$key3]->id) == $tag->id) <span class="badge">{{$tag->name}} </span> @endif
+                                                   @endforeach    
+                                            @endforeach                                                       
+                                        @endif  
+                                    </td>
                                     <td>
                                     	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
                                             {{ csrf_field() }}
                                             @method('DELETE')
                                             <button class="btn btn-danger">Delete</button>
                                         </form>
-                                        <a class="btn btn-defualt" href="{{ route($route.'edit', [$package->id]) }}" data-toggle="modal" data-target="#PackageEditModal">Edit</a>
+                                        <a class="btn btn-defualt" href="#" data-toggle="modal" data-target="#PackageEditModal-{{$package->id}}">Edit</a>
                                     </td>
                                 </tr>  
                             </tbody>
                             <!-- The Modal -->
-							<div class="modal" id="PackageEditModal">
+							<div class="modal" id="PackageEditModal-{{$package->id}}">
 							  <div class="modal-dialog">
 							    <div class="modal-content">
 
@@ -69,11 +88,29 @@
 									      <div class="modal-body">
 											    <div class="form-group">
 							                          <label class="form-label" for="name">Package name</label>
-							                          <span class="desc">e.g. "Video Recording"</span>
 							                          <div class="controls">
 							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
 							                          </div>
-							                    </div>
+							                    </div> 
+                                                <div class="form-group">
+                                                    <label class="form-label">Package Types</label>
+                                                      <div class="controls">
+                                                        @if( !empty($tags) ) 
+                                                            <select class="form-control select2-modal" name="tags[]" multiple="multiple">
+                                                                  <option value=""></option>
+                                                                  @foreach($tags as $key=>$tag) 
+                                                                    <option value="{{$tag->name}}"
+                                                                       @foreach($package->tags as $key2=>$tg )
+                                                                           @if(!empty($package->tags[$key2]->id) && ($package->tags[$key2]->id) == $tag->id) selected=="selected" @endif
+                                                                       @endforeach     
+                                                                        >
+                                                                        {{$tag->name}} 
+                                                                    </option>
+                                                                   @endforeach                                                       
+                                                              </select>
+                                                        @endif 
+                                                      </div>
+                                                </div>
 							                    <div class="form-group float-right">
 							                    	<button type="submit" class="btn btn-success">Update</button>
 									       			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -111,6 +148,18 @@
 		                                <input type="text" class="form-control" id="name" name="name" >
 		                          </div>
 		                    </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tags">Select Tags</label>
+                                  <div class="controls">
+                                        <select class="form-control select2" name="tags[]" multiple="multiple">
+                                              <option value=""></option>
+                                              @foreach($tags as $tag)
+                                                <option>{{$tag->name}}</option>
+                                              @endforeach
+                                        </select>
+                                  </div>
+                            </div>
 		                
 		                    <div class="form-group float-right ">
 		                        <button type="submit" class="btn btn-success">Create</button>
@@ -125,4 +174,32 @@
         </div>
     </section>
 </section>
+@endsection
+
+
+@section('page-js')
+
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+<script type="text/javascript">
+      $(document).ready(function() {
+          $('.select2').select2({
+            placeholder: "Select tags or type and enter",
+            tags: true,
+            tokenSeparators: [',', ' ']
+          });
+      });
+      $(document).ready(function() {
+          $('.select2-modal').select2({
+            placeholder: "Select tags or type and enter",
+            dropdownParent: $('.modal'),
+            //tags: true,
+            tokenSeparators: [',', ' '],
+
+          });
+      });
+</script>
+
 @endsection
