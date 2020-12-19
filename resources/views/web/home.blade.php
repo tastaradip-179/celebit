@@ -9,7 +9,7 @@
 					@php($logged_customer = Auth::guard('customer')->user())
 					<a href="{{route('customer.profile', $logged_customer->username)}}" title="">Let's start</a>
 				@else
-					<a href="{{route('customer.create')}}" title="">Let's start</a>
+					<a href="#" type="button" data-toggle="modal" data-target="#elegantLoginModalForm" title="">Let's start</a>
 				@endif
 			</div><!--banner-text end-->
 			<h3 class="headline">Video of the Day by <a href="{{URL::to('/profile')}}" title="">newfox media</a></h3>

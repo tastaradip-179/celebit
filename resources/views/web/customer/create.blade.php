@@ -19,7 +19,7 @@
 		 		<span>Register your Oren account</span>
 		 	</div><!--hd-lg end-->
 			<div class="user-account-pr" id="signup">
-				<form action="{{route('customer.store')}}" method="post" enctype="multipart/form-data">
+				<form action="" method="post" enctype="multipart/form-data">
 					{{csrf_field()}}
 					<div class="row">
 						<div class="input-sec col-md-6">

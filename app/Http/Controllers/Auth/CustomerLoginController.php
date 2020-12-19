@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
 
 class CustomerLoginController extends Controller
 {
@@ -50,7 +51,8 @@ class CustomerLoginController extends Controller
 		   ]);
 	  	if( Auth::guard('customer')->attempt( ['email' => $request->email, 'password' => $request->password] )){
             $customer = Auth::guard('customer')->user();
-       		return redirect()->intended(route('customer.profile', $customer));
+            return redirect()->back();
+       		//return redirect()->intended(route('customer.profile', $customer));
         }
         return redirect()->back()->withErrors([
             'msg'   =>  'Please check your credentials'

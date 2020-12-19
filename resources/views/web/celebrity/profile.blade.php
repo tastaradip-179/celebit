@@ -19,7 +19,11 @@
 			</div><!--vcp_inf end-->
 			<ul class="chan_cantrz">
 				<li>
-					<a href="#" title="" class="subscribe">Request a video <strong></strong></a>
+					@if(Auth::guard('customer')->check())
+                		<a href="#" class="subscribe" title="">Request a video <strong></strong></a>
+                	@else
+                		<a href="#modalLoginAlert" type="button" class="subscribe" data-toggle="modal" data-target="#modalLoginAlert" title="">Request a video <strong></strong></a>
+                	@endif  
 				</li>
 			</ul><!--chan_cantrz end-->
 			<div class="clearfix"></div>
@@ -148,9 +152,9 @@
 
           <div class="col-9">
             <p class="mb-20"><strong>Please Signin first to continue</strong></p>
-			<a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#elegantLoginModalForm">Sign in</a>
+			<a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#elegantLoginModalForm" data-dismiss="modal">Sign in</a>
             <p class="mtb-20">Don't have an account? <br>
-            	<a href="{{route('customer.create')}}" style="font-style: italic;">Create your account</a>
+            	<a href="#elegantRegistrationModalForm" data-toggle="modal" data-target="#elegantRegistrationModalForm" data-dismiss="modal" class="blue-text ml-1" style="font-style: italic;">Create your account</a>
             </p>
           </div>
         </div>
