@@ -17,8 +17,8 @@ class CreateVideosTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('videourl');
-            $table->boolean('status')->default('1');
+            $table->string('video_url');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

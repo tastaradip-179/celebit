@@ -17,16 +17,18 @@ class CreateCelebritiesTable extends Migration
     {
         Schema::create('celebrities', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('username');
+            $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->nullable();
             $table->string('password')->default(Hash::make(Str::uuid()));
             $table->string('gender');
             $table->string('mobile')->nullable();
             $table->string('designation');
             $table->json('social_link')->nullable();
-            $table->integer('status')->default(1);
             $table->text('about')->nullable();
+            $table->boolean('status')->default(1);
+            $table->integer('order_column')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,8 +4,23 @@
 
 section .content-body {
 	overflow: hidden;
+<<<<<<< HEAD
 }  
 
 .select2-container {
 	width: 100% !important;
 } 
+=======
+}   
+.team-member.col .team-member-edit {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+.team-member{
+	border: 1px solid #eaeaea;
+}
+.uk-nestable-item{
+	background: transparent;
+}
+>>>>>>> 9c341ba0aa827b523303b32a37cc87405f10bdd5

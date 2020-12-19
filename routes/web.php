@@ -39,15 +39,19 @@ Route::get('/request/{id}', 'Customer\BookController@create')->name('request.cre
 Route::group(['prefix'=>'backend', 'namespace'=>'Auth'], function(){
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login-check', 'LoginController@login')->name('admin.check');
+    
     Route::post('/logout', 'LoginController@logout')->name('admin.logout');
    
 });
 
 /*Dasboard, Celebrity & Packages*/
-Route::middleware(['transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
+Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
 	Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
-	Route::resource('celebrities', 'CelebrityController')->except(['show']);
+	
+	Route::resource('celebrities', 'CelebrityController');
+	
 	Route::resource('celebritypackages', 'CelebrityPackageController');
+	
 	Route::resource('packages', 'PackageController');
 	Route::resource('tags', 'TagController');
 });

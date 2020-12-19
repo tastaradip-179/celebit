@@ -13,7 +13,6 @@ class CelebrityPackageController extends Controller
 
     public function __construct () 
     {
-        $this->middleware('auth');
         $this->title = 'Celebrity Package';
         $this->route = 'admin.celebritypackages.';
         $this->view  = 'backend.celebritypackage.';
@@ -54,7 +53,7 @@ class CelebrityPackageController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['celebrity_id','package_id','duration','per_minute_fee','extra_per_minute_fee']);
+        $input = $request->only(['celebrity_id','package_id','duration','total','extra_per_minute_fee']);
         $celebritypackage = CelebrityPackage::create($input);  
 
         alert()->success('Data has been saved successfully!');

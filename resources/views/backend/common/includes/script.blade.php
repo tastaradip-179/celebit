@@ -22,6 +22,7 @@
 <script src="{{asset('backend/assets/plugins/sparkline-chart/jquery.sparkline.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('backend/assets/js/chart-sparkline.js')}}" type="text/javascript"></script>
 <!-- Sidebar Graph - END --> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script type="text/javascript">
 	@if($errors->any())

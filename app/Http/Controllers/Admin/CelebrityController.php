@@ -15,7 +15,6 @@ class CelebrityController extends Controller
 
     public function __construct () 
     {
-        $this->middleware('auth');
         $this->title = 'Celebrity';
         $this->route = 'admin.celebrities.';
         $this->view  = 'backend.celebrity.';
@@ -31,9 +30,10 @@ class CelebrityController extends Controller
     {
         $data['title']     = $this->title;
         $data['route']     = $this->route;
-        $data['tags'] = Tag::latest()->get();
+        $data['file_path'] = $this->file_path_view;
+
         $data['celebrities'] = Celebrity::orderBy('name', 'asc')->paginate(15);
-       // dd($data['celebrities'] );
+        
         return view($this->view.'index', $data);
     }
 
@@ -46,8 +46,8 @@ class CelebrityController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
-        
         $data['tags'] = Tag::latest()->get();
+        
         return view($this->view.'create', $data);
     }
 
@@ -91,7 +91,7 @@ class CelebrityController extends Controller
                    $image->make($realPath)->resize(170, 170)->save($this->file_path.'/'.$filename);
                 });
 
-                $imageUpload= new Image([
+                $imageUpload = new Image([
                     'url' => $filename,
                     'type' => 1
                 ]);
@@ -100,11 +100,11 @@ class CelebrityController extends Controller
                 
             }
 
-            $celebrity->syncTags($request->tags);
+            $celebrity->syncTagsWithType($request->tags, 'celebrities');
             alert()->success('Data has been saved successfully!');
-            return back();
+            return redirect()->route($this->route.'index');
         }
-        dd($request->all());
+        abort(404);
     }
 
     /**
@@ -113,8 +113,15 @@ class CelebrityController extends Controller
      * @param  \App\Models\Celebrity  $celebrity
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Celebrity $celebrity)
     {
+        $data['title'] = $celebrity->name.'\'s'. ' profile';
+        $data['route'] = $this->route;
+        $data['file_path'] = $this->file_path_view;
+
+        $data['celebrity'] = $celebrity;
+
+        return view($this->view.'show',$data);
     }
 
     /**
@@ -128,6 +135,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['celebrity'] = $celebrity;
+
         $data['tags'] = Tag::latest()->get();
 
         return view($this->view.'.edit', $data);
@@ -142,7 +150,17 @@ class CelebrityController extends Controller
      */
     public function update(Request $request, Celebrity $celebrity)
     {    
-        $input = $request->only(['name','email','designation','gender','mobile','social_link','about']); 
+        $request->validate([
+             'name' => 'required | string',
+             'email' => 'nullable | email |unique:celebrities,email,'.$celebrity->username,
+             'designation' => 'required | string',
+             'gender' => 'required',
+             'password' => 'nullable | confirmed',
+             'file' => 'required',
+             'tags' => 'required',
+         ]);
+
+        $input = $request->only(['name','email','designation','gender','mobile','social_link','about', 'status']); 
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
         }
@@ -175,9 +193,7 @@ class CelebrityController extends Controller
                 
             }
 
-        
-
-        $celebrity->syncTags($request->tags);    
+        $celebrity->syncTagsWithType($request->tags, 'celebrities');
 
         alert()->success('Data has been updated successfully!');
         return redirect()->back();

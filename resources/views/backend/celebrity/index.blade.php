@@ -1,14 +1,11 @@
 @extends('backend.common.master')
-
 @section('page-css')
-<link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/dropify.min.css')}}">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<link href="{{asset('backend/assets/plugins/uikit/css/uikit.min.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+<link href="{{asset('backend/assets/plugins/uikit/css/components/nestable.min.css')}}" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
 @endsection
-
 @section('content')
-
-
 <section id="main-content" class=" ">
     <section class="wrapper main-wrapper" style=''>
 
@@ -22,65 +19,79 @@
         </div>
         <div class="clearfix"></div>
 
-
-
         <div class="row margin-0">
             <div class="col-xl-12">
                 <section class="box ">
-                    <header class="panel_header">
-                        <h2 class="title float-left">All The Celebrities</h2>
-                        <div class="actions panel_actions float-right">
-                            <i class="box_toggle fa fa-chevron-down"></i>
-                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
-                            <i class="box_close fa fa-times"></i>
-                        </div>
-                    </header>
                     <div class="content-body">
-                        <div class="row"><div class="col-lg-12">
-                                <div class="row margin-0">
-                                  @foreach($celebrities as $celebrity)
-                                    <div class="col-xl-2 col-md-4 col-lg-4 col-6 music_genre">
-                                        <div class="team-member ">           
-                                          @foreach($celebrity->images as $image)
-                                            <div class="thumb">
-                                                <img class="img-fluid" src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="Thumbnail">
-                                            </div>
-                                          @endforeach
-                                            <div class="team-info ">
-                                                <h4>
-                                                    <a href="mus-album-view.html">{{$celebrity->name}}</a>
-                                                </h4>
-                                                <h6><a href="mus-artist-profile.html">{{$celebrity->designation}}</a></h6> 
-                                                @if( !empty($tags) ) 
-                                                    @foreach($tags as $key=>$tag) 
-                                                           @foreach($celebrity->tags as $key2=>$tg )
-                                                               @if(!empty($celebrity->tags[$key2]->id) && ($celebrity->tags[$key2]->id) == $tag->id) <span class="badge">{{$tag->name}} </span> @endif
-                                                           @endforeach    
-                                                    @endforeach                                                       
-                                                @endif    
-                                            </div>
-                                            <div class="action">  
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div id="celebritySerial" class="row uk-nestable" data-uk-nestable="{maxDepth:1}">
+                                    @foreach($celebrities as $celebrity)
+                                    <li class="col-xl-6 col-md-12 col-lg-6 col-lg-12 " data-item="{{$celebrity->username}}" data-item-id="{{$celebrity->id}}">
+                                        <div class="uk-nestable-item" >
+                                            <div class="team-member col">
+                                                <div class="row margin-0">
+                                                    <div class="team-img col-xl-4 col-lg-4 col-md-4 col-4">
+                                                        <div class="thumb">
+                                                            <img class="img-fluid" src="{{ $file_path.$celebrity->profileImage() }}" alt="Thumbnail">
+                                                        </div>
+                                                    </div>
+                                                    <div class="team-info col-xl-8 col-lg-8 col-md-8 col-8 ">
+                                                        <h4 class="font-weight-bold"><a href="{{route($route.'show', $celebrity->username)}}">{{$celebrity->name}}</a></h4>
+                                                        <span class='team-member-edit'>
+                                                            <a class="text-danger" title="View" href="{{ route('admin.celebritypackages.show',[$celebrity->id]) }}">
+                                                                <i class='fa fa-info-circle icon-xs icon-rounded icon-info'></i>
+                                                            </a>
+                                                            <a title="Edit" href="{{ route($route.'edit', [$celebrity->username]) }}">
+                                                                <i class='fa fa-pencil icon-xs icon-rounded icon-primary'></i>
+                                                            </a>
+                                                            <a onclick="alertFunction('Delete', {{$celebrity->id}});" title="Delete"  href="javascript:void(0)"> 
+                                                                <i class='fa fa-trash-o icon-xs  icon-rounded icon-danger'></i>
+                                                            </a>
+                                                            <form id="Delete{{$celebrity->id}}" action="{{ route($route.'destroy', [$celebrity->username]) }}" method="POST" style="display: none;">
+                                                                {{ csrf_field() }}
+                                                                @method('DELETE')
+                                                            </form>
 
-                                                <form id="delete-{{$celebrity->username}}" action="{{ route($route.'destroy', [$celebrity->username]) }}" method="POST" style="display: inline;">
-                                                    {{ csrf_field() }}
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger">Delete</button>
-                                                </form>
-                                                <a class="btn btn-defualt" href="{{ route($route.'edit', [$celebrity->username]) }}">Edit Profile</a>
-                                                <a class="btn btn-defualt" href="{{ route('admin.celebritypackages.show',[$celebrity->id]) }}">Packages</a> 
+                                                            <div class="uk-nestable-handle"></div>
+                                                            <div data-nestable-action="toggle"></div>
+                                                        </span>
+                                                        <span>{{$celebrity->designation}}<br>
+                                                        <small>Phone:</small> {{$celebrity->mobile}}<br>
+                                                        <small>Email:</small> {{$celebrity->email}}</span><br>
+                                                        {!! $celebrity->AllTags() !!}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                  @endforeach  
+                                    </li>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
-              </div>
             </div>
+        </div>
     </section>
 </section>
+@endsection
 
+@section('page-js')
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<script src="{{asset('backend/assets/plugins/uikit/js/uikit.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('backend/assets/plugins/uikit/js/components/nestable.min.js')}}" type="text/javascript"></script>
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+<script type="text/javascript">
+    $("#celebritySerial").on('stop.uk.nestable', function(ev) {
+        var serialized = $(this).data('nestable').serialize();
+        //     str = '';
 
+        // str = nestableIterate(serialized, 0);
+
+        // $("#nestableList-1-ev").val(str);
+        console.log(serialized);
+    });
+</script>
 @endsection

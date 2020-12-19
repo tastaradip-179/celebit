@@ -17,9 +17,13 @@ class CreateCelebrityPackagesTable extends Migration
             $table->id();
             $table->bigInteger('celebrity_id')->unsigned();
             $table->bigInteger('package_id')->unsigned();     
-            $table->integer('duration')->nullable();
-            $table->integer('per_minute_fee')->default(0);
-            $table->integer('extra_per_minute_fee')->default(0);
+            $table->float('duration')->nullable()->comment('in min');
+            $table->float('total')->default(0);
+            $table->integer('default')->default(0);
+            $table->float('extra_per_minute_fee')->default(0)->comment('in min');
+            $table->boolean('status')->default(1);
+            $table->integer('order_column')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('celebrity_id')
                   ->references('id')->on('celebrities')

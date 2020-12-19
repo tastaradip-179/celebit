@@ -8,6 +8,7 @@
 
 @section('content')
 
+<?php $alltags = $celebrity->tags->pluck('id')->toArray() ?>
 
 <section id="main-content" class=" ">
     <section class="wrapper main-wrapper" style=''>
@@ -149,6 +150,9 @@
                                             @if( !empty($tags) ) 
                                                 <select class="form-control select2" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
+                                                      @foreach($tags->where('type', 'celebrities') as $tag)
+                                                          <option {{ in_array($tag->id, $alltags) ? 'selected' : ''}} >{{ $tag->name }}</option>
+                                                      @endforeach
                                                       @foreach($tags as $key=>$tag) 
                                                         <option value="{{$tag->name}}"
                                                            @foreach($celebrity->tags as $key2=>$tg )
@@ -170,7 +174,7 @@
                   	    <div class="col-lg-12 col-md-12 col-12">
                   	        <div class="float-right ">
                                 <button type="submit" class="btn btn-success">Update</button>
-                                <a type="button" href="{{url('/admin/celebrities')}}" class="btn">Cancel</a>
+                                <a type="button" href="{{route($route.'index')}}" class="btn">Cancel</a>
                   	        </div>
                   	    </div>
 
