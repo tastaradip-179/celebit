@@ -5,3 +5,11 @@
 section .content-body {
 	overflow: hidden;
 }   
+.team-member.col .team-member-edit {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+.team-member{
+	border: 1px solid #eaeaea;
+}

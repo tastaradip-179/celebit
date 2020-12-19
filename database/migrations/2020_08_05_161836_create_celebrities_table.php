@@ -27,6 +27,7 @@ class CreateCelebritiesTable extends Migration
             $table->json('social_link')->nullable();
             $table->integer('status')->default(1);
             $table->text('about')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

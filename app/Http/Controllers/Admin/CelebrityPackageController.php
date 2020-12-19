@@ -13,7 +13,6 @@ class CelebrityPackageController extends Controller
 
     public function __construct () 
     {
-        $this->middleware('auth');
         $this->title = 'Celebrity Package';
         $this->route = 'admin.celebritypackages.';
         $this->view  = 'backend.celebritypackage.';

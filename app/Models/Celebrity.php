@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\TagTrait;
+use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Celebrity extends Model
 {
-	use \Spatie\Tags\HasTags;
+    // use SoftDeletes;
+	use HasTags, TagTrait;
 	
     protected $fillable = [
     	'name','username','email','designation','gender','mobile','social_link', 'status', 'about'
@@ -32,7 +36,7 @@ class Celebrity extends Model
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
-     public function celebritypackages()
+    public function celebritypackages()
     {
         return $this->hasMany('App\Models\CelebrityPackage');
     }
@@ -43,6 +47,15 @@ class Celebrity extends Model
 
     public function getSocialLinkAttribute( $value ) {
         return json_decode( $value );
+    }
+
+    public function profileImage()
+    {
+        $image = $this->images()->where('type', 1)->first();
+        if (!empty($image)) {
+            return $image->url;
+        }
+        return '';
     }
 
     public function getRouteKeyName()
