@@ -23,6 +23,9 @@ class CreateCustomersTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('bio')->nullable();
             $table->date('dob');
+            $table->boolean('status')->default(1);
+            $table->softDeletes();
+            
             $table->timestamps();
         });
     }

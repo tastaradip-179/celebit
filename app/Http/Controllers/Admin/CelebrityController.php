@@ -46,6 +46,7 @@ class CelebrityController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
+        $data['tags'] = Tag::latest()->get();
         
         return view($this->view.'create', $data);
     }
@@ -99,9 +100,9 @@ class CelebrityController extends Controller
                 
             }
 
-            $celebrity->syncTags($request->tags);
+            $celebrity->syncTagsWithType($request->tags, 'celebrities');
             alert()->success('Data has been saved successfully!');
-            return back();
+            return redirect()->route($this->route.'index');
         }
         abort(404);
     }
@@ -149,7 +150,17 @@ class CelebrityController extends Controller
      */
     public function update(Request $request, Celebrity $celebrity)
     {    
-        $input = $request->only(['name','email','designation','gender','mobile','social_link','about']); 
+        $request->validate([
+             'name' => 'required | string',
+             'email' => 'nullable | email |unique:celebrities,email,'.$celebrity->username,
+             'designation' => 'required | string',
+             'gender' => 'required',
+             'password' => 'nullable | confirmed',
+             'file' => 'required',
+             'tags' => 'required',
+         ]);
+
+        $input = $request->only(['name','email','designation','gender','mobile','social_link','about', 'status']); 
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
         }
@@ -182,9 +193,7 @@ class CelebrityController extends Controller
                 
             }
 
-        
-
-        $celebrity->syncTags($request->tags);    
+        $celebrity->syncTagsWithType($request->tags, 'celebrities');
 
         alert()->success('Data has been updated successfully!');
         return redirect()->back();

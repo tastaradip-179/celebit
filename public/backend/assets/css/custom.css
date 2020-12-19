@@ -13,3 +13,6 @@ section .content-body {
 .team-member{
 	border: 1px solid #eaeaea;
 }
+.uk-nestable-item{
+	background: transparent;
+}

@@ -63,10 +63,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="form-label" for="per_minute_fee">Per Minute Fee (in TK)</label>
+                                        <label class="form-label" for="per_minute_fee">Fee (in TK)</label>
                                         <span class="desc">e.g. "100"</span>
                                         <div class="controls">
-                                            <input type="number" class="form-control" id="per_minute_fee" name="per_minute_fee" >
+                                            <input type="number" class="form-control" id="per_minute_fee" name="total" >
                                         </div>
                                     </div>
 

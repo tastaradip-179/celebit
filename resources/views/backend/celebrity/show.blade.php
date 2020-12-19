@@ -47,40 +47,22 @@
                             <div class="uprofile-content">
                                 <div class="">
                                     <h4>About:</h4>
-                                    <p>{!! $celebrity->abount !!}</p>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    <h4>Education:</h4>
-                                    <ul>
-                                        <li>B.Com from Ski University</li>
-                                        <li>In hac habitasse platea dictumst.</li>
-                                        <li>In hac habitasse platea dictumst.</li>
-                                        <li>Vivamus elementum semper nisi.</li>
-                                        <li>Praesent ac sem eget est egestas volutpat.</li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    <h4>Experience:</h4>
-                                    <ul>
-                                        <li>Integer tincidunt.</li>
-                                        <li>Praesent vestibulum dapibus nibh.</li>
-                                        <li>Integer tincidunt.</li>
-                                        <li>Praesent vestibulum dapibus nibh.</li>
-                                        <li>Integer tincidunt.</li>
-                                        <li>Praesent vestibulum dapibus nibh.</li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    <h4>Accomplishments:</h4>
-                                    <ul>
-                                        <li>Integer tincidunt.</li>
-                                        <li>Praesent vestibulum dapibus nibh.</li>
-                                        <li>M.B.B.S from Ski University</li>
-                                        <li>Praesent vestibulum dapibus nibh.</li>
-                                        <li>Proin pretium, leo ac pellentesque mollis justo.</li>
-                                        <li>unc ultrices eros, sed gravida augue augue</li>
-                                    </ul>
-                                    <div class="clearfix"></div>
+                                    <p>{!! $celebrity->about !!}</p>
+                                    @if(!empty($celebrity->celebritypackages))
+                                    @foreach($celebrity->celebritypackages as $package)
+                                        <div class="clearfix"></div>
+                                        <hr>
+                                        <h4>Education:</h4>
+                                        <ul>
+                                            <li>B.Com from Ski University</li>
+                                            <li>In hac habitasse platea dictumst.</li>
+                                            <li>In hac habitasse platea dictumst.</li>
+                                            <li>Vivamus elementum semper nisi.</li>
+                                            <li>Praesent ac sem eget est egestas volutpat.</li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    @endforeach
+                                    @endif
                                     <hr>
                                     <div class="clearfix"></div>
                                 </div>
