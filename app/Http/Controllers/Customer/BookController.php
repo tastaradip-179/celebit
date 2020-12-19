@@ -9,7 +9,7 @@ use App\Models\CelebrityPackage;
 use App\Models\Wishto;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,8 +57,8 @@ class OrderController extends Controller
         dd($request->all());
         $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
         $input2 = $request->only(['fullname', 'pronoun']);  
-        $order = Order::create($input);   
-        $input2 = $input2 + ['book_id' => $order->id] ;
+        $book = Book::create($input);   
+        $input2 = $input2 + ['book_id' => $book->id] ;
         $wishto =  Wishto::create($input2);
         return redirect()->back();
     }

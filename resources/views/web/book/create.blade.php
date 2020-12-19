@@ -19,7 +19,7 @@
 		 		<span>Order</span>
 		 	</div><!--hd-lg end-->
 			<div class="user-account-pr">
-				<form action="{{route('orders.store')}}" method="post">
+				<form action="{{route('books.store')}}" method="post">
 					{{csrf_field()}}
 					<div class="chekbox-lg" >
 						<ul>
