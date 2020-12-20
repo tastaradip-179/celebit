@@ -6,8 +6,14 @@
 <link href="{{asset('backend/assets/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css"/>
 <!-- CORE CSS FRAMEWORK - END -->
 
+<!-- CORE CSS TEMPLATE - START -->
+<link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('backend/assets/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
+<!-- CORE CSS TEMPLATE - END -->
+
+@yield('page-css')
+
 @toastr_css
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-@yield('page-css')
+<link href="{{asset('backend/assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>

@@ -1,4 +1,7 @@
 @extends('backend.common.master')
+@section('page-css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 
 @section('content')
 
@@ -11,7 +14,10 @@
                 <div class="float-left">
                     <h1 class="title">{{$title}} List</h1>
                 </div>
+                <a href="{{route('admin.celebrities.show',$celebrity->username)}}" class="btn btn-info float-right">Go to profile</a>
+                {!! backurl() !!}
             </div>
+            
         </div>
         <div class="clearfix"></div>
 
@@ -80,10 +86,10 @@
                                         <input type="hidden" name="celebrity_id" value="{{$celebrity->id}}" />
 
                                         <div class="form-group">
-                                            <label class="form-label" for="package_id">Package Type</label>
+                                            <label class="form-label" for="package_id">Package Type</label> <a href="{{route('admin.packages.index')}}" class="float-right">Create package </a>
                                               <div class="controls">
-                                                    <select class="form-control select2" name="package_id">
-                                                          <option value=""></option>
+                                                    <select class="form-control" name="package_id">
+                                                          <option value="">Select</option>
                                                           @foreach($packages as $key=>$package)
                                                             <option value="{{$package->id}}">{{$package->name}}</option>
                                                           @endforeach
@@ -100,10 +106,10 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label" for="per_minute_fee">Per Minute Fee (in TK)</label>
+                                            <label class="form-label" for="per_minute_fee">Offered Fee (in TK)</label>
                                             <span class="desc">e.g. "100"</span>
                                             <div class="controls">
-                                                <input type="number" class="form-control" id="per_minute_fee" name="per_minute_fee" >
+                                                <input type="number" class="form-control" id="per_minute_fee" name="total" >
                                             </div>
                                         </div>
 
@@ -113,6 +119,17 @@
                                             <div class="controls">
                                                 <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" >
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="tags">Select Tags</label>
+                                              <div class="controls">
+                                                    <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                          <option value=""></option>
+                                                          @foreach($tags as $tag)
+                                                            <option>{{$tag->name}}</option>
+                                                          @endforeach
+                                                    </select>
+                                              </div>
                                         </div>
 
                                         <div class="form-group float-right ">
@@ -130,6 +147,45 @@
 
     </section>
 </section>
+@endsection
 
+@section('page-js')
 
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<script src="{{asset('backend/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script> 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Select tags or type and enter",
+            tags: true,
+            tokenSeparators: [',', ' ']
+        });
+
+        $('#form').validate({
+            rules: {
+                package_id: {
+                    number: true,
+                    required: true
+                },
+                duration: {
+                    number: true,
+                    required: true
+                },
+                total: {
+                    number: true,
+                    required: true
+                },
+                extra_per_minute_fee: {
+                    required: true,
+                    number: true
+                },
+                tags: {
+                    required: true,
+                }
+
+            }
+        });
+    });
+</script>
 @endsection

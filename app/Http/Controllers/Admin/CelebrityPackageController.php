@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Celebrity;
-use App\Models\CelebrityPackage;
+use Spatie\Tags\Tag;
 use App\Models\Package;
+use App\Models\Celebrity;
+use Illuminate\Http\Request;
+use App\Models\CelebrityPackage;
+use App\Http\Controllers\Controller;
 
 class CelebrityPackageController extends Controller
 {
@@ -39,8 +40,10 @@ class CelebrityPackageController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
+
         $data['celebrities'] = Celebrity::latest()->get();
         $data['packages'] = Package::latest()->get();
+        $data['tags'] = Tag::withType('packages')->ordered()->get();
         
         return view($this->view.'create', $data);
     }
@@ -53,6 +56,7 @@ class CelebrityPackageController extends Controller
      */
     public function store(Request $request)
     {
+        $
         $input = $request->only(['celebrity_id','package_id','duration','total','extra_per_minute_fee']);
         $celebritypackage = CelebrityPackage::create($input);  
 
@@ -66,13 +70,14 @@ class CelebrityPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function celebrityPackage(Celebrity $celebrity)
     {
-        $data['title']     = $this->title;
+        $data['title']     = $celebrity->name. '\'s packages';
         $data['route']     = $this->route;
 
-        $data['celebrity'] = Celebrity::findOrFail($id);
+        $data['celebrity'] = $celebrity;
         $data['packages'] = Package::latest()->get();
+        $data['tags'] = Tag::withType('packages')->ordered()->get();
         $data['celebrity_packages'] = $data['celebrity']->celebritypackages;
 
         foreach($data['celebrity_packages'] as $key=>$data['celebrity_package']){

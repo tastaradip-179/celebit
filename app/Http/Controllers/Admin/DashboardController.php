@@ -23,7 +23,8 @@ class DashboardController extends Controller
     				$arr[] = (int) $value['item'];
     			}
     			Celebrity::setNewOrder($arr);
-	    		return response()->json($arr);
+
+	    		return response()->json('success');
     		}
     	}
     }

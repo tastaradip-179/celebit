@@ -17,6 +17,7 @@
                 <div class="float-left">
                     <h1 class="title">{{$title}}</h1>
                 </div>
+                {!! backurl() !!}
             </div>
         </div>
         <div class="clearfix"></div>
@@ -39,7 +40,6 @@
                                 <tr>
                                     <th style="width:10%">S/N</th>
                                     <th style="width:30%">Name</th>
-                                    <th style="width:30%">Tags/Types</th>
                                     <th style="width:30%">Action</th>
                                 </tr>
                             </thead>
@@ -67,51 +67,53 @@
                                     </td>
                                 </tr>  
                             </tbody>
-                            <!-- The Modal -->
-              							<div class="modal" id="PackageEditModal-{{$package->id}}" role="dialog" aria-hidden="true">
-              							  <div class="modal-dialog">
-              							    <div class="modal-content">
 
-              							      <!-- Modal Header -->
-              							      <div class="modal-header">
-              							        <h4 class="modal-title">Edit {{$package->name}}</h4>
-              							        <button type="button" class="close" data-dismiss="modal">&times;</button>
-              							      </div>
+                              <!-- The Modal -->
+                							<div class="modal" id="PackageEditModal-{{$package->id}}" role="dialog" aria-hidden="true">
+                							  <div class="modal-dialog">
+                							    <div class="modal-content">
 
-              							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
-              					                      {{ method_field('PUT') }}
-              					                      {{csrf_field()}}
-              									      <!-- Modal body -->
-              									      <div class="modal-body">
-              											           <div class="form-group">
-              							                          <label class="form-label" for="name">Package name</label>
-              							                          <div class="controls">
-              							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
-              							                          </div>
-              							                    </div> 
-                                                <div class="form-group">
-                                                  <label class="form-label">Select Tags</label>
-                                                    <div class="controls">
-                                                          <select class="form-control select2-modal" name="tags[]" multiple="multiple">
-                                                                @if( !empty($tags) ) 
-                                                                  @foreach($tags->where('type', 'packages') as $tag)
-                                                                    <option {{ in_array($tag->id, $package_tags) ? 'selected' : ''}} >{{ $tag->name }}</option>
-                                                                  @endforeach
-                                                                @endif 
-                                                          </select>
-                                                    </div>
-                                                </div>
-                                                
-              							                    <div class="form-group float-right">
-              							                    	<button type="submit" class="btn btn-success">Update</button>
-              									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              									    		       </div>
-              									      </div>				      	
-              							      </form>
+                							      <!-- Modal Header -->
+                							      <div class="modal-header">
+                							        <h4 class="modal-title">Edit {{$package->name}}</h4>
+                							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                							      </div>
 
-              							    </div>
-              							  </div>
-              							</div>
+                							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
+                					                      {{ method_field('PUT') }}
+                					                      {{csrf_field()}}
+                									      <!-- Modal body -->
+                									      <div class="modal-body">
+                											           <div class="form-group">
+                							                          <label class="form-label" for="name">Package name</label>
+                							                          <div class="controls">
+                							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
+                							                          </div>
+                							                    </div> 
+                                                  <div class="form-group">
+                                                    <label class="form-label">Select Tags</label>
+                                                      <div class="controls">
+                                                            <select class="form-control select2-modal" name="tags[]" multiple="multiple">
+                                                                  @if( !empty($tags) ) 
+                                                                    @foreach($tags->where('type', 'packages') as $tag)
+                                                                      <option {{ in_array($tag->id, $package_tags) ? 'selected' : ''}} >{{ $tag->name }}</option>
+                                                                    @endforeach
+                                                                  @endif 
+                                                            </select>
+                                                      </div>
+                                                  </div>
+                                                  
+                							                    <div class="form-group float-right">
+                							                    	<button type="submit" class="btn btn-success">Update</button>
+                									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                									    		       </div>
+                									      </div>				      	
+                							      </form>
+
+                							    </div>
+                							  </div>
+                							</div>
+
                             @endforeach 
                         </table>
                     </div>
@@ -174,6 +176,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
+
 <script type="text/javascript">
       $(document).ready(function() {
           $('.select2').select2({
@@ -195,5 +198,6 @@
         });
       });
 </script>
+
 
 @endsection
