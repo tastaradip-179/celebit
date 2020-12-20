@@ -24,58 +24,55 @@
         <div class="row margin-0">
             <div class="col-xl-7">
                 <section class="box ">
-                    <header class="panel_header">
-                        <h2 class="title float-left">All the Packages </h2>
-                        <div class="actions panel_actions float-right">
-                            <i class="box_toggle fa fa-chevron-down"></i>
-                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
-                            <i class="box_close fa fa-times"></i>
-                        </div>
+                    <header class="panel_header bg-primary">
+                        <h2 class="title float-left text-white">All the Packages </h2>
                     </header>
-                    <div class="content-body">
-                        <table class="table table-hover">
+                    <div class="content-body p-0">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="width:20%">Name</th>
-                                    <th style="width:20%">Offered Duration</th>
-                                    <th style="width:20%">Per Min Fee</th>
-                                    <th style="width:20%">Extra Per Min Free</th>
-                                    <th style="width:20%">Action</th>
+                                    <th>Name</th>
+                                    <th>Duration <br> (in min)</th>
+                                    <th>Total ৳</th>
+                                    <th>Extra Per Min Free</th>
+                                    <th>Tag</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            @foreach($celebrity_packages as $key=>$celebrity_package)
                             <tbody>
-                                @if(!empty($celebrity_packages))
+                                @if(!empty($celebrity->celebritypackages))
+                                @foreach($celebrity->packageWithPaginate() as $package)
                                 <tr>
-                                    <td>{{$celebrity_packages[$key]->package->name}}</td>
-                                    <td>{{$celebrity_packages[$key]->duration}}</td>
-                                    <td>{{$celebrity_packages[$key]->per_minute_fee}}</td>
-                                    <td>{{$celebrity_packages[$key]->extra_per_minute_fee}}</td>
+                                    <td>{{$package->packageType->name}}</td>
+                                    <td>{{$package->duration}}</td>
+                                    <td>{{$package->total}}</td>
+                                    <td>{{$package->extra_per_minute_fee}}</td>
+                                    <td>{!! $package->AllTags() !!}</td>
                                     <td>
-                                    <form id="delete-celebritypackage" action="{{ route($route.'destroy', [$celebrity_packages[$key]->id]) }}" method="POST" style="display: inline;">
+                                        <a title="Edit" href="{{ route($route.'edit', [$package->id]) }}">
+                                            <i class='fa fa-pencil icon-xs icon-rounded icon-primary'></i>
+                                        </a>
+                                        <a onclick="alertFunction('Delete', {{$package->id}});" title="Delete"  href="javascript:void(0)"> 
+                                            <i class='fa fa-trash-o icon-xs  icon-rounded icon-danger'></i>
+                                        </a>
+                                        <form id="Delete{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                             @method('DELETE')
-                                            <button class="btn btn-danger">Delete</button>
-                                    </form>
-                                    <a class="btn btn-defualt" href="{{ route($route.'edit', [$celebrity_packages[$key]->id]) }}">Edit</a>
+                                        </form>
+                                    
                                     </td>
                                 </tr> 
+                                @endforeach 
                                 @endif 
                             </tbody>
-                            @endforeach 
                         </table>
                     </div>
                 </section>
             </div>
             <div class="col-xl-5">
                 <section class="box ">
-                    <header class="panel_header">
-                        <h2 class="title float-left">Create {{$celebrity->name}}'s Package </h2>
-                        <div class="actions panel_actions float-right">
-                            <i class="box_toggle fa fa-chevron-down"></i>
-                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
-                            <i class="box_close fa fa-times"></i>
-                        </div>
+                    <header class="panel_header bg-info">
+                        <h2 class="title float-left text-white">Create {{$celebrity->name}}'s Package </h2>
                     </header>
                     <div class="content-body">
                         <form id="form" method="post" action="{{route($route.'store')}}" style="width: 100%;" enctype="multipart/form-data">
@@ -101,7 +98,7 @@
                                             <label class="form-label" for="duration">Offered Duration (in min)</label>
                                             <span class="desc">e.g. "3"</span>
                                             <div class="controls">
-                                                <input type="number" class="form-control" id="duration" name="duration" >
+                                                <input type="number" class="form-control" id="duration" name="duration" value="{{old('duration')}}">
                                             </div>
                                         </div>
 
@@ -109,7 +106,7 @@
                                             <label class="form-label" for="per_minute_fee">Offered Fee (in TK)</label>
                                             <span class="desc">e.g. "100"</span>
                                             <div class="controls">
-                                                <input type="number" class="form-control" id="per_minute_fee" name="total" >
+                                                <input type="number" class="form-control" id="per_minute_fee" name="total" value="{{old('total')}}">
                                             </div>
                                         </div>
 
@@ -117,7 +114,7 @@
                                             <label class="form-label" for="extra_per_minute_fee">Extra Per Minute Fee (in TK)</label>
                                             <span class="desc">e.g. "120"</span>
                                             <div class="controls">
-                                                <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" >
+                                                <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" value="{{old('extra_per_minute_fee')}}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -179,9 +176,6 @@
                 extra_per_minute_fee: {
                     required: true,
                     number: true
-                },
-                tags: {
-                    required: true,
                 }
 
             }

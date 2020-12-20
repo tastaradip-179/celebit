@@ -40,7 +40,7 @@ class Celebrity extends Model implements Sortable
 
     public function celebritypackages()
     {
-        return $this->hasMany('App\Models\CelebrityPackage')->orderBy('default', 'desc');
+        return $this->hasMany('App\Models\CelebrityPackage')->ordered();
     }
 
     public function setSocialLinkAttribute( $value ) {
@@ -58,6 +58,11 @@ class Celebrity extends Model implements Sortable
             return $image->url;
         }
         return '';
+    }
+
+    public function packageWithPaginate($paginate=15)
+    {
+        return $this->celebritypackages()->paginate($paginate);
     }
 
     public function getRouteKeyName()
