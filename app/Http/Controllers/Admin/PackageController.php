@@ -52,6 +52,7 @@ class PackageController extends Controller
     {
         $input = $request->only(['name']);
         $package = Package::create($input);  
+        $package->syncTagsWithType($request->tags, 'packages');
 
         toastr()->success('Data has been saved successfully!');
         return redirect()->back();    
@@ -89,8 +90,8 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
     {
         $input = $request->only(['name']); 
-        
         $package->update($input);
+        $package->syncTagsWithType($request->tags, 'packages');
 
         toastr()->success('Data has been updated successfully!');
         return redirect()->back();
@@ -104,9 +105,9 @@ class PackageController extends Controller
      */
     public function destroy(Package $package)
     {
-        // $package->delete();
+        $package->delete();
 
-        toastr()->warning('You can\'n delete this!');
+        toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }

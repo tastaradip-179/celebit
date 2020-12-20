@@ -46,10 +46,49 @@
                             		<td class="text-center">{{$tag->name}}</td>
                                     <td class="text-center">{{$tag->type}}</td>
                             		<td class="text-center">
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="" title="edit"><i class="fa fa-pencil icon-info icon-square icon-square-o"></i></a>     
+                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#tagEditModal-{{$tag->id}}" title="edit"><i class="fa fa-pencil icon-info icon-square icon-square-o"></i></a>     
                                         <a href="javascript:void(0)" data-toggle="modal" data-target="" title="delete"><i class="fa fa-trash icon-danger icon-square icon-square-o"></i></a>   
                                     </td>
                             	</tr>
+                                <!-- The Modal -->
+                                            <div class="modal" id="tagEditModal-{{$tag->id}}" role="dialog" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                  <!-- Modal Header -->
+                                                  <div class="modal-header">
+                                                    <h4 class="modal-title">Edit {{$tag->name}}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  </div>
+
+                                                  <form id="form" method="post" action="{{ route($route.'update', [$tag->id]) }}" style="width: 100%;">                
+                                                          {{ method_field('PUT') }}
+                                                          {{csrf_field()}}
+                                                          <!-- Modal body -->
+                                                          <div class="modal-body">
+                                                               <div class="form-group">
+                                                                      <label class="form-label" for="name">Tag name</label>
+                                                                      <div class="controls">
+                                                                            <input type="text" class="form-control" id="name" name="name" value="{{($tag->name) ? $tag->name:''}}">
+                                                                      </div>
+                                                                </div> 
+                                                              <div class="form-group">
+                                                                <label class="form-label">Select Types</label>
+                                                                  <div class="controls">
+                                                                        
+                                                                  </div>
+                                                              </div>
+                                                  
+                                                                <div class="form-group float-right">
+                                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>                        
+                                                  </form>
+
+                                                </div>
+                                              </div>
+                                            </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -79,8 +118,10 @@
                                 <label class="form-label" for="type">Select Types</label>
                                   <div class="controls">
                                         <select class="form-control select2" name="type">
-                                              <option value="celebrities">Celebrities</option>
-                                              <option value="packages">Packages</option>
+                                              <option></option>
+                                              @foreach($tagtypes as $tagtype) 
+                                              <option value="celebrities">{{$tagtype}}</option>
+                                              @endforeach
                                         </select>
                                   </div>
                             </div>

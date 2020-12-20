@@ -48,25 +48,25 @@
                             @endphp
                             @foreach($packages as $key=>$package)
                              <?php $package_tags = $package->tags()->pluck('id')->toArray() ?>
-                          	<tbody>
-                                <tr>
-                                    <td>{{++$sn}}</td>
-                                    <td>{{$package->name}}  
-                                    <td>
-                                        @foreach($package->getTagsAttribute() as $tag)
-                                          <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
-                                        @endforeach 
-                                    </td>
-                                    <td>
-                                    	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
-                                            {{ csrf_field() }}
-                                            @method('DELETE')
-                                            <button class="btn btn-danger">Delete</button>
-                                        </form>
-                                        <a class="btn btn-defualt" href="#" data-toggle="modal" data-target="#PackageEditModal-{{$package->id}}">Edit</a>
-                                    </td>
-                                </tr>  
-                            </tbody>
+                            	<tbody>
+                                  <tr>
+                                      <td>{{++$sn}}</td>
+                                      <td>{{$package->name}}  
+                                      <td>
+                                          @foreach($package->getTagsAttribute() as $tag)
+                                            <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
+                                          @endforeach 
+                                      </td>
+                                      <td>
+                                      	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
+                                              {{ csrf_field() }}
+                                              @method('DELETE')
+                                              <button class="btn btn-danger">Delete</button>
+                                          </form>
+                                          <a class="btn btn-defualt" href="#" data-toggle="modal" data-target="#PackageEditModal-{{$package->id}}">Edit</a>
+                                      </td>
+                                  </tr>  
+                              </tbody>
 
                               <!-- The Modal -->
                 							<div class="modal" id="PackageEditModal-{{$package->id}}" role="dialog" aria-hidden="true">
