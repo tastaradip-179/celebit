@@ -15,7 +15,9 @@
                 <div class="float-left">
                     <h1 class="title">Add {{$title}}</h1>
                 </div>
+              {!! backurl() !!}
             </div>
+            
         </div>
         <div class="clearfix"></div>
 
@@ -23,70 +25,76 @@
             <div class="col-lg-12 col-md-12 col-12">
 
             	<form id="form" method="post" action="{{route($route.'store')}}" style="width: 100%;" enctype="multipart/form-data">
-                      {{csrf_field()}}
-                        <div class="row margin-0">
-                              <div class="col-lg-6 col-md-6 col-6">
-
-
-                                    <div class="form-group">
-                                        <label class="form-label">Celebrity</label>
-                                          <div class="controls">
-                                                <select class="form-control select2" name="celebrity_id">
-                                                      <option value="">Select</option>
-                                                      @foreach($celebrities as $celebrity)
-                                                        <option value="{{$celebrity->id}}">{{$celebrity->name}}</option>
-                                                      @endforeach
-                                                </select>
-                                          </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="form-label" for="package_id">Package Type</label>
-                                          <div class="controls">
-                                                <select class="form-control select2" name="package_id">
-                                                      <option value=""></option>
-                                                      @foreach($packages as $key=>$package)
-                                                        <option value="{{$package->id}}">{{$package->name}}</option>
-                                                      @endforeach
-                                                </select>
-                                          </div>
-                                    </div>
-
-                                  
-                                    <div class="form-group">
-                                        <label class="form-label" for="duration">Offered Duration (in min)</label>
-                                        <span class="desc">e.g. "3"</span>
-                                        <div class="controls">
-                                            <input type="number" class="form-control" id="duration" name="duration" >
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-label" for="per_minute_fee">Fee (in TK)</label>
-                                        <span class="desc">e.g. "100"</span>
-                                        <div class="controls">
-                                            <input type="number" class="form-control" id="per_minute_fee" name="total" >
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="form-label" for="extra_per_minute_fee">Extra Per Minute Fee (in TK)</label>
-                                        <span class="desc">e.g. "120"</span>
-                                        <div class="controls">
-                                            <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" >
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group float-right ">
-		                                <button type="submit" class="btn btn-success">Create</button>
-		                                <button type="button" class="btn">Cancel</button>
-		                  	        </div>
-                                    
-                              </div>
+                  {{csrf_field()}}
+                    <div class="row margin-0">
+                        <div class="col-lg-6 col-md-6 col-6">
+                            <div class="form-group">
+                                <label class="form-label">Celebrity</label>
+                                <div class="controls">
+                                    <select class="form-control " name="celebrity_id">
+                                          <option value="">Select</option>
+                                          @foreach($celebrities as $celebrity)
+                                            <option value="{{$celebrity->id}}">{{$celebrity->name}}</option>
+                                          @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="duration">Offered Duration (in min)</label>
+                                <span class="desc">e.g. "3"</span>
+                                <div class="controls">
+                                    <input type="number" class="form-control" id="duration" name="duration" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="extra_per_minute_fee">Extra Per Minute Fee (in TK)</label>
+                                <span class="desc">e.g. "120"</span>
+                                <div class="controls">
+                                    <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" >
+                                </div>
+                            </div>
                         </div>
 
+
+                        <div class="col-lg-6 col-md-6 col-6">
+
+                            <div class="form-group">
+                                <label class="form-label" for="package_id">Package Type</label>
+                                  <div class="controls">
+                                        <select class="form-control " name="package_id">
+                                              <option value=""> Select</option>
+                                              @foreach($packages as $key=>$package)
+                                                <option value="{{$package->id}}">{{$package->name}}</option>
+                                              @endforeach
+                                        </select>
+                                  </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="per_minute_fee">Fee (in TK)</label>
+                                <span class="desc">e.g. "100"</span>
+                                <div class="controls">
+                                    <input type="number" class="form-control" id="per_minute_fee" name="total" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tags">Select Tags</label>
+                                  <div class="controls">
+                                        <select class="form-control select2" name="tags[]" multiple="multiple">
+                                              <option value=""></option>
+                                              @foreach($tags as $tag)
+                                                <option>{{$tag->name}}</option>
+                                              @endforeach
+                                        </select>
+                                  </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group float-right ">
+                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="button" class="btn">Cancel</button>
+                    </div>
             	</form>
             </div>
         </div>
@@ -103,5 +111,13 @@
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
 <script src="{{asset('backend/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script> 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+<script type="text/javascript">
+      $(document).ready(function() {
+          $('.select2').select2({
+            placeholder: "Select tags or type and enter",
+            tags: true,
+            tokenSeparators: [',', ' ']
+          });
+      });
+</script>
 @endsection

@@ -52,9 +52,12 @@ Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->p
 	
 	Route::resource('celebrities', 'CelebrityController');
 	
-	Route::resource('celebritypackages', 'CelebrityPackageController');
+	Route::resource('celebritypackages', 'CelebrityPackageController')->except(['show']);
 	
-	Route::resource('packages', 'PackageController');
+	Route::get('celebrity-package/{celebrity}', 'CelebrityPackageController@celebrityPackage')->name('celebrity.package');
+	
+	Route::resource('packages', 'PackageController')->except(['show']);
+
 	Route::resource('tags', 'TagController');
 });
 

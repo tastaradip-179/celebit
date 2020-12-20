@@ -120,7 +120,7 @@ class CelebrityController extends Controller
         $data['file_path'] = $this->file_path_view;
 
         $data['celebrity'] = $celebrity;
-
+        // dd($data['celebrity']->)
         return view($this->view.'show',$data);
     }
 

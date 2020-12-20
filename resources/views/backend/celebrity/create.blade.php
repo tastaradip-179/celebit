@@ -17,7 +17,9 @@
                 <div class="float-left">
                     <h1 class="title">{{$title}}</h1>
                 </div>
+                {!! backurl() !!}
             </div>
+            
         </div>
         <div class="clearfix"></div>
 

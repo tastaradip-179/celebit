@@ -17,6 +17,7 @@
                 <div class="float-left">
                     <h1 class="title">{{$title}}</h1>
                 </div>
+                {!! backurl() !!}
             </div>
         </div>
         <div class="clearfix"></div>
@@ -39,7 +40,6 @@
                                 <tr>
                                     <th style="width:10%">S/N</th>
                                     <th style="width:30%">Name</th>
-                                    <th style="width:30%">Tags/Types</th>
                                     <th style="width:30%">Action</th>
                                 </tr>
                             </thead>
@@ -51,9 +51,6 @@
                                 <tr>
                                     <td>{{++$sn}}</td>
                                     <td>{{$package->name}}</td>
-                                    <td>
-                                        {!! $package->AllTags() !!}
-                                    </td>
                                     <td>
                                     	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
                                             {{ csrf_field() }}
@@ -86,12 +83,6 @@
 							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
 							                          </div>
 							                    </div> 
-                                                <div class="form-group">
-                                                    <label class="form-label">Package Types</label>
-                                                      <div class="controls">
-                                                        
-                                                      </div>
-                                                </div>
 							                    <div class="form-group float-right">
 							                    	<button type="submit" class="btn btn-success">Update</button>
 									       			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -129,18 +120,6 @@
 		                                <input type="text" class="form-control" id="name" name="name" >
 		                          </div>
 		                    </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="tags">Select Tags</label>
-                                  <div class="controls">
-                                        <select class="form-control select2" name="tags[]" multiple="multiple">
-                                              <option value=""></option>
-                                              @foreach($tags as $tag)
-                                                <option>{{$tag->name}}</option>
-                                              @endforeach
-                                        </select>
-                                  </div>
-                            </div>
 		                
 		                    <div class="form-group float-right ">
 		                        <button type="submit" class="btn btn-success">Create</button>
@@ -164,23 +143,5 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
-<script type="text/javascript">
-      $(document).ready(function() {
-          $('.select2').select2({
-            placeholder: "Select tags or type and enter",
-            tags: true,
-            tokenSeparators: [',', ' ']
-          });
-      });
-      $(document).ready(function() {
-          $('.select2-modal').select2({
-            placeholder: "Select tags or type and enter",
-            dropdownParent: $('.modal'),
-            //tags: true,
-            tokenSeparators: [',', ' '],
-
-          });
-      });
-</script>
 
 @endsection

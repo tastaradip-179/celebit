@@ -2,7 +2,7 @@
 <div class='page-topbar '>
     
     <div>
-        <a href="{{URL::to('admin/dashboard')}}">
+        <a href="{{route('admin.backend.dashboard')}}">
             <span  class='logo-area'></span>
         </a>
     </div>
