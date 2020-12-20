@@ -52,13 +52,7 @@
                                     <td>{{++$sn}}</td>
                                     <td>{{$package->name}}</td>
                                     <td>
-                                        @if( !empty($tags) ) 
-                                            @foreach($tags as $key2=>$tag) 
-                                                   @foreach($package->tags as $key3=>$tg )
-                                                       @if(!empty($package->tags[$key3]->id) && ($package->tags[$key3]->id) == $tag->id) <span class="badge">{{$tag->name}} </span> @endif
-                                                   @endforeach    
-                                            @endforeach                                                       
-                                        @endif  
+                                        {!! $package->AllTags() !!}
                                     </td>
                                     <td>
                                     	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
@@ -95,20 +89,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label">Package Types</label>
                                                       <div class="controls">
-                                                        @if( !empty($tags) ) 
-                                                            <select class="form-control select2-modal" name="tags[]" multiple="multiple">
-                                                                  <option value=""></option>
-                                                                  @foreach($tags as $key=>$tag) 
-                                                                    <option value="{{$tag->name}}"
-                                                                       @foreach($package->tags as $key2=>$tg )
-                                                                           @if(!empty($package->tags[$key2]->id) && ($package->tags[$key2]->id) == $tag->id) selected=="selected" @endif
-                                                                       @endforeach     
-                                                                        >
-                                                                        {{$tag->name}} 
-                                                                    </option>
-                                                                   @endforeach                                                       
-                                                              </select>
-                                                        @endif 
+                                                        
                                                       </div>
                                                 </div>
 							                    <div class="form-group float-right">
