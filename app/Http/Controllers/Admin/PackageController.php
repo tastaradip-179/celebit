@@ -51,7 +51,7 @@ class PackageController extends Controller
     {
         $input = $request->only(['name']);
         $package = Package::create($input);  
-        $package->syncTags($request->tags);
+        $package->syncTagsWithType($request->tags, 'packages');
 
         alert()->success('Data has been saved successfully!');
         return redirect()->back();    
@@ -90,7 +90,7 @@ class PackageController extends Controller
     {
         $input = $request->only(['name']); 
         $package->update($input);
-        $package->syncTags($request->tags);
+        $package->syncTagsWithType($request->tags, 'packages');
 
         alert()->success('Data has been updated successfully!');
         return redirect()->back();
