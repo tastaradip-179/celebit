@@ -1,14 +1,10 @@
-@include('sweet::alert')
 
 <!-- CORE JS FRAMEWORK - START --> 
 <script src="{{asset('backend/assets/js/jquery-3.4.1.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('backend/assets/js/popper.min.js')}}" type="text/javascript"></script> 
 <!-- <script src="assets/js/jquery.easing.min.js')}}" type="text/javascript"></script>  -->
 <script src="{{asset('backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('backend/assets/plugins/pace/pace.min.js')}}" type="text/javascript"></script>  
 
 <script src="{{asset('backend/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('backend/assets/plugins/viewport/viewportchecker.js')}}" type="text/javascript"></script>  
 <!-- CORE JS FRAMEWORK - END --> 
 
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
@@ -24,16 +20,13 @@
 <!-- Sidebar Graph - END --> 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+@toastr_js
+@toastr_render
+
 <script type="text/javascript">
 	@if($errors->any())
         @foreach($errors->all() as $error)
-        	$(document).ready(function() {
-        		swal({
-        		      text: "{!! $error !!}",
-        		      title: "Error",
-        		      icon: "error"
-        		  });
-        	});
+            toastr["error"]("{{ $error }}");
         @endforeach
     @endif
 	

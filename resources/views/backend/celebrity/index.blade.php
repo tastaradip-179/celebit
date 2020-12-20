@@ -27,7 +27,7 @@
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div id="celebritySerial" class="row uk-nestable" data-uk-nestable="{maxDepth:1}">
                                     @foreach($celebrities as $celebrity)
-                                    <li class="col-xl-6 col-md-12 col-lg-6 col-lg-12 " data-item="{{$celebrity->username}}" data-item-id="{{$celebrity->id}}">
+                                    <li class="col-xl-6 col-md-12 col-lg-6 col-lg-12 " data-item="{{$celebrity->id}}">
                                         <div class="uk-nestable-item" >
                                             <div class="team-member col">
                                                 <div class="row margin-0">
@@ -87,11 +87,14 @@
     $("#celebritySerial").on('stop.uk.nestable', function(ev) {
         var serialized = $(this).data('nestable').serialize();
         //     str = '';
-
-        // str = nestableIterate(serialized, 0);
-
-        // $("#nestableList-1-ev").val(str);
-        console.log(serialized);
+        $.ajax({
+            url: '{{route('admin.data.serialize')}}',
+            method: 'get',
+            data: {data: serialized, sort: 'celebrities'},
+            success:function(response){
+                console.log(response);
+            }
+        })
     });
 </script>
 @endsection

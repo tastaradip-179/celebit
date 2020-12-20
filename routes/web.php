@@ -48,6 +48,8 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Auth'], function(){
 Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
 	Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
 	
+	Route::get('/sort/data', 'DashboardController@serialize')->name('data.serialize');
+	
 	Route::resource('celebrities', 'CelebrityController');
 	
 	Route::resource('celebritypackages', 'CelebrityPackageController');

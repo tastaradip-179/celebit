@@ -8,7 +8,7 @@
 
 @section('content')
 
-<?php $alltags = $celebrity->tags->pluck('id')->toArray() ?>
+<?php $alltags = $celebrity->tags()->pluck('id')->toArray() ?>
 
 <section id="main-content" class=" ">
     <section class="wrapper main-wrapper" style=''>
@@ -147,24 +147,14 @@
                                     <div class="form-group">
                                         <label class="form-label">Select Tags</label>
                                           <div class="controls">
-                                            @if( !empty($tags) ) 
                                                 <select class="form-control select2" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
+                                                    @if( !empty($tags) ) 
                                                       @foreach($tags->where('type', 'celebrities') as $tag)
-                                                          <option {{ in_array($tag->id, $alltags) ? 'selected' : ''}} >{{ $tag->name }}</option>
+                                                        <option {{ in_array($tag->id, $alltags) ? 'selected' : ''}} >{{ $tag->name }}</option>
                                                       @endforeach
-                                                      @foreach($tags as $key=>$tag) 
-                                                        <option value="{{$tag->name}}"
-                                                           @foreach($celebrity->tags as $key2=>$tg )
-                                                               @if(!empty($celebrity->tags[$key2]->id) && ($celebrity->tags[$key2]->id) == $tag->id) selected=="selected" @endif
-                                                           @endforeach  
-                                                              
-                                                            >
-                                                            {{$tag->name}} 
-                                                        </option>
-                                                       @endforeach                                                       
-                                                  </select>
-                                            @endif 
+                                                    @endif 
+                                                </select>
                                           </div>
                                     </div>
                               </div>

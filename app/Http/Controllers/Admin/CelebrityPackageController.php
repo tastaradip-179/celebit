@@ -56,7 +56,7 @@ class CelebrityPackageController extends Controller
         $input = $request->only(['celebrity_id','package_id','duration','total','extra_per_minute_fee']);
         $celebritypackage = CelebrityPackage::create($input);  
 
-        alert()->success('Data has been saved successfully!');
+        toastr()->success('Data has been saved successfully!');
         return redirect()->back();          
     }
 
@@ -113,7 +113,7 @@ class CelebrityPackageController extends Controller
         $input = $request->only(['celebrity_id','package_id','duration','per_minute_fee','extra_per_minute_fee']); 
         $celebrity_package->update($input);
 
-        alert()->success('Data has been updated successfully!');
+        toastr()->success('Data has been updated successfully!');
         return redirect()->back();
     }
 
@@ -127,7 +127,7 @@ class CelebrityPackageController extends Controller
     {
         CelebrityPackage::findOrFail($id)->delete();
 
-        alert()->success('Data has been deleted successfully!');
+        toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }

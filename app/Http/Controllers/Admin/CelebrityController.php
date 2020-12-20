@@ -32,7 +32,7 @@ class CelebrityController extends Controller
         $data['route']     = $this->route;
         $data['file_path'] = $this->file_path_view;
 
-        $data['celebrities'] = Celebrity::orderBy('name', 'asc')->paginate(15);
+        $data['celebrities'] = Celebrity::ordered()->paginate(15);
         
         return view($this->view.'index', $data);
     }
@@ -101,7 +101,7 @@ class CelebrityController extends Controller
             }
 
             $celebrity->syncTagsWithType($request->tags, 'celebrities');
-            alert()->success('Data has been saved successfully!');
+            toastr()->success('Data has been saved successfully!');
             return redirect()->route($this->route.'index');
         }
         abort(404);
@@ -151,13 +151,12 @@ class CelebrityController extends Controller
     public function update(Request $request, Celebrity $celebrity)
     {    
         $request->validate([
-             'name' => 'required | string',
-             'email' => 'nullable | email |unique:celebrities,email,'.$celebrity->username,
-             'designation' => 'required | string',
-             'gender' => 'required',
-             'password' => 'nullable | confirmed',
-             'file' => 'required',
-             'tags' => 'required',
+            'name' => 'required | string',
+            'email' => 'nullable | email |unique:celebrities,email,'.$celebrity->id,
+            'designation' => 'required | string',
+            'gender' => 'required',
+            'password' => 'nullable | confirmed',
+            'tags' => 'required',
          ]);
 
         $input = $request->only(['name','email','designation','gender','mobile','social_link','about', 'status']); 
@@ -195,7 +194,7 @@ class CelebrityController extends Controller
 
         $celebrity->syncTagsWithType($request->tags, 'celebrities');
 
-        alert()->success('Data has been updated successfully!');
+        toastr()->success('Data has been updated successfully!');
         return redirect()->back();
     }
 
@@ -209,7 +208,7 @@ class CelebrityController extends Controller
     {
         $celebrity->delete();
 
-        alert()->success('Data has been deleted successfully!');
+        toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }

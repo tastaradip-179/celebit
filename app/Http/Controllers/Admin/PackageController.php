@@ -51,7 +51,7 @@ class PackageController extends Controller
         $input = $request->only(['name']);
         $package = Package::create($input);  
 
-        alert()->success('Data has been saved successfully!');
+        toastr()->success('Data has been saved successfully!');
         return redirect()->back();    
     }
 
@@ -89,7 +89,7 @@ class PackageController extends Controller
         $input = $request->only(['name']); 
         $package->update($input);
 
-        alert()->success('Data has been updated successfully!');
+        toastr()->success('Data has been updated successfully!');
         return redirect()->back();
     }
 
@@ -103,7 +103,7 @@ class PackageController extends Controller
     {
         $package->delete();
 
-        alert()->success('Data has been deleted successfully!');
+        toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }
