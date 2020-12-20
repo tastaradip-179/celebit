@@ -23,9 +23,9 @@ class CelebrityPackage extends Model implements Sortable
         return $this->belongsTo('App\Models\Celebrity');
     }
 
-     public function package()
+     public function packageType()
     {
-        return $this->belongsTo('App\Models\Package');
+        return $this->belongsTo(\App\Models\Package::class, 'package_id');
     }
     
 }

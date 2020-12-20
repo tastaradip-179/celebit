@@ -56,9 +56,15 @@ class CelebrityPackageController extends Controller
      */
     public function store(Request $request)
     {
-        $
+        $this->validate($request,[
+            'celebrity_id' => 'required |exists:celebrities,id',
+            'package_id' => 'required |exists:packages,id',
+            'tags' => 'required'
+        ]);
         $input = $request->only(['celebrity_id','package_id','duration','total','extra_per_minute_fee']);
         $celebritypackage = CelebrityPackage::create($input);  
+        
+        $celebritypackage->syncTagsWithType($request->tags, 'packages');
 
         toastr()->success('Data has been saved successfully!');
         return redirect()->back();          
@@ -78,12 +84,6 @@ class CelebrityPackageController extends Controller
         $data['celebrity'] = $celebrity;
         $data['packages'] = Package::latest()->get();
         $data['tags'] = Tag::withType('packages')->ordered()->get();
-        $data['celebrity_packages'] = $data['celebrity']->celebritypackages;
-
-        foreach($data['celebrity_packages'] as $key=>$data['celebrity_package']){
-            $data['package'] = $data['celebrity_package']->package;
-        }
-
 
         return view($this->view.'show', $data);
     }
@@ -98,9 +98,11 @@ class CelebrityPackageController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
+
         $data['celebrities'] = Celebrity::latest()->get();
         $data['packages'] = Package::latest()->get();
         $data['celebrity_package'] = CelebrityPackage::findOrFail($id);
+        $data['tags'] = Tag::withType('packages')->ordered()->get();
         
         return view($this->view.'edit', $data);
     }
@@ -118,6 +120,8 @@ class CelebrityPackageController extends Controller
         $input = $request->only(['celebrity_id','package_id','duration','per_minute_fee','extra_per_minute_fee']); 
         $celebrity_package->update($input);
 
+        $celebrity_package->syncTagsWithType($request->tags, 'packages');
+        
         toastr()->success('Data has been updated successfully!');
         return redirect()->back();
     }

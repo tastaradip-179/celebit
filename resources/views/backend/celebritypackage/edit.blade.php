@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<?php $alltags = $celebrity_package->tags()->pluck('id')->toArray() ?>
 
 <section id="main-content" class=" ">
     <section class="wrapper main-wrapper" style=''>
@@ -81,7 +82,19 @@
                                             <input type="number" class="form-control" id="extra_per_minute_fee" name="extra_per_minute_fee" value="{{ $celebrity_package->extra_per_minute_fee ? $celebrity_package->extra_per_minute_fee:'' }}">
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="form-label">Select Tags</label>
+                                          <div class="controls">
+                                                <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                      <option value=""></option>
+                                                    @if( !empty($tags) ) 
+                                                      @foreach($tags as $tag)
+                                                        <option {{ in_array($tag->id, $alltags) ? 'selected' : ''}} >{{ $tag->name }}</option>
+                                                      @endforeach
+                                                    @endif 
+                                                </select>
+                                          </div>
+                                    </div>
                                     <div class="form-group float-right ">
 		                                <button type="submit" class="btn btn-success">Update</button>
 		                                <button type="button" class="btn">Cancel</button>
@@ -106,5 +119,13 @@
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
 <script src="{{asset('backend/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script> 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+<script type="text/javascript">
+      $(document).ready(function() {
+          $('.select2').select2({
+            placeholder: "Select tags or type and enter",
+            tags: true,
+            tokenSeparators: [',', ' ']
+          });
+      });
+</script>
 @endsection

@@ -46,7 +46,8 @@ class CelebrityController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
-        $data['tags'] = Tag::latest()->get();
+        $data['tags'] = Tag::withType('celebrities')->latest()->get();
+        
         
         return view($this->view.'create', $data);
     }
@@ -136,7 +137,7 @@ class CelebrityController extends Controller
         $data['route'] = $this->route;
         $data['celebrity'] = $celebrity;
 
-        $data['tags'] = Tag::latest()->get();
+        $data['tags'] = Tag::withType('celebrities')->latest()->get();
 
         return view($this->view.'.edit', $data);
     }

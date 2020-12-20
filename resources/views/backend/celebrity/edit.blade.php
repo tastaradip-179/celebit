@@ -152,7 +152,7 @@
                                                 <select class="form-control select2" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
                                                     @if( !empty($tags) ) 
-                                                      @foreach($tags->where('type', 'celebrities') as $tag)
+                                                      @foreach($tags as $tag)
                                                         <option {{ in_array($tag->id, $alltags) ? 'selected' : ''}} >{{ $tag->name }}</option>
                                                       @endforeach
                                                     @endif 
