@@ -4,14 +4,11 @@
 
 section .content-body {
 	overflow: hidden;
-<<<<<<< HEAD
-}  
-
+}
 .select2-container {
 	width: 100% !important;
 } 
-=======
-}   
+  
 .team-member.col .team-member-edit {
     position: absolute;
     right: 5px;
@@ -23,4 +20,12 @@ section .content-body {
 .uk-nestable-item{
 	background: transparent;
 }
->>>>>>> 9c341ba0aa827b523303b32a37cc87405f10bdd5
+
+.icon-square-o{
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px !important;
+	padding: 8px !important;
+	font-size: 18px !important;
+	color: #ffffff;
+}

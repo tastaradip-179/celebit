@@ -21,4 +21,10 @@ class Package extends Model
     {
         return $this->hasMany('App\Models\CelebrityPackage');
     }
+
+    public function getTagsAttribute()
+	{
+	    return $this->tags()->get();
+	}
+
 }

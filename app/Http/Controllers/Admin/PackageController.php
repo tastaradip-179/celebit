@@ -28,6 +28,7 @@ class PackageController extends Controller
         $data['route']     = $this->route;
         $data['packages']  = Package::latest()->get();
         $data['tags'] = Tag::latest()->get();
+
         return view($this->view.'index', $data);
     }
 

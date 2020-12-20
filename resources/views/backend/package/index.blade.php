@@ -47,12 +47,15 @@
                                 $sn=0;
                             @endphp
                             @foreach($packages as $key=>$package)
+                             <?php $package_tags = $package->tags()->pluck('id')->toArray() ?>
                           	<tbody>
                                 <tr>
                                     <td>{{++$sn}}</td>
-                                    <td>{{$package->name}}</td>
+                                    <td>{{$package->name}}  
                                     <td>
-                                        {!! $package->AllTags() !!}
+                                        @foreach($package->getTagsAttribute() as $tag)
+                                          <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
+                                        @endforeach 
                                     </td>
                                     <td>
                                     	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
@@ -65,43 +68,50 @@
                                 </tr>  
                             </tbody>
                             <!-- The Modal -->
-							<div class="modal" id="PackageEditModal-{{$package->id}}">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
+              							<div class="modal" id="PackageEditModal-{{$package->id}}" role="dialog" aria-hidden="true">
+              							  <div class="modal-dialog">
+              							    <div class="modal-content">
 
-							      <!-- Modal Header -->
-							      <div class="modal-header">
-							        <h4 class="modal-title">Edit {{$package->name}}</h4>
-							        <button type="button" class="close" data-dismiss="modal">&times;</button>
-							      </div>
+              							      <!-- Modal Header -->
+              							      <div class="modal-header">
+              							        <h4 class="modal-title">Edit {{$package->name}}</h4>
+              							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+              							      </div>
 
-							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
-					                      {{ method_field('PUT') }}
-					                      {{csrf_field()}}
-									      <!-- Modal body -->
-									      <div class="modal-body">
-											    <div class="form-group">
-							                          <label class="form-label" for="name">Package name</label>
-							                          <div class="controls">
-							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
-							                          </div>
-							                    </div> 
+              							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
+              					                      {{ method_field('PUT') }}
+              					                      {{csrf_field()}}
+              									      <!-- Modal body -->
+              									      <div class="modal-body">
+              											           <div class="form-group">
+              							                          <label class="form-label" for="name">Package name</label>
+              							                          <div class="controls">
+              							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
+              							                          </div>
+              							                    </div> 
                                                 <div class="form-group">
-                                                    <label class="form-label">Package Types</label>
-                                                      <div class="controls">
-                                                        
-                                                      </div>
+                                                  <label class="form-label">Select Tags</label>
+                                                    <div class="controls">
+                                                          <select class="form-control select2-modal" name="tags[]" multiple="multiple">
+                                                                @if( !empty($tags) ) 
+                                                                  @foreach($tags->where('type', 'packages') as $tag)
+                                                                    <option {{ in_array($tag->id, $package_tags) ? 'selected' : ''}} >{{ $tag->name }}</option>
+                                                                  @endforeach
+                                                                @endif 
+                                                          </select>
+                                                    </div>
                                                 </div>
-							                    <div class="form-group float-right">
-							                    	<button type="submit" class="btn btn-success">Update</button>
-									       			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-									    		</div>
-									      </div>				      	
-							      </form>
+                                                
+              							                    <div class="form-group float-right">
+              							                    	<button type="submit" class="btn btn-success">Update</button>
+              									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              									    		       </div>
+              									      </div>				      	
+              							      </form>
 
-							    </div>
-							  </div>
-							</div>
+              							    </div>
+              							  </div>
+              							</div>
                             @endforeach 
                         </table>
                     </div>
@@ -130,17 +140,17 @@
 		                          </div>
 		                    </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="tags">Select Tags</label>
-                                  <div class="controls">
-                                        <select class="form-control select2" name="tags[]" multiple="multiple">
-                                              <option value=""></option>
-                                              @foreach($tags as $tag)
-                                                <option>{{$tag->name}}</option>
-                                              @endforeach
-                                        </select>
-                                  </div>
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label" for="tags">Select Tags</label>
+                              <div class="controls">
+                                    <select class="form-control select2" name="tags[]" multiple="multiple">
+                                          <option value=""></option>
+                                          @foreach($tags as $tag)
+                                            <option>{{$tag->name}}</option>
+                                          @endforeach
+                                    </select>
+                              </div>
+                        </div>
 		                
 		                    <div class="form-group float-right ">
 		                        <button type="submit" class="btn btn-success">Create</button>
@@ -172,14 +182,17 @@
             tokenSeparators: [',', ' ']
           });
       });
+      
       $(document).ready(function() {
-          $('.select2-modal').select2({
-            placeholder: "Select tags or type and enter",
-            dropdownParent: $('.modal'),
-            //tags: true,
-            tokenSeparators: [',', ' '],
-
-          });
+          $('.modal .select2-modal').each(function() {  
+           var $p = $(this).parent(); 
+           $(this).select2({  
+             placeholder: "Select tags or type and enter",
+             dropdownParent: $p  ,
+             tags: true,
+             tokenSeparators: [',', ' '],
+           });  
+        });
       });
 </script>
 

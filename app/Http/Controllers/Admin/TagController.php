@@ -10,7 +10,6 @@ class TagController extends Controller
 {
     public function __construct () 
     {
-        $this->middleware('auth');
         $this->title = 'Tag';
         $this->route = 'admin.tags.';
         $this->view  = 'backend.tags.';
