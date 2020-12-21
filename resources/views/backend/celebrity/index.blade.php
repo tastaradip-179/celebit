@@ -101,7 +101,7 @@
             data: {data: serialized, sort: 'celebrities'},
             success:function(response){
                 if (response == 'success') {
-                    toastr["warning"]("Change successfully save!");
+                    toastr["warning"]("Change successfully saved!");
                 }
                 console.log(response);
             }

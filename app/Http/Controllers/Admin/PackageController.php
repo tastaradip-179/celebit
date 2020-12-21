@@ -87,7 +87,7 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
-        $input = $request->only(['name']); 
+        $input = $request->only(['name','status']); 
         $package->update($input);
 
         toastr()->success('Data has been updated successfully!');
