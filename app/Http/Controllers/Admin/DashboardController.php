@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Celebrity;
 use Illuminate\Http\Request;
+use App\Models\CelebrityPackage;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -22,8 +23,11 @@ class DashboardController extends Controller
     			foreach ($data as $key => $value) {
     				$arr[] = (int) $value['item'];
     			}
-    			Celebrity::setNewOrder($arr);
-
+                if ($request->sort == 'celebrities') {
+        			Celebrity::setNewOrder($arr);
+                }elseif ($request->sort == 'celebrity-package') {
+                    CelebrityPackage::setNewOrder($arr);
+                }
 	    		return response()->json('success');
     		}
     	}

@@ -61,9 +61,9 @@
                                         <div class="wid-notification">
 
                                             @if(!empty($celebrity->celebritypackages))
-                                                <ul class="list-unstyled notification-widget uk-nestable" data-uk-nestable="{maxDepth:1}">
+                                                <ul id="celebritySerial" class="list-unstyled notification-widget uk-nestable" data-uk-nestable="{maxDepth:1}">
                                                     @foreach($celebrity->celebritypackages as $package)
-                                                    <li>
+                                                    <li data-item="{{$package->id}}">
                                                         <div class="uk-nestable-item">
                                                             <div class="uk-nestable-handle"></div>
                                                             <div data-nestable-action="toggle"></div>
@@ -127,7 +127,7 @@
         $.ajax({
             url: '{{route('admin.data.serialize')}}',
             method: 'get',
-            data: {data: serialized, sort: 'celebrities'},
+            data: {data: serialized, sort: 'celebrity-package'},
             success:function(response){
                 if (response == 'success') {
                     toastr["warning"]("Change successfully save!");
