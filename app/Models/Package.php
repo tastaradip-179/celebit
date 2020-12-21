@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +9,6 @@ class Package extends Model
 {
 
     use SoftDeletes;
-    use hasTags;
 	
 	protected $fillable = [
     	'name','status','deleted_at'

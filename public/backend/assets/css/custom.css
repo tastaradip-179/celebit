@@ -17,7 +17,7 @@ section .content-body {
 .team-member{
 	border: 1px solid #eaeaea;
 }
-.uk-nestable-item{
+#celebritySerial .uk-nestable-item{
 	background: transparent;
 }
 
@@ -33,5 +33,15 @@ section .content-body {
 .uk-nestable-item .uk-nestable-handle {
     background: #eeeeee;
     position: absolute;
-    z-index: 9999;
+    z-index: 9;
+}
+.notification-widget{
+	height: auto;
+}
+.notification-widget li .user-img img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0px 15px 0px 40px;
+    opacity: 0.8;
 }

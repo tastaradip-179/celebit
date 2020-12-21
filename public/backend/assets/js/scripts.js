@@ -3653,7 +3653,7 @@ var table5 = $('#example-5').DataTable();
         ULTRA_SETTINGS.chatApiScroll();
         ULTRA_SETTINGS.chatApiWindow();
         ULTRA_SETTINGS.mailboxInbox();
-        ULTRA_SETTINGS.ultraWidgets();
+        // ULTRA_SETTINGS.ultraWidgets();
         ULTRA_SETTINGS.sectionBoxActions();
         ULTRA_SETTINGS.draggablePanels();
         ULTRA_SETTINGS.viewportElement();

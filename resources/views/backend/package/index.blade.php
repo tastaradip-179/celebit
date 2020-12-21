@@ -47,16 +47,10 @@
                                 $sn=0;
                             @endphp
                             @foreach($packages as $key=>$package)
-                             <?php $package_tags = $package->tags()->pluck('id')->toArray() ?>
                             	<tbody>
                                   <tr>
                                       <td>{{++$sn}}</td>
-                                      <td>{{$package->name}}  
-                                      <td>
-                                          @foreach($package->getTagsAttribute() as $tag)
-                                            <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
-                                          @endforeach 
-                                      </td>
+                                      <td>{{$package->name}}
                                       <td>
                                       	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
                                               {{ csrf_field() }}
@@ -90,19 +84,7 @@
                 							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
                 							                          </div>
                 							                    </div> 
-                                                  <div class="form-group">
-                                                    <label class="form-label">Select Tags</label>
-                                                      <div class="controls">
-                                                            <select class="form-control select2-modal" name="tags[]" multiple="multiple">
-                                                                  @if( !empty($tags) ) 
-                                                                    @foreach($tags->where('type', 'packages') as $tag)
-                                                                      <option {{ in_array($tag->id, $package_tags) ? 'selected' : ''}} >{{ $tag->name }}</option>
-                                                                    @endforeach
-                                                                  @endif 
-                                                            </select>
-                                                      </div>
-                                                  </div>
-                                                  
+                                             
                 							                    <div class="form-group float-right">
                 							                    	<button type="submit" class="btn btn-success">Update</button>
                 									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -141,18 +123,6 @@
 		                                <input type="text" class="form-control" id="name" name="name" >
 		                          </div>
 		                    </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="tags">Select Tags</label>
-                              <div class="controls">
-                                    <select class="form-control select2" name="tags[]" multiple="multiple">
-                                          <option value=""></option>
-                                          @foreach($tags as $tag)
-                                            <option>{{$tag->name}}</option>
-                                          @endforeach
-                                    </select>
-                              </div>
-                        </div>
 		                
 		                    <div class="form-group float-right ">
 		                        <button type="submit" class="btn btn-success">Create</button>
