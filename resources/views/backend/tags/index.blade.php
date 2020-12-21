@@ -35,16 +35,19 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th class="text-center">S\N</th>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Type</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($tags as $tag)
+                              @php($sn=0)
+                              @foreach($tags as $tag)
                             	<tr>
+                                <td class="text-center">{{++$sn}}</td>
                             		<td class="text-center">{{$tag->name}}</td>
-                                    <td class="text-center">{{$tag->type}}</td>
+                                <td class="text-center">{{$tag->type}}</td>
                             		<td class="text-center">
                                         <a href="javascript:void(0)" data-toggle="modal" data-target="#tagEditModal-{{$tag->id}}" title="edit">
                                           <i class="fa fa-pencil icon-info icon-square icon-square-o"></i>

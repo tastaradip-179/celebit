@@ -1,4 +1,54 @@
+
+<style>
+.page-link-list li{
+	display: inline;
+}
+</style>
+
 <footer>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<div class="row">
+					<h4>What We Offer?</h4> 
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<img src="{{asset('web/images/interview.png')}}" />
+						<h6>Send Us Request</h6>
+					</div>
+					<div class="col-md-4">
+						<img src="{{asset('web/images/video-camera.png')}}" />
+						<h6>Get your video</h6>
+					</div>
+					<div class="col-md-4">
+						<img src="{{asset('web/images/like.png')}}" />
+						<h6>Make unforgettable mamories</h6>
+					</div>
+				</div>
+				<div class="row">
+					<ul class = "page-link-list">
+						<li>About</li>
+						<li>Community Rules</li>
+						<li>Privacy</li>
+						<li>Terms</li>
+						<li>Blog</li>
+						<li>Contact</li>
+						<li>Donate</li>
+						<li>Support</li>
+						<li>FAQ</li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12"></div>
+		</div>
+	</div>
+
+
+
+
 	<div class="container">
 		<div class="top-footer">
 			<div class="row">
