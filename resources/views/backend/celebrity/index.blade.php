@@ -24,6 +24,9 @@
         <div class="row margin-0">
             <div class="col-xl-12">
                 <section class="box ">
+                    <header class="panel_header bg-primary">
+                        <h2 class="title float-left text-white">All Celebrities </h2>
+                    </header>
                     <div class="content-body">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-12">
@@ -33,6 +36,10 @@
                                         <div class="uk-nestable-item" >
                                             <div class="team-member col">
                                                 <div class="row margin-0">
+
+
+                                                    <div class="uk-nestable-handle"></div>
+                                                    <div data-nestable-action="toggle"></div>
                                                     <div class="team-img col-xl-4 col-lg-4 col-md-4 col-4">
                                                         <a href="{{route($route.'show', $celebrity->username)}}">
                                                             <div class="thumb">
@@ -44,7 +51,7 @@
                                                         <h4 class="font-weight-bold"><a href="{{route($route.'show', $celebrity->username)}}">{{$celebrity->name}}</a></h4>
                                                         <span class='team-member-edit'>
                                                             <a class="text-danger" title="View" href="{{ route('admin.celebrity.package',['celebrity' => $celebrity->username]) }}">
-                                                                <i class='fa fa-info-circle icon-xs icon-rounded icon-info'></i>
+                                                                <i class='fa fa-binoculars icon-xs icon-rounded icon-info'></i>
                                                             </a>
                                                             <a title="Edit" href="{{ route($route.'edit', [$celebrity->username]) }}">
                                                                 <i class='fa fa-pencil icon-xs icon-rounded icon-primary'></i>
@@ -56,9 +63,6 @@
                                                                 {{ csrf_field() }}
                                                                 @method('DELETE')
                                                             </form>
-
-                                                            <div class="uk-nestable-handle"></div>
-                                                            <div data-nestable-action="toggle"></div>
                                                         </span>
                                                         <span>{{$celebrity->designation}}<br>
                                                         <small>Phone:</small> {{$celebrity->mobile}}<br>
