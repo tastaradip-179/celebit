@@ -29,3 +29,9 @@ section .content-body {
 	font-size: 18px !important;
 	color: #ffffff;
 }
+
+.uk-nestable-item .uk-nestable-handle {
+    background: #eeeeee;
+    position: absolute;
+    z-index: 9999;
+}
