@@ -39,11 +39,41 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['name','slug','type']);
+        $input = $request->only(['name','type']);
         $tag = Tag::create($input);  
 
         toastr()->success('Data has been saved successfully!');
         return redirect()->back();    
     }
+
+
+    public function show(Package $package)
+    {
+        //
+    }
+
+  
+    public function edit(Package $package)
+    {
+        //
+    }
+ 
+    public function update(Request $request, Tag $tag)
+    {
+        $input = $request->only(['name','type']); 
+        $tag->update($input);
+
+        toastr()->success('Data has been updated successfully!');
+        return redirect()->back();
+    }
+
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+
+        toastr()->success('Data has been deleted successfully!');
+        return redirect()->back();
+    }
+
 
 }
