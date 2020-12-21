@@ -32,7 +32,7 @@
     function alertFunction(action,id){
         Swal.fire({
             title: "Are you sure to "+action+"?",
-            text: "You won't be able to revert this!",
+            text: "You won't be able to revert this later!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

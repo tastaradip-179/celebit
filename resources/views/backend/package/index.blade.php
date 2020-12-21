@@ -38,9 +38,11 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width:10%">S/N</th>
-                                    <th style="width:30%">Name</th>
-                                    <th style="width:30%">Action</th>
+                                    <th class="text-center" style="width:6%">S/N</th>
+                                    <th class="text-center" style="width:30%">Name</th>
+                                    <th class="text-center" style="width:30%">Tags</th>
+                                    <th class="text-center" style="width:14%">Status</th>
+                                    <th class="text-center" style="width:20%">Action</th>
                                 </tr>
                             </thead>
                             @php
@@ -50,20 +52,31 @@
                              <?php $package_tags = $package->tags()->pluck('id')->toArray() ?>
                             	<tbody>
                                   <tr>
-                                      <td>{{++$sn}}</td>
-                                      <td>{{$package->name}}  
-                                      <td>
+                                      <td class="text-center">{{++$sn}}</td>
+                                      <td class="text-center">{{$package->name}}  
+                                      <td class="text-center">
                                           @foreach($package->getTagsAttribute() as $tag)
                                             <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
                                           @endforeach 
                                       </td>
-                                      <td>
-                                      	<form id="delete-package-{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: inline;">
+                                      <td class="text-center">
+                                        @if($package->status == 1)
+                                        <a href="#" class="badge badge-primary">Active</a>
+                                        @else
+                                        <a href="#" class="badge badge-default">Inactive</a>
+                                        @endif
+                                      </td>
+                                      <td class="text-center">
+                                          <a href="javascript:void(0)" data-toggle="modal" data-target="#PackageEditModal-{{$package->id}}" title="edit">
+                                            <i class="fa fa-pencil icon-info icon-square icon-square-o"></i>
+                                          </a>
+                                          <a onclick="alertFunction('Delete', {{$package->id}});" title="Delete" href="javascript:void(0)"> 
+                                            <i class="fa fa-trash icon-danger icon-square icon-square-o"></i>
+                                          </a>
+                                          <form id="Delete{{$package->id}}" action="{{ route($route.'destroy', [$package->id]) }}" method="POST" style="display: none;">
                                               {{ csrf_field() }}
                                               @method('DELETE')
-                                              <button class="btn btn-danger">Delete</button>
                                           </form>
-                                          <a class="btn btn-defualt" href="#" data-toggle="modal" data-target="#PackageEditModal-{{$package->id}}">Edit</a>
                                       </td>
                                   </tr>  
                               </tbody>
@@ -102,7 +115,15 @@
                                                             </select>
                                                       </div>
                                                   </div>
-                                                  
+                                                  <div class="form-group">
+                                                    <label class="form-label">Status</label>
+                                                    <div class="controls">
+                                                      <select class="form-control" name="status">
+                                                        <option value="1" @if($package->status == 1) selected="selected" @endif>Active</option>
+                                                        <option value="0" @if($package->status == 0) selected="selected" @endif>Inactive</option>
+                                                      </select>
+                                                    </div>
+                                                  </div>
                 							                    <div class="form-group float-right">
                 							                    	<button type="submit" class="btn btn-success">Update</button>
                 									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

@@ -46,8 +46,16 @@
                             		<td class="text-center">{{$tag->name}}</td>
                                     <td class="text-center">{{$tag->type}}</td>
                             		<td class="text-center">
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#tagEditModal-{{$tag->id}}" title="edit"><i class="fa fa-pencil icon-info icon-square icon-square-o"></i></a>     
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#tagDeleteModal-{{$tag->id}}" title="delete"><i class="fa fa-trash icon-danger icon-square icon-square-o"></i></a>   
+                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#tagEditModal-{{$tag->id}}" title="edit">
+                                          <i class="fa fa-pencil icon-info icon-square icon-square-o"></i>
+                                        </a>     
+                                        <a onclick="alertFunction('Delete', {{$tag->id}});" title="Delete" href="javascript:void(0)"> 
+                                            <i class="fa fa-trash icon-danger icon-square icon-square-o"></i>
+                                        </a>
+                                        <form id="Delete{{$tag->id}}" action="{{ route($route.'destroy', [$tag->id]) }}" method="POST" style="display: none;">
+                                              {{ csrf_field() }}
+                                              @method('DELETE')
+                                        </form>
                                     </td>
                             	</tr>
                                 <!-- Tag Edit Modal -->
@@ -93,27 +101,7 @@
                                       </div>
                                     </div>
                                   </div>
-
-                                  <!-- Tag Delete Modal -->
-                                  <div class="modal" id="tagDeleteModal-{{$tag->id}}" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                          <h4 class="modal-title">Are you sure you want to delete</h4>
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-
-                                        <form id="deletetag-{{$tag->id}}" action="{{ route($route.'destroy', [$tag->id]) }}" method="POST">
-                                              {{ csrf_field() }}
-                                              @method('DELETE')
-                                              <button class="btn btn-danger">Delete</button>
-                                        </form>
-
-                                      </div>
-                                    </div>
-                                  </div>
+                                  
                                 @endforeach
                             </tbody>
                         </table>
