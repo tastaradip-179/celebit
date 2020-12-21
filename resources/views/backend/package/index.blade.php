@@ -40,7 +40,6 @@
                                 <tr>
                                     <th class="text-center" style="width:6%">S/N</th>
                                     <th class="text-center" style="width:30%">Name</th>
-                                    <th class="text-center" style="width:30%">Tags</th>
                                     <th class="text-center" style="width:14%">Status</th>
                                     <th class="text-center" style="width:20%">Action</th>
                                 </tr>
@@ -49,16 +48,10 @@
                                 $sn=0;
                             @endphp
                             @foreach($packages as $key=>$package)
-                             <?php $package_tags = $package->tags()->pluck('id')->toArray() ?>
                             	<tbody>
                                   <tr>
                                       <td class="text-center">{{++$sn}}</td>
-                                      <td class="text-center">{{$package->name}}  
-                                      <td class="text-center">
-                                          @foreach($package->getTagsAttribute() as $tag)
-                                            <a href="#" class="badge badge-secondary">{!! $tag->name !!}</a>
-                                          @endforeach 
-                                      </td>
+                                      <td class="text-center">{{$package->name}}
                                       <td class="text-center">
                                         @if($package->status == 1)
                                         <a href="#" class="badge badge-primary">Active</a>
@@ -93,42 +86,30 @@
                 							      </div>
 
                 							      <form id="form" method="post" action="{{ route($route.'update', [$package->id]) }}" style="width: 100%;">                
-                					                      {{ method_field('PUT') }}
-                					                      {{csrf_field()}}
-                									      <!-- Modal body -->
-                									      <div class="modal-body">
-                											           <div class="form-group">
-                							                          <label class="form-label" for="name">Package name</label>
-                							                          <div class="controls">
-                							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
-                							                          </div>
-                							                    </div> 
-                                                  <div class="form-group">
-                                                    <label class="form-label">Select Tags</label>
+          					                      {{ method_field('PUT') }}
+          					                      {{csrf_field()}}
+                  									      <!-- Modal body -->
+                  									      <div class="modal-body">
+                  											           <div class="form-group">
+                  							                          <label class="form-label" for="name">Package name</label>
+                  							                          <div class="controls">
+                  							                                <input type="text" class="form-control" id="name" name="name" value="{{($package->name) ? $package->name:''}}">
+                  							                          </div>
+                  							                    </div>
+                                                    <div class="form-group">
+                                                      <label class="form-label">Status</label>
                                                       <div class="controls">
-                                                            <select class="form-control select2-modal" name="tags[]" multiple="multiple">
-                                                                  @if( !empty($tags) ) 
-                                                                    @foreach($tags->where('type', 'packages') as $tag)
-                                                                      <option {{ in_array($tag->id, $package_tags) ? 'selected' : ''}} >{{ $tag->name }}</option>
-                                                                    @endforeach
-                                                                  @endif 
-                                                            </select>
+                                                        <select class="form-control" name="status">
+                                                          <option value="1" @if($package->status == 1) selected="selected" @endif>Active</option>
+                                                          <option value="0" @if($package->status == 0) selected="selected" @endif>Inactive</option>
+                                                        </select>
                                                       </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label class="form-label">Status</label>
-                                                    <div class="controls">
-                                                      <select class="form-control" name="status">
-                                                        <option value="1" @if($package->status == 1) selected="selected" @endif>Active</option>
-                                                        <option value="0" @if($package->status == 0) selected="selected" @endif>Inactive</option>
-                                                      </select>
                                                     </div>
-                                                  </div>
-                							                    <div class="form-group float-right">
-                							                    	<button type="submit" class="btn btn-success">Update</button>
-                									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                									    		       </div>
-                									      </div>				      	
+                  							                    <div class="form-group float-right">
+                  							                    	<button type="submit" class="btn btn-success">Update</button>
+                  									       			     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  									    		       </div>
+                    									     </div>				      	
                 							      </form>
 
                 							    </div>
@@ -162,18 +143,6 @@
 		                                <input type="text" class="form-control" id="name" name="name" >
 		                          </div>
 		                    </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="tags">Select Tags</label>
-                              <div class="controls">
-                                    <select class="form-control select2" name="tags[]" multiple="multiple">
-                                          <option value=""></option>
-                                          @foreach($tags as $tag)
-                                            <option>{{$tag->name}}</option>
-                                          @endforeach
-                                    </select>
-                              </div>
-                        </div>
 		                
 		                    <div class="form-group float-right ">
 		                        <button type="submit" class="btn btn-success">Create</button>

@@ -119,7 +119,7 @@ class CelebrityPackageController extends Controller
         $celebrity_package = CelebrityPackage::findOrFail($id);
         $input = $request->only(['celebrity_id','package_id','duration','per_minute_fee','extra_per_minute_fee']); 
         $celebrity_package->update($input);
-
+        // dd($request->tags);
         $celebrity_package->syncTagsWithType($request->tags, 'packages');
         
         toastr()->success('Data has been updated successfully!');

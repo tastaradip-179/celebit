@@ -1,6 +1,7 @@
 
 <!-- CORE JS FRAMEWORK - START --> 
 <script src="{{asset('backend/assets/js/jquery-3.4.1.min.js')}}" type="text/javascript"></script> 
+<script src="{{asset('backend/assets/js/popper.min.js')}}" type="text/javascript"></script> 
 <!-- <script src="assets/js/jquery.easing.min.js')}}" type="text/javascript"></script>  -->
 <script src="{{asset('backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script> 
 
