@@ -132,21 +132,32 @@
                         </li>
                     </ul>
                 </li>
-                <li class="d-sm-none d-none searchform list-inline-item">
-                    <div class="input-group">
-                        <span class="input-group-addon input-focus">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <form action="search-page.html" method="post">
-                            <input type="text" class="form-control animated fadeIn" placeholder="Search & Enter">
-                            <input type='submit' value="">
-                        </form>
-                    </div>
+
+                <li class="list-inline-item">
+                    <a href="{{route('admin.celebrities.create')}}" class="btn btn-primary"> Add Celebrity</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="{{route('admin.celebrities.index')}}" class="btn btn-warning"> Manage celebrities</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="{{route('admin.celebritypackages.create')}}" class="btn btn-info"> Create celebrity package</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="{{route('admin.packages.index')}}" class="btn btn-orange"> Manage package type</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="{{route('admin.tags.index')}}" class="btn btn-purple"> Manage tags</a>
                 </li>
             </ul>
         </div>		
         <div class='float-right'>
+
             <ul class="info-menu right-links list-inline list-unstyled">
+                
                 <li class="profile list-inline-item">
                     <a href="#" data-toggle="dropdown" class="toggle">
                         <i class='fa fa-user icon-xs icon-rounded icon-info'></i>

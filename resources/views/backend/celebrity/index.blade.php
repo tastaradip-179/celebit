@@ -17,6 +17,7 @@
                 </div>
                 {!! backurl() !!}
             </div>
+            <a href="{{route('admin.celebrities.create')}}" class="btn btn-success"> Add Celebrity</a>
             
         </div>
         <div class="clearfix"></div>
@@ -25,7 +26,10 @@
             <div class="col-xl-12">
                 <section class="box ">
                     <header class="panel_header bg-primary">
-                        <h2 class="title float-left text-white">All Celebrities </h2>
+                    
+                        <h2 class="title float-left text-white">
+                            All Celebrities 
+                        </h2>
                     </header>
                     <div class="content-body">
                         <div class="row">
