@@ -49,6 +49,9 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+                'name' => 'required | string',
+            ]);
         $input = $request->only(['name']);
         $package = Package::create($input);  
 
@@ -87,6 +90,9 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
+        $request->validate([
+                'name' => 'required | string',
+            ]);
         $input = $request->only(['name','status']); 
         $package->update($input);
 
@@ -104,7 +110,7 @@ class PackageController extends Controller
     {
         // $package->delete();
 
-        toastr()->warning('You can not deleted it!');
+        toastr()->warning('You can not delete it!');
         return redirect()->back();
     }
 }

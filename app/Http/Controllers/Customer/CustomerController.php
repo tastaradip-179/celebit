@@ -43,7 +43,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {   
-
+        $request->validate([
+                'fullname' => 'required | string | min:4',
+                'email' => 'required | email | unique:customers,email',
+                'gender' => 'required',
+                'password' => 'required | min:6',
+                'dob' => 'required',
+            ]);
         $input = $request->only(['fullname','email','gender','mobile','dob']);
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];

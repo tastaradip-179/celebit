@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Spatie\Tags\Tag;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -39,6 +38,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+                'name' => 'required | string',
+            ]);
         $input = $request->only(['name','type']);
         $tag = Tag::create($input);  
 
@@ -60,6 +62,9 @@ class TagController extends Controller
  
     public function update(Request $request, Tag $tag)
     {
+        $request->validate([
+                'name' => 'required | string',
+            ]);
         $input = $request->only(['name','type']); 
         $tag->update($input);
 
