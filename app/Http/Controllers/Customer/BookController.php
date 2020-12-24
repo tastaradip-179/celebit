@@ -54,7 +54,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
         $input2 = $request->only(['fullname', 'pronoun']);  
         $book = Book::create($input);   

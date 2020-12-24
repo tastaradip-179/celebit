@@ -76,9 +76,9 @@
                             <tbody>
                                 @if(!empty($celebrity_packages))
                                 <tr>
-                                    <td>{{$celebrity_packages[$key]->package->name}}</td>
+                                    <td>{{$celebrity_packages[$key]->packageType->name}}</td>
                                     <td>{{$celebrity_packages[$key]->duration}}</td>
-                                    <td>{{$celebrity_packages[$key]->per_minute_fee}}</td>
+                                    <td>{{$celebrity_packages[$key]->total}}</td>
                                     <td>{{$celebrity_packages[$key]->extra_per_minute_fee}}</td> 
                                     <td>
                                     	@if(Auth::guard('customer')->check())

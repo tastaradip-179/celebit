@@ -27,7 +27,7 @@
 					</li>
 					<li class="user-log">
 						<div class="user-ac-img">
-							<img src="{{asset('web/images/user-icon.png')}}" alt="">
+							<img src="{{asset('web/images/icon/user-icon.png')}}" alt="">
 						</div>
 						<div class="account-menu">
 							<h4>AZYRUSMAX <span class="usr-status">PRO</span></h4>

@@ -42,7 +42,7 @@ class CelebrityPackageController extends Controller
         $data['route'] = $this->route;
 
         $data['celebrities'] = Celebrity::latest()->get();
-        $data['packages'] = Package::latest()->get();
+        $data['packages'] = Package::where('status',1)->latest()->get();
         $data['tags'] = Tag::withType('packages')->ordered()->get();
         
         return view($this->view.'create', $data);
@@ -82,7 +82,7 @@ class CelebrityPackageController extends Controller
         $data['route']     = $this->route;
 
         $data['celebrity'] = $celebrity;
-        $data['packages'] = Package::latest()->get();
+        $data['packages'] = Package::where('status',1)->latest()->get();
         $data['tags'] = Tag::withType('packages')->ordered()->get();
 
         return view($this->view.'show', $data);
@@ -100,7 +100,7 @@ class CelebrityPackageController extends Controller
         $data['route'] = $this->route;
 
         $data['celebrities'] = Celebrity::latest()->get();
-        $data['packages'] = Package::latest()->get();
+        $data['packages'] = Package::where('status',1)->latest()->get();
         $data['celebrity_package'] = CelebrityPackage::findOrFail($id);
         $data['tags'] = Tag::withType('packages')->ordered()->get();
         

@@ -39,7 +39,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                'name' => 'required | string',
+                'name' => 'required | string | unique:tags,name->en',
             ]);
         $input = $request->only(['name','type']);
         $tag = Tag::create($input);  
@@ -63,7 +63,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-                'name' => 'required | string',
+                'name' => 'required | string | unique:tags,name',
             ]);
         $input = $request->only(['name','type']); 
         $tag->update($input);
