@@ -147,7 +147,7 @@
 
         <div class="row">
           <div class="col-3">
-            <img src="{{asset('web/images/user-icon.png')}}" alt="">
+            <img src="{{asset('web/images/icon/user-icon.png')}}" alt="">
           </div>
 
           <div class="col-9">
