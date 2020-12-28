@@ -9,6 +9,10 @@ use App\Models\Celebrity;
 class CelebrityController extends Controller
 {
 
+	public function index(){
+		return view ('web.celebrity.index');
+	}
+
     public function show (Celebrity $celebrity){
     	$data['celebrity'] = $celebrity;
     	$data['image'] = $data['celebrity']->images[0] ;

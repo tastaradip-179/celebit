@@ -122,6 +122,7 @@
 
 	</section><!--form_popup end-->
 
+@include('web.common.how-it-works')
 
 @endsection
 

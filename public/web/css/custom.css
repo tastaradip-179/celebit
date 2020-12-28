@@ -5,6 +5,10 @@
 	display: inline-block;
 	margin: 0px 15px;
 }
+
+.btn-default{
+	background-color: #272626 !important;
+}
 .btn-default:hover {
 	color: #ffffff;
 	font-weight: 500;
@@ -62,6 +66,57 @@
 .modal-title{
 	font-size: 1.75rem;
 }
+
+
+/*how it works*/
+.howitworks{
+      background-color: #e2ebef;
+      min-height: 300px;
+      color: #111;
+   }
+.howitworks .section-title-mid{
+	  margin-top: 30px;
+	  margin-bottom: 15px;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      text-align: center;
+}
+.howitworks .section-title-mid h4{
+      font-size: 24px;
+      font-weight: 600;  
+      margin-bottom: 20px;
+      color: #706f6f;
+}
+.howitworks .workbox {
+	min-height: 220px;
+	color: #111;
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+	border-radius: 4px;
+	background-color: #ffffff;
+	text-align: center;
+	padding: 30px;
+	margin: 0 0px 50px 0px;
+}
+.howitworks .workbox img{
+  height: 80px;
+  padding-bottom: 20px;
+}
+.howitworks .workbox h5{
+	  padding: 10px;
+	  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.howitworks .workbox p{
+	  padding: 10px;
+	  color: #111;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+/*how it works*/
+
 
 
 

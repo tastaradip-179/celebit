@@ -166,7 +166,7 @@
 <!--Modal: modalLoginAlert-->
 
 
-
+@include('web.common.how-it-works')
 
 
 
