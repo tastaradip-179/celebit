@@ -1,24 +1,9 @@
-.decp_cotnet, .link-pr{
-	max-width: 100%;
-}
-.link-pr ul li{
-	display: inline-block;
-	margin: 0px 15px;
-}
-
 .btn-default{
-	background-color: #272626 !important;
+	background-color: #33b5e5 !important;
 }
 .btn-default:hover {
 	color: #ffffff;
 	font-weight: 500;
-}
-
-.user-account-pr#signup{
-	max-width: 620px;
-}
-.user-account-pr#login{
-	max-width: 370px;
 }
 
 .mb-20{
@@ -30,6 +15,10 @@
 .mtb-20{
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.img-fluid{
+	width: 100%;
 }
 
 @media (min-width: 991px) {
@@ -70,7 +59,7 @@
 
 /*how it works*/
 .howitworks{
-      background-color: #e2ebef;
+      background-color: #ffffff;
       min-height: 300px;
       color: #111;
    }
@@ -118,6 +107,86 @@
 /*how it works*/
 
 
+/*celebrity profile*/
+
+.celebrity-profile{
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+}
+.celebrity-profile-container{
+	color: #111111;
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+	border-radius: 20px;
+	background-color: #ffffff;
+	overflow: hidden;
+	height: auto;
+}
+.celebrity-profile-container .row{
+	margin-right: 0!important;
+}
+.celebrity-profile-container .about h3{
+	font-size: 30px;
+	font-weight: 600;
+}
+.celebrity-profile-container .about h5{
+	font-size: 22px;
+	font-weight: 500;
+	padding-top: 6px;
+}
+.celebrity-profile-container .about p{
+	font-size: 13px;
+	font-weight: 400;
+	padding-top: 6px;
+}
+.celebrity-profile-container .about h6{
+	font-size: 18px;
+	font-weight: 400;
+	padding-top: 16px;
+	margin-top: 10px;
+}
+.celebrity-profile-container .services{
+	margin-top: 10px;
+	position: relative;
+}
+.celebrity-profile-container .services h6{
+	font-size: 18px;
+	font-weight: 400;
+	padding-top: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.celebrity-profile-container .services .service-btn{	
+	padding-right: 0;
+}
+.celebrity-profile-container .services .service-btn a{
+	width: 100%;	
+	display: block;
+	padding: 12px; 
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+	border-radius: 10px;
+	background-color: #272626;
+}
+.celebrity-profile-container .services .service-btn a:hover{
+	background-color: #A9A9A9;
+}
+.celebrity-profile-container .services .service-btn a span{
+	color: red;
+	display: table;
+}
+.celebrity-profile-container .services .service-btn a span.service-name{
+	font-size: 22px;
+	font-weight: 500;
+}
+.celebrity-profile-container .services .service-btn a span.service-price{
+	font-size: 18px;
+	font-weight: 700;
+}
+.celebrity-profile-container .services .service-btn a span.service-time{
+	font-size: 13px;
+	font-weight: 400;
+}
 
 
 footer ul.page-link-list {

@@ -10,7 +10,7 @@ trait TagTrait{
 	    $data = [];
 	    foreach($this->tags as $tag)
 	    {
-	        $data[] = '<a href="#" class="badge badge-info">'.$tag->name.'</a>';
+	        $data[] = '<a href="#" class="badge badge-dark">'.$tag->name.'</a>';
 	    }
 	    return implode(' ', $data);
 	}

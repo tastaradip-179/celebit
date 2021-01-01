@@ -22,7 +22,7 @@ class CelebrityController extends Controller
             $data['package'] = $data['celebrity_package']->package;
         }
         
-    	return view ('web.celebrity.profile', $data);
+    	return view ('web.celebrity.index', $data);
     }
 
 }
