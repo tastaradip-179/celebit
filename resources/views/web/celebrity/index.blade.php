@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="img">
-						<img src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="dp" class="img-fluid" />
+						<img src="{{ $file_path_view.$celebrity->profileImage() }}" alt="dp" class="img-fluid" />
 					</div>
 				</div>
 				<div class="col-md-7">
@@ -19,12 +19,16 @@
 						{!! $celebrity->AllTags() !!}
 					</div>
 					<div class="services">
-						<h6>Request for</h6>
+						<h6>Request for?</h6>
 						<div class="row">
 							@foreach($celebrity_packages as $key=>$celebrity_package)
 							@if(!empty($celebrity_packages))
 							<div class="col-12 col-lg-4 col-md-6 col-sm-12 service-btn">
-				                <a href="#">
+								@if(Auth::guard('customer')->check())
+				                <a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}">
+				                @else
+				                <a href="#" type="button" data-toggle="modal" data-target="#elegantLoginModalForm" title="">
+				                @endif	
 				                	<span class="service-name">{{$celebrity_packages[$key]->packageType->name}}</span>
 				                	<span class="service-price">৳{{$celebrity_packages[$key]->total}}</span>
 				                	<span class="service-time">{{$celebrity_packages[$key]->duration}}min</span>

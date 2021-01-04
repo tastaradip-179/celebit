@@ -20,6 +20,11 @@
 .img-fluid{
 	width: 100%;
 }
+.img-mini{
+	border-radius: 14px;
+	width: 80px;
+	height: auto;
+}
 
 @media (min-width: 991px) {
 	.modal-dialog-registration{
@@ -98,8 +103,8 @@
   line-height: 1.4;
 }
 .howitworks .workbox p{
-	  padding: 10px;
-	  color: #111;
+  padding: 10px;
+  color: #111;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
@@ -108,7 +113,6 @@
 
 
 /*celebrity profile*/
-
 .celebrity-profile{
 	position: relative;
 	margin-top: 30px;
@@ -147,7 +151,7 @@
 	margin-top: 10px;
 }
 .celebrity-profile-container .services{
-	margin-top: 10px;
+	margin-top: 60px;
 	position: relative;
 }
 .celebrity-profile-container .services h6{
@@ -168,26 +172,63 @@
 	border-radius: 10px;
 	background-color: #272626;
 }
-.celebrity-profile-container .services .service-btn a:hover{
-	background-color: #A9A9A9;
+.celebrity-profile-container .services .service-btn a:hover, .celebrity-profile-container .services .service-btn a:active{
+	background-color: #a09999;
 }
 .celebrity-profile-container .services .service-btn a span{
-	color: red;
 	display: table;
 }
 .celebrity-profile-container .services .service-btn a span.service-name{
+	color: #ffffff;
 	font-size: 22px;
 	font-weight: 500;
 }
 .celebrity-profile-container .services .service-btn a span.service-price{
 	font-size: 18px;
 	font-weight: 700;
+	color: #e60606;
 }
 .celebrity-profile-container .services .service-btn a span.service-time{
+	color: #ffffff;
 	font-size: 13px;
 	font-weight: 400;
 }
+/*celebrity profile*/
 
+
+
+/*book*/
+.request{
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+}
+.request-container{
+	color: #111111;
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+	border-radius: 20px;
+	background-color: #ffffff;
+	overflow: hidden;
+	height: auto;
+	padding: 30px;
+	text-align: center;
+}
+.request-container .header{
+	display: inline-flex;
+	text-align: center;
+}
+.request-container .header h4{
+	padding: 40px 10px 0 10px;
+	font-size: 22px;
+	font-weight: 600;
+	color: #706f6f;
+}	
+/*book*/
+
+
+
+/*footer*/
 
 footer ul.page-link-list {
 	margin-top: 30px;
@@ -239,3 +280,5 @@ footer form.newsletter button{
 	line-height: 2;
 	height: 50px;
 }
+
+/*footer*/

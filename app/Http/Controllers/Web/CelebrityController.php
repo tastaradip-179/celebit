@@ -9,20 +9,27 @@ use App\Models\Celebrity;
 class CelebrityController extends Controller
 {
 
+    public function __construct () 
+    {
+        $this->title = 'Celebrity';
+        $this->route = 'celebrities.';
+        $this->view  = 'web.celebrity.';
+        $this->file_path_view = \Request::root().'/storage/celebrities/';
+    }
+
 	public function index(){
-		return view ('web.celebrity.index');
+		//
 	}
 
     public function show (Celebrity $celebrity){
-    	$data['celebrity'] = $celebrity;
-    	$data['image'] = $data['celebrity']->images[0] ;
-    	$data['celebrity_packages'] = $data['celebrity']->celebritypackages;
+        $data['title']     = $this->title;
+        $data['route']     = $this->route;
+        $data['file_path_view'] = $this->file_path_view;
 
-        foreach($data['celebrity_packages'] as $key=>$data['celebrity_package']){
-            $data['package'] = $data['celebrity_package']->package;
-        }
+        $data['celebrity'] = $celebrity;
+        $data['celebrity_packages'] = $data['celebrity']->celebritypackages;
         
-    	return view ('web.celebrity.index', $data);
+        return view ($this->view.'index', $data);
     }
 
 }

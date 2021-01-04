@@ -19,16 +19,18 @@ class BookController extends Controller
 
 
     public function __construct () 
-    {
-        
-        $this->title = 'Request';
+    {        
+        $this->title = 'Request for';
         $this->route = 'books.';
         $this->view  = 'web.book.';
+        $this->file_path_view = \Request::root().'/storage/celebrities/';
     }
 
 
     public function index()
     {
+        $data['title'] = $this->title;
+        $data['route'] = $this->route;
         return view ($this->view.'index');
     }
 
@@ -41,9 +43,11 @@ class BookController extends Controller
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
+        $data['file_path_view'] = $this->file_path_view;
         $data['celebrity_package'] = CelebrityPackage::findOrFail($id);
+        $data['celebrity'] = $data['celebrity_package']->celebrity;
 
-        return view($this->view.'create', $data);
+        return view($this->view.'index', $data);
     }
 
     /**
