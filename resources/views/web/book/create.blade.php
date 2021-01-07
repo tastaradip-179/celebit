@@ -46,11 +46,11 @@
 							</li>
 						</ul>
 					</div>
-					<!-- <div class="myself-inputs" id="myself-inputs" style="display: none"> -->
+					 <div class="myself-inputs" id="myself-inputs" style="display: none"> 
 						<div class="input-sec">
 							<input type="text" name="pronoun" placeholder="myself"  />
 						</div>
-					<!-- </div> -->
+					 </div> 
 					<div class="other-inputs" id="other-inputs" style="display: none">
 						@if(Auth::guard('customer')->check())
 							@php($logged_name= Auth::guard('customer')->user()->name)

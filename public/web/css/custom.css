@@ -215,21 +215,74 @@
 	text-align: center;
 }
 .request-container .header{
-	display: inline-flex;
 	text-align: center;
 }
 .request-container .header h4{
-	padding: 40px 10px 0 10px;
-	font-size: 22px;
-	font-weight: 600;
+	margin-top: 20px;
+	padding: 6px;
+	font-size: 23px;
+	font-weight: 500;
 	color: #706f6f;
 }	
+.request-container .booking-form {
+	text-align: left;
+	box-sizing:border-box;
+	max-width: 100%;
+	width: 440px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+}
+.request-container .booking-form label.label{
+	display: block;
+  	position: relative;
+  	margin: 2px 0;
+  	padding: 2px 0;
+}
+.request-container .booking-form label.label h4{
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+	color: #706f6f;
+	margin: 3px 0;
+  	padding: 2px 0;
+}
+.request-container .booking-form input[type=text], .request-container .booking-form input[type=email], .request-container .booking-form select, .request-container .booking-form textarea{
+	line-height: 3;
+	width: 100%;
+	border-radius: 8px;
+	border: 0;
+	color: #6e6f70;
+	font-size: 16px;
+	padding: 0 15px;
+	background-color: #e2ebef;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.request-container .booking-form input[type=text], .request-container .booking-form input[type=email], .request-container .booking-form select{
+	height: 48px !important;
+}
+.request-container .booking-form div.occasion{
+	margin-top: 10px;
+}
+.request-container .booking-form button{
+	line-height: 3;
+	width: 100%;
+	border-radius: 20px;
+	border: 0;
+	color: #ffffff;
+	font-size: 16px;
+	padding: 0 15px;
+	background-color: #e60606;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 /*book*/
 
 
 
 /*footer*/
-
 footer ul.page-link-list {
 	margin-top: 30px;
 }	
@@ -250,7 +303,6 @@ footer h4{
 	margin-bottom: 20px;
 	font-weight: 500;
 }
-
 footer form {
 	float: left;
 }
@@ -263,7 +315,6 @@ footer h6{
 	font-size: 15px;
 	font-weight: 400;
 }
-
 footer form.newsletter input{
 	line-height: 3;
 	width: 350px;
@@ -280,5 +331,4 @@ footer form.newsletter button{
 	line-height: 2;
 	height: 50px;
 }
-
 /*footer*/

@@ -1,8 +1,4 @@
-
-
-
 <footer>
-
 	<div class="container">
 		<div class="top-footer">
 				<div class="row">

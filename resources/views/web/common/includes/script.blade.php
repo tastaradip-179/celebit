@@ -7,25 +7,7 @@
 <!-- mdb -->
 <script type="text/javascript" src="{{asset('web/plugins/mdb/js/mdb.min.js')}}"></script>
 
-<script type="text/javascript">
-	$(document).ready(function () {
-	 //    $(function() {
-		//     $('input:radio[name="pronounRadios"]').change(function() {
-		//         if ($(this).val() == 'myself') {
-		//             document.getElementById("myself-inputs").style.display = "block"; 
-		//             document.getElementById("other-inputs").style.display = "none"; 
-		//             $("#pronoun-other").prop('disabled', true);
-		//             $("#pronoun-myself").prop('disabled', false); 
-		//         } else if ($(this).val() == 'other') {
-		//         	document.getElementById("myself-inputs").style.display = "none"; 
-		//             document.getElementById("other-inputs").style.display = "block";
-		//             $("#pronoun-myself").prop('disabled', true); 
-		//             $("#pronoun-other").prop('disabled', false);
-		//         }
-		//     });
-		// });
-	});
-</script>
+
 
  
 
