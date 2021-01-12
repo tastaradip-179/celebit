@@ -6,6 +6,8 @@
 <script type="text/javascript" src="{{asset('web/js/script.js')}}"></script>
 <!-- mdb -->
 <script type="text/javascript" src="{{asset('web/plugins/mdb/js/mdb.min.js')}}"></script>
+<!-- auto play on hover -->
+<script type="text/javascript" src="{{asset('web/plugins/hoverPlay/jquery.hoverplay.js')}}"></script>
 
 
 

@@ -8,45 +8,48 @@
 				<img src="{{ $file_path_view.$celebrity->profileImage() }}" alt="dp" class="img-mini" />
 				<h4>New Request for <strong>{{$celebrity->name}}</strong></h4>
 			</div>
-			<div class="booking-form">
-				<form action="" method="">	
-					<div class="radio-inputs-inline form-group">
-						<label class="label"><h4>Who is this for?</h4></label>
-						  <label class="pronounRadios" for="pronounRadiosOther">
-						    <input type="radio" class="option-input radio form-control" name="pronounRadios" value="other" checked="checked" />
-						    Someone else
-						  </label>	
-						  <label class="pronounRadios" for="pronounRadiosMy">
-						    <input type="radio" class="option-input radio form-control" name="pronounRadios" value="myself" />
-						    Myself
-						  </label>
+			<form action="" method="">	
+				<div class="row ">
+					<div class="col-md-6 booking-form">
+						<div class="radio-inputs-inline form-group">
+							<label class="label"><h4>Who is this for?</h4></label>
+							  <label class="pronounRadios" for="pronounRadiosOther">
+							    <input type="radio" class="option-input radio form-control" name="pronounRadios" value="other" checked="checked" />
+							    Someone else
+							  </label>	
+							  <label class="pronounRadios" for="pronounRadiosMy">
+							    <input type="radio" class="option-input radio form-control" name="pronounRadios" value="myself" />
+							    Myself
+							  </label>
+						</div>
+						<div class="myself-inputs pt-32" id="myself-inputs" style="display: none"> 
+							<label class="label" for="myself">To</label>
+							<input type="text" class="form-control" name="pronoun" placeholder="myself"  />
+						</div> 
+						<div class="other-inputs pt-32" id="other-inputs">
+							@if(Auth::guard('customer')->check())
+								@php($logged_name = Auth::guard('customer')->user()->fullname)
+								@php($logged_email = Auth::guard('customer')->user()->email)
+							@endif
+							<div class="form-group">
+								<label class="label" for="from">From</label>
+								<input type="text" class="form-control" name="from" value="{{$logged_name ? $logged_name:''}}" />
+							</div>
+							<div class="form-group">
+								<label class="label" for="to">To</label>
+								<input type="text" class="form-control" name="fullname" placeholder="Full Name or Group Name"  />
+							</div>
+							<div class="form-group">
+								<label class="label" for="pronoun-other">Pronoun</label>
+								<select class="pronoun-other form-control" name="pronoun" id="pronoun-other">
+									<option value="him">him</option>
+									<option value="her">her</option>
+									<option value="them">them</option>
+								</select> 
+							</div>
+						</div>
 					</div>
-					<div class="myself-inputs" id="myself-inputs" style="display: none"> 
-						<label class="label" for="myself"></label>
-						<input type="text" class="form-control" name="pronoun" placeholder="myself"  />
-					</div> 
-					<div class="other-inputs" id="other-inputs">
-						@if(Auth::guard('customer')->check())
-							@php($logged_name = Auth::guard('customer')->user()->fullname)
-							@php($logged_email = Auth::guard('customer')->user()->email)
-						@endif
-						<div class="form-group">
-							<label class="label" for="from">From</label>
-							<input type="text" class="form-control" name="from" value="{{$logged_name ? $logged_name:''}}" />
-						</div>
-						<div class="form-group">
-							<label class="label" for="to">To</label>
-							<input type="text" class="form-control" name="fullname" placeholder="Full Name or Group Name"  />
-						</div>
-						<div class="form-group">
-							<label class="label" for="pronoun-other">Pronoun</label>
-							<select class="pronoun-other form-control" name="pronoun" id="pronoun-other">
-								<option value="him">him</option>
-								<option value="her">her</option>
-								<option value="them">them</option>
-							</select> 
-						</div>
-					</div>
+					<div class="col-md-6 booking-form">	
 						<div class="form-group">
 							<label class="label"><h4>Select an occasion</h4></label>
 							<div class="radio-inputs-inline form-group occasion">
@@ -86,11 +89,16 @@
 						    Publish on Website
 						  </label>
 						</div>
-						<div>
-							<button type="submit">Submit</button>
-						</div>
-				</form>
-			</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<button class="btn btn-submit-form" type="submit">Submit</button>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</form>
 		</div>
 	</div>
 </section>

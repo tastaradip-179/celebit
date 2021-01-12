@@ -1,9 +1,43 @@
 .btn-default{
-	background-color: #33b5e5 !important;
+	color: #ffffff;
+	background-color: #272626!important;
+}
+.btn-default-block{
+	color: #ffffff;
+	background-color: #e60606!important;
+	background-image: linear-gradient(310deg, #272626 0%, #e60606 50%);
 }
 .btn-default:hover {
 	color: #ffffff;
 	font-weight: 500;
+}
+.btn-white{
+	color: #272626;
+	background-color: #ffffff;
+	outline: 0;
+	-webkit-box-shadow: 0 2px 7px 0 rgba(0,0,0,0.18),0 2px 9px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 2px 7px 0 rgba(0,0,0,0.18),0 2px 9px 0 rgba(0,0,0,0.15);
+}
+button.close {
+	font-size: 2.5rem !important;
+}
+button.close:hover, button.close:active{
+	color: #e60606 !important;
+	background-color: #ffffff !important;
+} 
+
+.black-text{
+	color: #111111;
+}
+
+.md-form input:not([type]):focus:not([readonly]),.md-form input[type="text"]:not(.browser-default):focus:not([readonly]),.md-form input[type="password"]:not(.browser-default):focus:not([readonly]),.md-form input[type="email"]:not(.browser-default):focus:not([readonly]),.md-form input[type="url"]:not(.browser-default):focus:not([readonly]),.md-form input[type="time"]:not(.browser-default):focus:not([readonly]),.md-form input[type="date"]:not(.browser-default):focus:not([readonly]),.md-form input[type="datetime"]:not(.browser-default):focus:not([readonly]),.md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),.md-form input[type="tel"]:not(.browser-default):focus:not([readonly]),.md-form input[type="number"]:not(.browser-default):focus:not([readonly]),.md-form input[type="search"]:not(.browser-default):focus:not([readonly]),.md-form input[type="phone"]:not(.browser-default):focus:not([readonly]),.md-form input[type="search-md"]:focus:not([readonly]),.md-form textarea.md-textarea:focus:not([readonly])
+{
+	border-bottom:1px solid #272626 !important;
+	-webkit-box-shadow:0 1px 0 0 #4285f4;
+	box-shadow:0 1px 0 0 #e60606;
+}
+.md-form input:not([type]):focus:not([readonly])+label,.md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="url"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="time"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="date"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="datetime"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="tel"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="search"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label,.md-form input[type="search-md"]:focus:not([readonly])+label,.md-form textarea.md-textarea:focus:not([readonly])+label{
+	color: #272626 !important;
 }
 
 .mb-20{
@@ -15,6 +49,10 @@
 .mtb-20{
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.pt-32{
+	padding-top: 32px;
 }
 
 .img-fluid{
@@ -37,19 +75,15 @@
 	}
 }
 .modal-dialog .form-elegant .btn i {
-    color: #2196f3 !important;
+    color: #e60606 !important;
     font-size: 17px;
 }
 .form-elegant .z-depth-1a {
-    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(247, 204, 204, 0.26), 0 4px 12px 0 rgba(234, 176, 176, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(247, 204, 204, 0.26), 0 4px 12px 0 rgba(234, 176, 176, 0.25);
 }
 .btn-rounded {
     border-radius: 10em;
-}
-.btn-white {
-    color: #000;
-    background-color: #fff !important;
 }
 .dark-grey-text {
     color: #4f4f4f !important;
@@ -64,21 +98,21 @@
 
 /*how it works*/
 .howitworks{
+	  margin: 30px 0;
       background-color: #ffffff;
-      min-height: 300px;
+      min-height: 320px;
       color: #111;
+      padding-top: 40px;
    }
 .howitworks .section-title-mid{
-	  margin-top: 30px;
-	  margin-bottom: 15px;
-      padding-top: 10px;
-      padding-bottom: 5px;
+	  margin: 10px 0;
+      padding: 10px 0;
       text-align: center;
 }
 .howitworks .section-title-mid h4{
       font-size: 24px;
       font-weight: 600;  
-      margin-bottom: 20px;
+      margin: 20px 0;
       color: #706f6f;
 }
 .howitworks .workbox {
@@ -89,7 +123,7 @@
 	background-color: #ffffff;
 	text-align: center;
 	padding: 30px;
-	margin: 0 0px 50px 0px;
+	margin: 5px 0;
 }
 .howitworks .workbox img{
   height: 80px;
@@ -116,7 +150,6 @@
 .celebrity-profile{
 	position: relative;
 	margin-top: 30px;
-	margin-bottom: 30px;
 	box-sizing: border-box;
 }
 .celebrity-profile-container{
@@ -151,7 +184,7 @@
 	margin-top: 10px;
 }
 .celebrity-profile-container .services{
-	margin-top: 60px;
+	margin: 50px 0;
 	position: relative;
 }
 .celebrity-profile-container .services h6{
@@ -173,7 +206,7 @@
 	background-color: #272626;
 }
 .celebrity-profile-container .services .service-btn a:hover, .celebrity-profile-container .services .service-btn a:active{
-	background-color: #a09999;
+	background-color: #757373;
 }
 .celebrity-profile-container .services .service-btn a span{
 	display: table;
@@ -193,7 +226,68 @@
 	font-size: 13px;
 	font-weight: 400;
 }
+.celebrity-profile-container .other-buttons {
+	margin: 20px 0;
+	position: relative;
+}
+.celebrity-profile-container .other-buttons .buttons{	
+	padding-right: 0;
+}
+.celebrity-profile-container .other-buttons .buttons a{	
+	width: 100%;	
+	display: block;
+	padding: 14px; 
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 500;
+}
+.celebrity-profile-container .other-buttons .buttons a:hover{	
+	font-weight: 600;
+}
 /*celebrity profile*/
+
+
+/*reviews*/
+.reviews{
+	margin: 40px 0;
+    background-color: #ffffff;
+    color: #111;
+    padding-top: 40px;
+   }
+.reviews .section-title-left{
+	margin: 5px 0;
+    padding: 3px 0;
+    text-align: left;
+}
+.reviews .section-title-left h5{
+    font-size: 20px;
+    font-weight: 500;  
+    margin: 12px 0;
+    color: #706f6f;
+}
+.reviews .section-title-right{
+	margin: 6px 0;
+    padding: 5px 0;
+    text-align: right;
+}
+.reviews .section-title-right h6{
+    font-size: 13px;
+    font-weight: 400;  
+    margin: 4px 0;
+    color: #706f6f;
+}    
+.reviews .review-box{
+	width: 100%;
+	min-height: 100px;
+	color: #111;
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+	border-radius: 4px;
+	background-color: #ffffff;
+	text-align: center;
+	padding: 30px;
+	margin: 5px 0;
+}
+/*reviews*/
 
 
 
@@ -227,12 +321,12 @@
 .request-container .booking-form {
 	text-align: left;
 	box-sizing:border-box;
-	max-width: 100%;
-	width: 440px;
+	max-width: 460px;
+	width: 100%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 20px;
+	padding: 20px 10px;
 }
 .request-container .booking-form label.label{
 	display: block;
@@ -266,19 +360,71 @@
 .request-container .booking-form div.occasion{
 	margin-top: 10px;
 }
-.request-container .booking-form button{
-	line-height: 3;
+button.btn-submit-form{
+	line-height: 2.6;
 	width: 100%;
 	border-radius: 20px;
 	border: 0;
 	color: #ffffff;
-	font-size: 16px;
-	padding: 0 15px;
+	font-size: 17px;
+	font-weight: 400;
+	padding: 0 10px;
 	background-color: #e60606;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	background-image: linear-gradient(315deg, #272626 0%, #e60606 64%);
 }
 /*book*/
+
+
+
+/*Home */
+.mg-inf{
+	position: relative;
+	border: 0;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.mg-inf:hover{
+	outline: 0;
+	-webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.mg-inf .info-short{
+	position: absolute;
+	width: 100%;
+	overflow: hidden;
+	bottom: 0;
+	text-align: left;
+	background: rgba(38, 37, 37, 0.5);
+	padding: 10px;
+}
+.mg-inf .info-short h3{
+	font-size: 22px;
+	color: #ffffff;
+	font-weight: 500;
+}
+.mg-inf .info-short h5{
+	font-size: 13px;
+	color: #ffffff;
+	font-weight: 400;
+}
+.mg-inf .info-short span{
+	color: #e60606;
+}
+.mg-inf .price{
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+.mg-inf .price span{
+	padding: 5px;
+	color: #e60606;
+	font-size: 15px;
+	font-weight: 700;
+}
+/*Home */
+
 
 
 
@@ -330,5 +476,6 @@ footer form.newsletter input{
 footer form.newsletter button{
 	line-height: 2;
 	height: 50px;
+	font-size: 24px;
 }
 /*footer*/

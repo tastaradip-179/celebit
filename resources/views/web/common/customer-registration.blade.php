@@ -82,7 +82,7 @@
 			        </div>
 			        
 			        <div class="text-center mb-3">
-			          <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign up</button>
+			          <button type="submit" class="btn btn-default-block btn-block btn-rounded z-depth-1a">Sign up</button>
 			        </div>
 			        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
 			          with:</p>
@@ -99,7 +99,7 @@
 			      <!--Footer-->
 			      <div class="modal-footer mx-5 pt-3 mb-1">
 			        <p class="font-small grey-text d-flex justify-content-end">Not a member? 
-			        	<a href="#elegantLoginModalForm" data-toggle="modal" data-target="#elegantLoginModalForm" class="blue-text ml-1" data-dismiss="modal">Sign In</a>
+			        	<a href="#elegantLoginModalForm" data-toggle="modal" data-target="#elegantLoginModalForm" class="black-text ml-1" data-dismiss="modal">Sign In</a>
 			        </p>
 			    </div>
 	  		</form>

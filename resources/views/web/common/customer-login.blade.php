@@ -23,12 +23,12 @@
 	        <div class="md-form pb-3">
 	          <input type="password" id="Form-pass1" name="password" class="form-control validate">
 	          <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
-	          <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#" class="blue-text ml-1">
+	          <p class="font-small d-flex justify-content-end black-text">Forgot <a href="#" class="black-text ml-1">
 	              Password?</a></p>
 	        </div>
 
 	        <div class="text-center mb-3">
-	          <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
+	          <button type="submit" class="btn btn-default-block btn-block btn-rounded z-depth-1a">Sign in</button>
 	        </div>
 	        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
 	          with:</p>
@@ -45,7 +45,7 @@
 	      <!--Footer-->
 	      <div class="modal-footer mx-5 pt-3 mb-1">
 	        <p class="font-small grey-text d-flex justify-content-end">Not a member? 
-	        	<a href="#elegantRegistrationModalForm" data-toggle="modal" data-target="#elegantRegistrationModalForm" class="blue-text ml-1" data-dismiss="modal">Sign Up</a>
+	        	<a href="#elegantRegistrationModalForm" data-toggle="modal" data-target="#elegantRegistrationModalForm" class="black-text ml-1" data-dismiss="modal">Sign Up</a>
 	        </p>
 	      </div>
 	  </form>

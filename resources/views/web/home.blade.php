@@ -15,10 +15,17 @@
 			<h3 class="headline">Video of the Day by <a href="{{URL::to('/profile')}}" title="">newfox media</a></h3>
 		</div>
 	</section><!--banner-section end-->
+	<div class="container">
+    <h1>jQuery hoverPlay Plugin Example</h1>
+    <video width="320" height="240" controls data-play="hover" muted="muted">
+  <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+  <source src="https://www.w3schools.com/html/movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+  </div>
 	<section class="more_items_sec">
   		<div class="container">
 	  		<div class="amz_products_content">
-
 	  			<div class="amazon">
 					<div class="brws-head">
 						<h3>All the celebrities </h3>
@@ -30,7 +37,7 @@
 					<div class="amz-img-inf">
 						<div class="row">
 							@foreach($celebrities as $celebrity)
-							<div class="col-lg-2 col-md-4 col-sm-6 col-6 full_wdth">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-6 full_wdth">
 								<div class="mg-inf">
 									<div class="img-sr">
 										@foreach($celebrity->images as $image)
@@ -39,9 +46,12 @@
                                             </a>
                                         @endforeach
 									</div>
-									<div class="info-sr">
+									<div class="info-short">
 										<h3><a href="" title="">{{$celebrity->name}}</a></h3>
-										<span>started at ৳3200</span>
+										<h5>{{$celebrity->designation}}</h5>
+									</div>
+									<div class="price">
+										<span>$400</span>
 									</div>
 								</div><!--mg-inf end-->
 							</div>

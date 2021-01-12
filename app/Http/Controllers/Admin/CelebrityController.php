@@ -89,8 +89,8 @@ class CelebrityController extends Controller
                 }
 
                 InterventionImage::cache(function($image) use ($filename, &$realPath) {
-                   // $image->make($realPath)->resize(170, 170)->save($this->file_path.'/'.$filename);
-                     $image->make($realPath)->save($this->file_path.'/'.$filename);
+                    $image->make($realPath)->resize(560, 720)->save($this->file_path.'/'.$filename);
+                    // $image->make($realPath)->save($this->file_path.'/'.$filename);
                 });
 
                 $imageUpload = new Image([
@@ -177,7 +177,7 @@ class CelebrityController extends Controller
                 }
 
                 InterventionImage::cache(function($image) use ($filename, &$realPath) {
-                   $image->make($realPath)->resize(560,820)->save($this->file_path.'/'.$filename);
+                   $image->make($realPath)->resize(560,720)->save($this->file_path.'/'.$filename);
                 });
 
                
