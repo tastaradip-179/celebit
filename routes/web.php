@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/','Web\HomeController@index')->name('web.home');
+Route::get('/test','Web\HomeController@test');
 Route::resource('celebrities', 'Web\CelebrityController')->only(['index','show']);
 Route::get('customer/signup', 'Customer\CustomerController@create')->name('customer.create');
 Route::post('customer/store', 'Auth\CustomerRegisterController@create')->name('customer.store');

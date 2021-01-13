@@ -390,11 +390,18 @@ button.btn-submit-form{
 	-webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
 	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
 }
+.mg-inf .img-sr{
+	height: 337px;
+}
+.mg-inf img, .mg-inf video{
+	height: auto;
+	width: 100%;
+}
 .mg-inf .info-short{
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
-	bottom: 0;
+	bottom: -1px;
 	text-align: left;
 	background: rgba(38, 37, 37, 0.5);
 	padding: 10px;

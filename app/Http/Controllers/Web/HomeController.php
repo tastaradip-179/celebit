@@ -13,7 +13,9 @@ class HomeController extends Controller
     	return view ('web.home', $data);
     }
 
-
+public function test (){
+    	return view ('web.test');
+    }
 
     
 
