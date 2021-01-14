@@ -204,9 +204,11 @@ button.close:hover, button.close:active{
 	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
 	border-radius: 10px;
 	background-color: #272626;
+	margin-bottom: 10px;
 }
 .celebrity-profile-container .services .service-btn a:hover, .celebrity-profile-container .services .service-btn a:active{
-	background-color: #757373;
+	background-color: #111111;
+	box-shadow: 0 8px 12px rgba(2, 2, 2, 0.5);
 }
 .celebrity-profile-container .services .service-btn a span{
 	display: table;
@@ -215,6 +217,9 @@ button.close:hover, button.close:active{
 	color: #ffffff;
 	font-size: 22px;
 	font-weight: 500;
+}
+.celebrity-profile-container .services .service-btn a:hover span.service-name, .celebrity-profile-container .services .service-btn a:active span.service-name{
+	font-weight: 600;
 }
 .celebrity-profile-container .services .service-btn a span.service-price{
 	font-size: 18px;

@@ -57,6 +57,18 @@
                     </li>
                 </ul>
             </li>
+            <li class=""> 
+                <a href="javascript:;">
+                    <i class="fa fa-envelope"></i>
+                    <span class="title">Requests</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu" >
+                    <li>
+                        <a class="" href="{{route('admin.books.index')}}" >All Requests</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
 

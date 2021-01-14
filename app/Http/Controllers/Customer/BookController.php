@@ -29,9 +29,9 @@ class BookController extends Controller
 
     public function index()
     {
-        $data['title'] = $this->title;
-        $data['route'] = $this->route;
-        return view ($this->view.'index');
+        // $data['title'] = $this->title;
+        // $data['route'] = $this->route;
+        // return view ($this->view.'index', $data);
     }
 
     /**
@@ -47,7 +47,7 @@ class BookController extends Controller
         $data['celebrity_package'] = CelebrityPackage::findOrFail($id);
         $data['celebrity'] = $data['celebrity_package']->celebrity;
 
-        return view($this->view.'index', $data);
+        return view($this->view.'create', $data);
     }
 
     /**

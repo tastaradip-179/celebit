@@ -1,7 +1,9 @@
 @extends('web.common.master')
-<style>
 
-</style>
+@section('page-css')
+<link rel="stylesheet" href="{{asset('web/plugins//videoPopup/css/jquery.popVideo.css')}}">
+@endsection
+
 @section('content')
 
 <section class="celebrity-profile">
@@ -84,39 +86,41 @@
 	</div>
 </section>
 
-		<section class="vds-main">
-			<div class="vidz-row">
-				<div class="container">
-					<div class="vidz_list m-0">
-						<div class="row">
-							<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
-								<div class="videoo">
-									<div class="vid_thumbainl">
-										<a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" title="">
-											<img src="{{asset('web/images/resources/vide1.png')}}" alt="">
-											<span class="vid-time">10:21</span>
-											<span class="watch_later">
-												<i class="icon-watch_later_fill"></i>
-											</span>
-										</a>	
-									</div><!--vid_thumbnail end-->
-									<div class="video_info">
-										<h3><a href="single_video_page.html" title="">Kingdom Come: Deliverance Funny Moments and Fails</a></h3>
-										<h4><a href="Single_Channel_Home.html" title="">newfox media</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
-										<span>686K views .<small class="posted_dt">1 week ago</small></span>
-									</div>
-								</div><!--videoo end-->
-							</div>
-						</div>
+<section class="vds-main">
+	<div class="vidz-row">
+		<div class="container">
+			<div class="vidz_list m-0">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
+						<div class="videoo">
+							<video src="{{asset('web/videos/tae.mp4')}}" webkit-playsinline playsinline data-video="{{asset('web/videos/tae.mp4')}}"
+							       loop muted id="video" class="video" style="width: 100%">
+							</video>
+
+						</div><!--videoo end-->
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 
 @endsection
 
 @section('page-js')
-<script>
+<script type="text/javascript" src="{{asset('web/plugins/videoPopup/js/jquery.popVideo.js')}}"></script>
+<script type="text/javascript">
+    $('#video').click(function () {
+        $('#video').popVideo({
+            playOnOpen: true,
+            title: "jQueryScript.net Demo Page",
+          closeOnEnd: true,
+            pauseOnClose: true,
+        }).open();
+        $('.content').show();
+    });
+</script>
+<script type="text/javascript">
 	$(document).ready(function(){
 	  // Add smooth scrolling to all links
 	  $("a.scrollable").on('click', function(event) {

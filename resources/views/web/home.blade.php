@@ -60,7 +60,9 @@
 @endsection
 
 @section('page-js')
-<script>
+<!-- auto play on hover -->
+<script type="text/javascript" src="{{asset('web/plugins/hoverPlay/jquery.hoverplay.js')}}"></script>
+<script type="text/javascript">
     $(document).ready(function () {
 	    $('.celeb-anchor')
 	        .mouseover(function () {

@@ -60,6 +60,8 @@ Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->p
 	Route::resource('packages', 'PackageController')->except(['show']);
 
 	Route::resource('tags', 'TagController');
+
+	Route::resource('books', 'BookController');
 });
 
 Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {

@@ -1038,6 +1038,11 @@ section.nobox .content-body {
     border: 0px solid transparent;
     padding: 0 0px 0px 0px;
 }
+section.nobox .content-body h4.label{
+    text-align: center;
+    margin-bottom: 22px;
+    font-size: 18px;
+}
 section.box .actions {
     margin: 0 15px;
     line-height: 50px;

@@ -39,5 +39,10 @@ class Customer extends Authenticatable
         return 'username';
     }
 
+    public function books()
+    {
+        return $this->hasMany('App\Models\Book');
+    }
+
     
 }
