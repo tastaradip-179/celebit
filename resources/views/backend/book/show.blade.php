@@ -47,21 +47,30 @@
                         </div>
                         <div class="col-md-9 col-sm-8 col-xs-12">
                             <div class="uprofile-content">
-                            	<h4 class="label">{{$title}} is for <strong>{{$book->wishto->fullname}}</strong></h4>
-                                <div class="">
-                                	<label>Occasion:</label>
-                                	<h6>{{$book->subject}}</h6>
-                                    <label>Message:</label>
-                                	<h6>{{$book->message}}</h6>
-                                	<label>Upload deadline:</label>
-                                	<h6>{{$book->upload_time}}</h6>
-                                	<label>From:</label>
-                                	<h6>{{$book->from}}</h6>
-                                    <label>Package Details:</label>
-                                	<h6>Package Name: {{$celebrity_package->packageType->name}}</h6>
-                                	<h6>Duration: {{$celebrity_package->duration}}min</h6>
-                                	<h6>total: {{$celebrity_package->total}}taka</h6>
+                                <div class="package-desc">
+                                    <h3>Package Details</h3>
+                                    <h6>Package Name: <span>{{$celebrity_package->packageType->name}}</span></h6>
+                                    <h6>Duration: <span>{{$celebrity_package->duration}}min</span></h6>
+                                    <h6>Total: <span>{{$celebrity_package->total}}taka</span></h6>
                                 </div>
+                                <hr/>
+                                <div class="request-desc">
+                                    <h3>{{$title}} Details</h3>
+                                    @if(!empty($wishto))
+                                    <h6>For: {{$book->wishto->fullname}} ({{$book->wishto->pronoun}})</h6>
+                                    <h6>From: {{$book->from}}</h6>
+                                    @else
+                                    <h6>For: {{$customer->fullname}}(ownself)</h6>
+                                    @endif
+                                    <h6>Occasion: {{$book->subject}}</h6>
+                                    <h6>Message: {{$book->message}}</h6>
+                                    <h6>Upload deadline: {{$book->upload_time}}</h6>     
+                                </div>
+                                <hr/>
+                                <div class="status">
+                                     <h3>Status</h3>
+                                </div>
+                            	
                                 <div class="clearfix"></div>
                             </div>
                         </div>

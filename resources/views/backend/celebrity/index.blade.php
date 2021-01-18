@@ -72,6 +72,10 @@
                                                         <small>Phone:</small> {{$celebrity->mobile}}<br>
                                                         <small>Email:</small> {{$celebrity->email}}</span><br>
                                                         {!! $celebrity->AllTags() !!}
+                                                        <div class="req">
+                                                            <a class="btn btn-danger" href="">New Requests</a>
+                                                            <a class="btn btn-default" href="{{route($route.'requests', [$celebrity->username])}}">All Requests</a>
+                                                        </div>  
                                                     </div>
                                                 </div>
                                             </div>

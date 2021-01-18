@@ -21,10 +21,10 @@ class RedirectIfAuthenticated
         switch ($guard) {
             case 'customer' :
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->route('customer.profile');
+                    return $next($request);
                 }
                 else {
-                    return redirect()->guest(route('customer.login'));
+                    return redirect()->route('web.home');
                 }
                 break;
             default:

@@ -52,6 +52,7 @@ Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->p
 	Route::get('/sort/data', 'DashboardController@serialize')->name('data.serialize');
 	
 	Route::resource('celebrities', 'CelebrityController');
+	Route::get('/celebrities/{celebrity}/requests', 'CelebrityController@books')->name('celebrities.requests');
 	
 	Route::resource('celebritypackages', 'CelebrityPackageController')->except(['show']);
 	
@@ -61,7 +62,7 @@ Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->p
 
 	Route::resource('tags', 'TagController');
 
-	Route::resource('books', 'BookController');
+	Route::resource('requests', 'BookController');
 });
 
 Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {

@@ -1042,6 +1042,14 @@ section.nobox .content-body h4.label{
     text-align: center;
     margin-bottom: 22px;
     font-size: 18px;
+    font-weight: 400;
+}
+section .box .content-body .package-desc, section .box .content-body .request-desc{
+    margin-bottom: 40px;
+}
+section .box .content-body .package-desc h3, section .box .content-body .request-desc h3, section .box .content-body .status h3{
+    font-size: 23px;
+    color: #252729;
 }
 section.box .actions {
     margin: 0 15px;
@@ -5899,7 +5907,7 @@ border-left: 3px solid transparent;
 }
 .notification-widget li a {
     text-decoration: none;
-    color: #717171;
+    color: #ffffff;
 }
 .notification-widget li .name, .notification-widget li .desc {
     display: block;
@@ -6822,7 +6830,8 @@ border-left: 3px solid transparent;
 }
 .uprofile-name h3 a {
     text-decoration: none;
-    color: #777777;
+    color: #353333;
+    font-weight: 500;
 }
 .uprofile-name .uprofile-title {
     color: #aaaaaa;

@@ -65,7 +65,7 @@
                 </a>
                 <ul class="sub-menu" >
                     <li>
-                        <a class="" href="{{route('admin.books.index')}}" >All Requests</a>
+                        <a class="" href="{{route('admin.requests.index')}}" >All Requests</a>
                     </li>
                 </ul>
             </li>

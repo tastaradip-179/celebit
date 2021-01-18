@@ -27,7 +27,7 @@ class CelebrityController extends Controller
         $data['file_path_view'] = $this->file_path_view;
 
         $data['celebrity'] = $celebrity;
-        $data['celebrity_packages'] = $data['celebrity']->celebritypackages;
+        $data['celebrity_packages'] = $celebrity->celebrity_packages;
         
         return view ($this->view.'index', $data);
     }

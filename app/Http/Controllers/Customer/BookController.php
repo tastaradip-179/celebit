@@ -60,10 +60,12 @@ class BookController extends Controller
     {
         //dd($request->all());
         $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
-        $input2 = $request->only(['fullname', 'pronoun']);  
-        $book = Book::create($input);   
-        $input2 = $input2 + ['book_id' => $book->id] ;
-        $wishto =  Wishto::create($input2);
+        $book = Book::create($input); 
+        if ($request->has('fullname') && $request['fullname']!=null) {  
+            $input2 = $request->only(['fullname', 'pronoun']);      
+            $input2 = $input2 + ['book_id' => $book->id] ;
+            $wishto =  Wishto::create($input2);
+        }
         return redirect()->back();
     }
 

@@ -8,7 +8,12 @@ section .content-body {
 .select2-container {
 	width: 100% !important;
 } 
-  
+
+#celebritySerial .uk-nestable-item{
+    position: relative;
+    background: transparent;
+}
+
 .team-member.col .team-member-edit {
     position: absolute;
     right: 5px;
@@ -17,8 +22,9 @@ section .content-body {
 .team-member{
 	border: 1px solid #eaeaea;
 }
-#celebritySerial .uk-nestable-item{
-	background: transparent;
+.team-member .team-info .req{
+    position: absolute;
+    bottom: 0;
 }
 
 .icon-square-o{

@@ -60,9 +60,9 @@
                                         <hr>
                                         <div class="wid-notification">
 
-                                            @if(!empty($celebrity->celebritypackages))
+                                            @if(!empty($celebrity->celebrity_packages))
                                                 <ul id="celebritySerial" class="list-unstyled notification-widget uk-nestable" data-uk-nestable="{maxDepth:1}">
-                                                    @foreach($celebrity->celebritypackages as $package)
+                                                    @foreach($celebrity->celebrity_packages as $package)
                                                     <li data-item="{{$package->id}}">
                                                         <div class="uk-nestable-item">
                                                             <div class="uk-nestable-handle"></div>

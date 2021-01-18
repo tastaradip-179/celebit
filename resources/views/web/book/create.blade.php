@@ -34,7 +34,7 @@
 						</div>
 						<div class="myself-inputs pt-32" id="myself-inputs" style="display: none"> 
 							<label class="label" for="myself">To</label>
-							<input type="text" class="form-control" name="pronoun" value="{{$logged_name ? $logged_name:''}}" />
+							<input type="text" class="form-control" name="fullname" id="for-myself" value="{{$logged_name ? $logged_name:''}}" disabled=""/>
 						</div> 
 						<div class="other-inputs pt-32" id="other-inputs">
 							<div class="form-group">
@@ -43,7 +43,7 @@
 							</div>
 							<div class="form-group">
 								<label class="label" for="to">To</label>
-								<input type="text" class="form-control" name="fullname" placeholder="Full Name or Group Name"  />
+								<input type="text" class="form-control" name="fullname" id="for-other" placeholder="Full Name or Group Name"/>
 							</div>
 							<div class="form-group">
 								<label class="label" for="pronoun-other">Pronoun</label>
@@ -59,19 +59,19 @@
 						<div class="form-group">
 							<label class="label"><h4>Select an occasion</h4></label>
 							<div class="radio-inputs-inline form-group occasion">
-								<input type="radio" name="subject" class="input-hidden form-control" id="birthday" value="birthday" />
+								<input type="radio" name="subject" class="input-hidden form-control" id="birthday" value="Birthday" />
 								<label for="birthday">
 							  		<img src="{{asset('web/images/icon/cake2.png')}}"  alt="birthday" /> <h6>Birthday</h6>
 								</label>
-								<input type="radio" name="subject" class="input-hidden form-control" id="wedding" value="wedding"/>
+								<input type="radio" name="subject" class="input-hidden form-control" id="wedding" value="Wedding"/>
 								<label for="wedding">
 							  		<img src="{{asset('web/images/icon/wedding-rings.png')}}"  alt="wedding" /> <h6>Wedding</h6>
 								</label> 
-								<input type="radio" name="subject" class="input-hidden form-control" id="anniversary" value="anniversary"/>
+								<input type="radio" name="subject" class="input-hidden form-control" id="anniversary" value="Anniversary"/>
 								<label for="anniversary">
 							  		<img src="{{asset('web/images/icon/celebration.png')}}"  alt="anniversary" /> <h6>Anniversary</h6>
 								</label>
-								<input type="radio" name="subject" class="input-hidden form-control" id="newyear" value="newyear"/>
+								<input type="radio" name="subject" class="input-hidden form-control" id="newyear" value="Newyear"/>
 								<label for="newyear">
 							  		<img src="{{asset('web/images/icon/calendar3.png')}}"  alt="newyear" /> <h6>New Year</h6>
 								</label> 
@@ -79,7 +79,7 @@
 						</div>
 						<div class="form-group">
 							<label class="label" for="message">Instructions</label>
-							<textarea rows="4" name="message" style="width: 100%" placeholder="Message"></textarea>
+							<textarea rows="7" name="message" style="width: 100%" placeholder="Message"></textarea>
 						</div>
 						<div class="form-group flatpickr">
 							<label class="label" for="upload_time">When it will be uploaded</label>
@@ -118,16 +118,22 @@
 		        if ($(this).val() == 'myself') {
 		            document.getElementById("myself-inputs").style.display = "block"; 
 		            document.getElementById("other-inputs").style.display = "none"; 
-		            // $("#pronoun-other").prop('disabled', true);
-		            // $("#pronoun-myself").prop('disabled', false); 
+		            $('#for-myself').attr('disabled',false);
+        			$("#for-myself").focus();
 		        } else if ($(this).val() == 'other') {
 		        	document.getElementById("myself-inputs").style.display = "none"; 
 		            document.getElementById("other-inputs").style.display = "block";
-		            // $("#pronoun-myself").prop('disabled', true); 
-		            // $("#pronoun-other").prop('disabled', false);
+		            $('#for-myself').attr('disabled',false);
+        			$("#for-other").focus()
 		        }
 		    });
 		});
+
+
+
+
+
+
 	});
 </script>
 @endsection

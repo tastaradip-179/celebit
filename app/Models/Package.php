@@ -20,5 +20,4 @@ class Package extends Model
     }
 
 
-
 }

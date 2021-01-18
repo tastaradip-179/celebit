@@ -12,7 +12,7 @@ class BookController extends Controller
     public function __construct () 
     {
         $this->title = 'Request';
-        $this->route = 'admin.books.';
+        $this->route = 'admin.requests.';
         $this->view  = 'backend.book.';
         $this->file_path = storage_path('app/public/celebrities');
         $this->file_path_view = \Request::root().'/storage/celebrities/';
@@ -27,14 +27,15 @@ class BookController extends Controller
     	return view ($this->view.'index',$data);
     }
 
-    public function show(Book $book){
+    public function show(Book $request){
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['file_path_view'] = $this->file_path_view;
-        $data['book'] = $book;
-        $data['celebrity'] = $book->celebrity_package->celebrity;
-        $data['customer'] = $book->customer;
-        $data['celebrity_package'] = $book->celebrity_package;
+        $data['book'] = $request;
+        $data['celebrity'] = $request->celebrity_package->celebrity;
+        $data['customer'] = $request->customer;
+        $data['celebrity_package'] = $request->celebrity_package;
+        $data['wishto'] = $request->wishto;
         return view ($this->view.'show',$data);
     }
 

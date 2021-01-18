@@ -38,7 +38,7 @@ class Celebrity extends Model implements Sortable
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
-    public function celebritypackages()
+    public function celebrity_packages()
     {
         return $this->hasMany('App\Models\CelebrityPackage')->ordered();
     }

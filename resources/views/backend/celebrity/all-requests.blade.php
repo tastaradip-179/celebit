@@ -9,7 +9,7 @@
             <div class="page-title">
 
                 <div class="float-left">
-                    <h1 class="title">{{$title}} List</h1>
+                    <h1 class="title">{{$title}}</h1>
                 </div>
                 {!! backurl() !!}
             </div>
@@ -20,7 +20,7 @@
             <div class="col-xl-10">
                 <section class="box ">
                     <header class="panel_header">
-                        <h2 class="title float-left">All the {{$title}}s </h2>
+                        <h2 class="title float-left">All the Requests</h2>
                         <div class="actions panel_actions float-right">
                             <i class="box_toggle fa fa-chevron-down"></i>
                             <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
@@ -32,7 +32,6 @@
                             <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Celebrity</th>
                                     <th>Customer</th>
                                     <th>Package</th>
                                     <th>Status</th>
@@ -40,18 +39,17 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            @foreach($books as $key=>$book)
+                           @foreach($books as $key=>$book)
                             <tbody>
                                 @if(!empty($book))
                                 <tr>
                                     <td>{{$book->id}}</td>
-                                    <td>{{$book->celebrity_package->celebrity->name}}</td>
                                     <td>{{$book->customer->fullname}}</td>
                                     <td>{{$book->celebrity_package->packageType->name}}</td>
                                     <td></td>
                                     <td>{{$book->created_at}}</td>
                                     <td>
-                                        <a href="{{route($route.('show'),[$book->id])}}" title="request details">
+                                        <a href="{{route('admin.requests.show', [$book->id])}}" title="request details">
                                             <i class="fa fa-eye icon-primary icon-square icon-square-o"></i>
                                         </a>
                                     </td>

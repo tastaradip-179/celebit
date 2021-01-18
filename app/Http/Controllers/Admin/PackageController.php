@@ -50,7 +50,7 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                'name' => 'required | string',
+                'name' => 'required | string | unique:packages,name',
             ]);
         $input = $request->only(['name']);
         $package = Package::create($input);  

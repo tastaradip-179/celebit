@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Spatie\Tags\Tag;
 use App\Models\Image;
 use App\Models\Celebrity;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -213,4 +214,18 @@ class CelebrityController extends Controller
         toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
+
+    public function books(Celebrity $celebrity)
+    {
+        $data['title'] = 'Requests to '.$celebrity->name;
+        $data['route']     = $this->route;
+        $data['celebrity'] = $celebrity;
+        $data['celebrity_packages'] = $celebrity->celebrity_packages;
+        foreach($data['celebrity_packages']  as $celebrity_package){
+            $data['books'] = $celebrity_package->books;
+        }
+        return view($this->view.'all-requests', $data);
+    }
+
+
 }
