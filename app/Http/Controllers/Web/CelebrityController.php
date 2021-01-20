@@ -12,7 +12,7 @@ class CelebrityController extends Controller
     public function __construct () 
     {
         $this->title = 'Celebrity';
-        $this->route = 'celebrities.';
+        $this->route = 'web.celebrities.';
         $this->view  = 'web.celebrity.';
         $this->file_path_view = \Request::root().'/storage/celebrities/';
     }

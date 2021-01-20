@@ -21,7 +21,7 @@ class BookController extends Controller
     public function __construct () 
     {        
         $this->title = 'Request for';
-        $this->route = 'books.';
+        $this->route = 'web.books.';
         $this->view  = 'web.book.';
         $this->file_path_view = \Request::root().'/storage/celebrities/';
     }
@@ -61,8 +61,8 @@ class BookController extends Controller
         //dd($request->all());
         $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
         $book = Book::create($input); 
-        if ($request->has('fullname') && $request['fullname']!=null) {  
-            $input2 = $request->only(['fullname', 'pronoun']);      
+        if ($request->has('name') && $request['name']!=null) {  
+            $input2 = $request->only(['name', 'pronoun']);      
             $input2 = $input2 + ['book_id' => $book->id] ;
             $wishto =  Wishto::create($input2);
         }

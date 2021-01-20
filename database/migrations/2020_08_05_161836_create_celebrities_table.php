@@ -19,8 +19,8 @@ class CreateCelebritiesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('email')->nullable();
-            $table->string('password')->default(Hash::make(Str::uuid()));
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('gender');
             $table->string('mobile')->nullable();
             $table->string('designation');

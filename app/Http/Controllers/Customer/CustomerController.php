@@ -19,9 +19,9 @@ class CustomerController extends Controller
 
     public function index()
     {
+        $data['route'] = 'backend.admin.customers.';
         $data['title'] = 'Customer';
         $data['customers'] = Customer::latest()->get();
-        $data['route'] = 'admin.customers.';
         return view ('backend.customer.index', $data);
     }
 
@@ -69,8 +69,7 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer)
     {
-        $data['customer'] = $customer;
-        return view ('web.customer.edit', $data);
+        //
     }
 
     /**
@@ -94,8 +93,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-
-        alert()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }

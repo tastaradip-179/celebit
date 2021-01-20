@@ -53,11 +53,13 @@
                                     <td>{{$customer->dob}}</td>
                                     <td>{{$customer->address}}</td>
                                     <td>
-	                                    <form id="delete-customer" action="{{ route($route.'destroy', [$customer->username]) }}" method="POST">
-	                                            {{ csrf_field() }}
-	                                            @method('DELETE')
-	                                            <button class="btn btn-danger">Delete</button>
-	                                    </form>
+                                        <a onclick="alertFunction('Delete', {{$customer->id}});" title="Delete" href="javascript:void(0)"> 
+                                            <i class="fa fa-trash icon-danger icon-square icon-square-o"></i>
+                                        </a>
+                                        <form id="Delete{{$customer->id}}" action="{{ route($route.'destroy', [$customer->username]) }}" method="POST" style="display: none;">
+                                          {{ csrf_field() }}
+                                          @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr> 
                                 @endif 

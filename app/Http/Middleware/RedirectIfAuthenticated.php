@@ -37,7 +37,7 @@ class RedirectIfAuthenticated
                 break;    
             default:
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->route('admin.backend.dashboard');
+                    return redirect()->route('backend.admin.dashboard');
                 }
                 break;
         }

@@ -14,7 +14,7 @@
                 <div class="float-left">
                     <h1 class="title">{{$title}} List</h1>
                 </div>
-                <a href="{{route('admin.celebrities.show',$celebrity->username)}}" class="btn btn-info float-right">Go to profile</a>
+                <a href="{{route('backend.admin.celebrities.show',$celebrity->username)}}" class="btn btn-info float-right">Go to profile</a>
                 {!! backurl() !!}
             </div>
             
@@ -40,7 +40,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($celebrity->celebritypackages))
+                                @if(!empty($celebrity->celebrity_packages))
                                 @foreach($celebrity->packageWithPaginate() as $package)
                                 <tr>
                                     <td>{{$package->packageType->name}}</td>
@@ -83,7 +83,7 @@
                                         <input type="hidden" name="celebrity_id" value="{{$celebrity->id}}" />
 
                                         <div class="form-group">
-                                            <label class="form-label" for="package_id">Package Type</label> <a href="{{route('admin.packages.index')}}" class="float-right">Create package </a>
+                                            <label class="form-label" for="package_id">Package Type</label> <a href="{{route('backend.admin.packages.index')}}" class="float-right">Create package </a>
                                               <div class="controls">
                                                     <select class="form-control" name="package_id">
                                                           <option value="">Select</option>

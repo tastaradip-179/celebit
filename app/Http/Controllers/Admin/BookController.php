@@ -12,7 +12,7 @@ class BookController extends Controller
     public function __construct () 
     {
         $this->title = 'Request';
-        $this->route = 'admin.requests.';
+        $this->route = 'backend.admin.requests.';
         $this->view  = 'backend.book.';
         $this->file_path = storage_path('app/public/celebrities');
         $this->file_path_view = \Request::root().'/storage/celebrities/';

@@ -17,7 +17,7 @@ class CelebrityController extends Controller
     public function __construct () 
     {
         $this->title = 'Celebrity';
-        $this->route = 'admin.celebrities.';
+        $this->route = 'backend.admin.celebrities.';
         $this->view  = 'backend.celebrity.';
         $this->file_path = storage_path('app/public/celebrities');
         $this->file_path_view = \Request::root().'/storage/celebrities/';
@@ -64,18 +64,18 @@ class CelebrityController extends Controller
         if ($request->has('create_type') && $request->create_type == 'celebrity_info') {
            $request->validate([
                 'name' => 'required | string',
-                'email' => 'nullable | email |unique:celebrities,email',
+                'email' => 'email | unique:celebrities,email',
                 'designation' => 'required | string',
                 'gender' => 'required',
-                'password' => 'nullable | confirmed',
-                'file' => 'required',
-                'tags' => 'required',
+                'password' => 'required | confirmed | min:6',
+                // 'file' => 'required',
+                // 'tags' => 'required',
             ]);
             $input = $request->only(['name','email','designation','gender','mobile','social_link','about']);
             if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }
-            // dd($input);
+            //dd($input);
 
             $celebrity = Celebrity::create($input);
             

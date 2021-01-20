@@ -45,20 +45,20 @@
 											<span>
 												<i class="icon-logout"></i>
 											</span>
-											<a href="{{route('customer.profile', $logged_customer->username)}}" title="">Profile</a>
+											<a href="{{route('web.customer.show', $logged_customer->username)}}" title="">Profile</a>
 										</li>
 										<li>
 											<span>
 												<i class="icon-logout"></i>
 											</span>
-											<a href="{{route('customer.logout')}}" title="">Sign out</a>
+											<a href="{{route('web.customer.logout')}}" title="">Sign out</a>
 										</li>
 									@else
 										<li>
 											<span>
 												<i class="icon-login"></i>
 											</span>
-											<a href="{{route('customer.login')}}" title="">Sign In</a>
+											<a href="#" data-toggle="modal" data-target="#elegantLoginModalForm" title="" onclick="openLoginModal()">Sign In</a>
 										</li>
 									@endif	
 								</ul>

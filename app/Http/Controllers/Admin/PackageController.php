@@ -18,7 +18,7 @@ class PackageController extends Controller
     public function __construct () 
     {
         $this->title = 'Package';
-        $this->route = 'admin.packages.';
+        $this->route = 'backend.admin.packages.';
         $this->view  = 'backend.package.';
     }
 

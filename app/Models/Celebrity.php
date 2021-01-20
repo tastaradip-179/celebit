@@ -14,9 +14,10 @@ class Celebrity extends Authenticatable implements Sortable
 {
     use SoftDeletes, SortableTrait;
 	use HasTags, TagTrait;
-	
+
+    protected $guard = 'celebrity';
     protected $fillable = [
-    	'name','username','email','designation','gender','mobile','social_link', 'status', 'about'
+    	'name','username','email','password','designation','gender','mobile','social_link', 'status', 'about'
     ];
 
     public static function boot()

@@ -7,12 +7,12 @@
 				<h2>We make your special day unforgettable</h2>
 				@if(Auth::guard('customer')->check())
 					@php($logged_customer = Auth::guard('customer')->user())
-					<a href="{{route('customer.profile', $logged_customer->username)}}" title="">Let's start</a>
+					<a href="{{route('web.customer.show', $logged_customer->username)}}" title="">Let's start</a>
 				@else
 					<a href="#" type="button" data-toggle="modal" data-target="#elegantLoginModalForm" title="">Let's start</a>
 				@endif
 			</div><!--banner-text end-->
-			<h3 class="headline">Video of the Day by <a href="{{URL::to('/profile')}}" title="">newfox media</a></h3>
+			<h3 class="headline">Video of the Day by <a href="#" title="">newfox media</a></h3>
 		</div>
 	</section><!--banner-section end-->
 	<section class="more_items_sec">

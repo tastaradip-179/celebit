@@ -49,7 +49,7 @@
                                     <td></td>
                                     <td>{{$book->created_at}}</td>
                                     <td>
-                                        <a href="{{route('admin.requests.show', [$book->id])}}" title="request details">
+                                        <a href="{{route('backend.admin.requests.show', [$book->id])}}" title="request details">
                                             <i class="fa fa-eye icon-primary icon-square icon-square-o"></i>
                                         </a>
                                     </td>

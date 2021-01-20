@@ -11,7 +11,7 @@ class TagController extends Controller
     public function __construct () 
     {
         $this->title = 'Tag';
-        $this->route = 'admin.tags.';
+        $this->route = 'backend.admin.tags.';
         $this->view  = 'backend.tags.';
     }
 

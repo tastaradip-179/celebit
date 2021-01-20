@@ -43,7 +43,7 @@
 							</div>
 							<div class="form-group">
 								<label class="label" for="to">To</label>
-								<input type="text" class="form-control" name="fullname" id="for-other" placeholder="Full Name or Group Name"/>
+								<input type="text" class="form-control" name="name" id="for-other" placeholder="Full Name or Group Name"/>
 							</div>
 							<div class="form-group">
 								<label class="label" for="pronoun-other">Pronoun</label>

@@ -55,7 +55,7 @@ class CustomerRegisterController extends Controller
 
         $customer = Customer::create($input);  
         $this->guard()->login($customer);
-        return redirect()->route('customer.profile', $customer) ;   
+        return redirect()->route('web.customer.show', $customer) ;   
         
         
     }

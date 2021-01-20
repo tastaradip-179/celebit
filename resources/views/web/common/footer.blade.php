@@ -65,3 +65,4 @@
 
 @include('web.common.customer-login')
 @include('web.common.customer-registration')
+

@@ -42,7 +42,7 @@
 							@if(!empty($celebrity_packages))
 							<div class="col-12 col-lg-4 col-md-6 col-sm-12 service-btn">
 								@if(Auth::guard('customer')->check())
-				                <a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}">
+				                <a href="{{route('web.books.create',['id'=>$celebrity_packages[$key]->id])}}">
 				                @else
 				                <a href="#" type="button" data-toggle="modal" data-target="#elegantLoginModalForm" title="">
 				                @endif	

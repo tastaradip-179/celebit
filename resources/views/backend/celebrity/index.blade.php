@@ -17,7 +17,7 @@
                 </div>
                 {!! backurl() !!}
             </div>
-            <a href="{{route('admin.celebrities.create')}}" class="btn btn-success"> Add Celebrity</a>
+            <a href="{{route($route.'create')}}" class="btn btn-success"> Add Celebrity</a>
             
         </div>
         <div class="clearfix"></div>
@@ -54,7 +54,7 @@
                                                     <div class="team-info col-xl-8 col-lg-8 col-md-8 col-8 ">
                                                         <h4 class="font-weight-bold"><a href="{{route($route.'show', $celebrity->username)}}">{{$celebrity->name}}</a></h4>
                                                         <span class='team-member-edit'>
-                                                            <a class="text-danger" title="pacekage" href="{{ route('admin.celebrity.package',['celebrity' => $celebrity->username]) }}">
+                                                            <a class="text-danger" title="pacekage" href="{{ route('backend.admin.celebrity.package',['celebrity' => $celebrity->username]) }}">
                                                                 <i class='fa fa-binoculars icon-xs icon-rounded icon-info'></i>
                                                             </a>
                                                             <a title="Edit" href="{{ route($route.'edit', [$celebrity->username]) }}">
@@ -104,7 +104,7 @@
         var serialized = $(this).data('nestable').serialize();
         //     str = '';
         $.ajax({
-            url: '{{route('admin.data.serialize')}}',
+            url: '{{route('backend.admin.data.serialize')}}',
             method: 'get',
             data: {data: serialized, sort: 'celebrities'},
             success:function(response){

@@ -13,21 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/* Website routes */
 Route::get('/','Web\HomeController@index')->name('web.home');
 Route::get('/test','Web\HomeController@test');
+
 Route::resource('celebrities', 'Web\CelebrityController')->only(['index','show']);
-Route::get('customer/signup', 'Customer\CustomerController@create')->name('customer.create');
-Route::post('customer/store', 'Auth\CustomerRegisterController@create')->name('customer.store');
-Route::get('customer/edit', 'Customer\CustomerController@edit')->name('customer.edit');
-Route::get('customer/signin', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
-Route::post('customer/signin/submit', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
-Route::get('customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
-Route::get('customer/{customer}','Customer\CustomerController@show')->name('customer.profile');
 
-Route::resource('books', 'Customer\BookController')->except('create');
-Route::get('/request/{id}', 'Customer\BookController@create')->name('request.create');
+Route::namespace('Auth')->name('web.customer.')->prefix('customer')->group(function () {
+	Route::post('store', 'CustomerRegisterController@create')->name('store');
+	Route::get('signin', 'CustomerLoginController@showLoginForm')->name('login');
+	Route::post('signin/submit', 'CustomerLoginController@login')->name('login.submit');
+	Route::get('signout', 'CustomerLoginController@logout')->name('logout');
+});
 
+Route::namespace('Customer')->name('web.customer.')->prefix('customer')->group(function () {
+	Route::get('edit', 'CustomerController@edit')->name('edit');
+	Route::get('{customer}','CustomerController@show')->name('show');
+});
+
+Route::namespace('Customer')->prefix('customer')->group(function () {
+	Route::resource('books', 'BookController')->except(['create']);
+	Route::get('book/{id}', 'BookController@create')->name('web.books.create');
+});
+/* Website routes */
 
 
 
@@ -35,19 +43,16 @@ Route::get('/request/{id}', 'Customer\BookController@create')->name('request.cre
 /* Backend routes 
 ===============================================
 */
-
 /*Admin Login-logout*/
-Route::group(['prefix'=>'backend', 'namespace'=>'Auth'], function(){
+Route::namespace('Auth')->name('backend.admin.')->prefix('backend/admin')->group(function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
-    Route::post('/login-check', 'LoginController@login')->name('admin.check');
-    
-    Route::post('/logout', 'LoginController@logout')->name('admin.logout');
-   
+    Route::post('/login-check', 'LoginController@login')->name('check');
+    Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
 /*Dasboard, Celebrity & Packages*/
-Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
-	Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
+Route::middleware(['auth','transaction'])->namespace('Admin')->name('backend.admin.')->prefix('backend/admin')->group(function () {
+	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 	
 	Route::get('/sort/data', 'DashboardController@serialize')->name('data.serialize');
 	
@@ -65,7 +70,7 @@ Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->p
 	Route::resource('requests', 'BookController');
 });
 
-Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {
+Route::middleware(['transaction'])->namespace('Customer')->name('backend.admin.')->prefix('backend/admin')->group(function () {
 	Route::resource('customers', 'CustomerController')->only(['index','destroy']);
 });
 
@@ -74,8 +79,8 @@ Route::middleware(['transaction'])->name('backend.')->namespace('Auth')->prefix(
 	Route::post('/login-check', 'CelebrityLoginController@login')->name('celebrity.check');
     Route::post('/logout', 'CelebrityLoginController@logout')->name('celebrity.logout');
 });
+/* Backend routes 
+===============================================
+*/
 
 
-
-//Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');

@@ -10,7 +10,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('customer.login.submit')}}" method="post">
+      <form action="{{route('web.customer.login.submit')}}" method="post">
 					{{csrf_field()}}
 	      <!--Body-->
 	      <div class="modal-body mx-4">
