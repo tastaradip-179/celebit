@@ -1,0 +1,53 @@
+.ecommerce_product img, .music_genre img {
+    width: auto;
+}
+
+section .content-body {
+	overflow: hidden;
+}
+.select2-container {
+	width: 100% !important;
+} 
+
+#celebritySerial .uk-nestable-item{
+    position: relative;
+    background: transparent;
+}
+
+.team-member.col .team-member-edit {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+.team-member{
+	border: 1px solid #eaeaea;
+}
+.team-member .team-info .req{
+    position: absolute;
+    bottom: 0;
+}
+
+.icon-square-o{
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px !important;
+	padding: 8px !important;
+	font-size: 18px !important;
+	color: #ffffff;
+}
+
+.uk-nestable-item .uk-nestable-handle {
+    background: #eeeeee;
+    position: absolute;
+    z-index: 9;
+}
+.notification-widget{
+	height: auto;
+}
+.notification-widget li .user-img img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0px 15px 0px 40px;
+    opacity: 0.8;
+}

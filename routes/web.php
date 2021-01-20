@@ -13,9 +13,63 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('web.home');
+
+Route::get('/','Web\HomeController@index')->name('web.home');
+Route::get('/test','Web\HomeController@test');
+Route::resource('celebrities', 'Web\CelebrityController')->only(['index','show']);
+Route::get('customer/signup', 'Customer\CustomerController@create')->name('customer.create');
+Route::post('customer/store', 'Auth\CustomerRegisterController@create')->name('customer.store');
+Route::get('customer/edit', 'Customer\CustomerController@edit')->name('customer.edit');
+Route::get('customer/signin', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
+Route::post('customer/signin/submit', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
+Route::get('customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
+Route::get('customer/{customer}','Customer\CustomerController@show')->name('customer.profile');
+
+Route::resource('books', 'Customer\BookController')->except('create');
+Route::get('/request/{id}', 'Customer\BookController@create')->name('request.create');
+
+
+
+
+
+/* Backend routes 
+===============================================
+*/
+
+/*Admin Login-logout*/
+Route::group(['prefix'=>'backend', 'namespace'=>'Auth'], function(){
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::post('/login-check', 'LoginController@login')->name('admin.check');
+    
+    Route::post('/logout', 'LoginController@logout')->name('admin.logout');
+   
 });
-Route::get('/profile', function () {
-    return view('web.profile');
+
+/*Dasboard, Celebrity & Packages*/
+Route::middleware(['auth','transaction'])->name('admin.')->namespace('Admin')->prefix('backend')->group(function () {
+	Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
+	
+	Route::get('/sort/data', 'DashboardController@serialize')->name('data.serialize');
+	
+	Route::resource('celebrities', 'CelebrityController');
+	Route::get('/celebrities/{celebrity}/requests', 'CelebrityController@books')->name('celebrities.requests');
+	
+	Route::resource('celebritypackages', 'CelebrityPackageController')->except(['show']);
+	
+	Route::get('celebrity-package/{celebrity}', 'CelebrityPackageController@celebrityPackage')->name('celebrity.package');
+	
+	Route::resource('packages', 'PackageController')->except(['show']);
+
+	Route::resource('tags', 'TagController');
+
+	Route::resource('requests', 'BookController');
 });
+
+Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefix('backend')->group(function () {
+	Route::resource('customers', 'CustomerController')->only(['index','destroy']);
+});
+
+
+
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
