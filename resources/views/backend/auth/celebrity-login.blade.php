@@ -11,9 +11,9 @@
 
         <div class="login-wrapper">
             <div id="login" class="login loginpage offset-xl-4 col-xl-4 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-offset-0 col-12">
-                <h1 class="admin-login"><a href="#" title="Login Page" tabindex="-1">Ultra Admin</a></h1>
+                <h1 class="celebrity-login"><a href="#" title="Login Page" >Celebrity Login</a></h1>
 
-                <form method="POST" action="{{ route('admin.check') }}" name="loginform" id="loginform">
+                <form method="POST" action="{{ route('backend.celebrity.check') }}" name="loginform" id="loginform">
                     @csrf
                     <p>
                         <label for="email">{{ __('E-Mail Address') }}<br />

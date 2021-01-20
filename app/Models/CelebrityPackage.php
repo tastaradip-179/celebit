@@ -32,5 +32,5 @@ class CelebrityPackage extends Model implements Sortable
     {
         return $this->hasMany('App\Models\Book');
     }
-    
+
 }

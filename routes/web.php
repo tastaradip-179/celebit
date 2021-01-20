@@ -69,6 +69,12 @@ Route::middleware(['transaction'])->name('admin.')->namespace('Customer')->prefi
 	Route::resource('customers', 'CustomerController')->only(['index','destroy']);
 });
 
+Route::middleware(['transaction'])->name('backend.')->namespace('Auth')->prefix('backend/celebrity')->group(function () {
+	Route::get('/login', 'CelebrityLoginController@showLoginForm')->name('celebrity.login');
+	Route::post('/login-check', 'CelebrityLoginController@login')->name('celebrity.check');
+    Route::post('/logout', 'CelebrityLoginController@logout')->name('celebrity.logout');
+});
+
 
 
 //Auth::routes();

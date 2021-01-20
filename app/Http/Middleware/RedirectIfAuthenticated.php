@@ -27,6 +27,14 @@ class RedirectIfAuthenticated
                     return redirect()->route('web.home');
                 }
                 break;
+            case 'celebrity' :
+                if (Auth::guard($guard)->check()) {
+                    return $next($request);
+                }
+                else {
+                    return redirect()->route('web.home');
+                }
+                break;    
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect()->route('admin.backend.dashboard');

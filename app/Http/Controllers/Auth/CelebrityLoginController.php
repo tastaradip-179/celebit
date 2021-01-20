@@ -9,7 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Carbon\Carbon;
 
-class CustomerLoginController extends Controller
+class CelebrityLoginController extends Controller
 {
 
     use AuthenticatesUsers;
@@ -19,7 +19,7 @@ class CustomerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/customer/signin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -29,29 +29,28 @@ class CustomerLoginController extends Controller
 
     protected function guard()
 	{
-	    return Auth::guard('customer');
+	    return Auth::guard('celebrity');
 	}
 
     public function showLoginForm()
     {
-        if(Auth::guard('customer')->check()){
-            return redirect()->route('customer.profile');
-        }
-        else{
-            return view('web.customer.login');
-        }
+        // if(Auth::guard('celebrity')->check()){
+        //     return view('backend.auth.celebrity-login');
+        // }
+        // else{
+            return view('backend.auth.celebrity-login');
+        //}
     }
 
 
     public function login(Request $request)
     {
-     	$this->validate($request, [
-		    'email'   => 'required|email',
-		    'password' => 'required|min:5'
-		   ]);
-	  	if( Auth::guard('customer')->attempt( ['email' => $request->email, 'password' => $request->password] )){
-            $customer = Auth::guard('customer')->user();
-            return redirect()->back();
+     // 	$this->validate($request, [
+		   //  'email'   => 'required|email',
+		   //  'password' => 'required'
+		   // ]);
+	  	if( Auth::guard('celebrity')->attempt( ['email' => $request->email, 'password' => $request->password] )){
+            return redirect()->route('web.home');
        		//return redirect()->intended(route('customer.profile', $customer));
         }
         return redirect()->back()->withErrors([
@@ -61,8 +60,8 @@ class CustomerLoginController extends Controller
 
 	public function logout(Request $request)
     {
-        Auth::guard('customer')->logout();
-        return redirect()->route('web.home');
+        Auth::guard('celebrity')->logout();
+        return redirect()->route('backend.celebrity.login');
     }
 
     

@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'customers',
         ],
+        'celebrity' => [
+            'driver' => 'session',
+            'provider' => 'celebrities',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,6 +81,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class,
         ],
+        'celebrities' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Celebrity::class,
+        ],
 
 
         // 'users' => [
@@ -109,6 +117,12 @@ return [
         ],
         'customers' => [
             'provider' => 'customers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'celebrities' => [
+            'provider' => 'celebrities',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

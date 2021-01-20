@@ -8,8 +8,9 @@ use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\SortableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Celebrity extends Model implements Sortable
+class Celebrity extends Authenticatable implements Sortable
 {
     use SoftDeletes, SortableTrait;
 	use HasTags, TagTrait;
@@ -62,7 +63,14 @@ class Celebrity extends Model implements Sortable
 
     public function packageWithPaginate($paginate=15)
     {
-        return $this->celebritypackages()->paginate($paginate);
+        return $this->celebrity_packages()->paginate($paginate);
+    }
+
+    public function minPackagePrice(){
+        return $this->celebrity_packages()->pluck('total')->min();
+    }
+    public function maxPackagePrice(){
+        return $this->celebrity_packages()->pluck('total')->max();
     }
 
     public function getRouteKeyName()

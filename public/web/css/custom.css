@@ -427,10 +427,11 @@ button.btn-submit-form{
 }
 .mg-inf .price{
 	position: absolute;
-	top: 2px;
-	right: 2px;
+	top: 0;
+	right: 0;
 }
 .mg-inf .price span{
+	background: rgba(38, 37, 37, 0.7);
 	padding: 5px;
 	color: #e60606;
 	font-size: 15px;

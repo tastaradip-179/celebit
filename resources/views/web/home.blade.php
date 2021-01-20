@@ -46,7 +46,7 @@
 										<h5>{{$celebrity->designation}}</h5>
 									</div>
 									<div class="price">
-										<span>$400</span>
+										<span>৳{{$celebrity->minPackagePrice()}}-৳{{$celebrity->maxPackagePrice()}}</span>
 									</div>
 								</div><!--mg-inf end-->
 							</div>
