@@ -43,6 +43,9 @@
                     <li>
                         <a class="" href="{{route('backend.admin.packages.index')}}" >Manage Packages</a>
                     </li>
+                    <li>
+                        <a class="" href="{{route('backend.admin.categories.index')}}" >Manage Categories</a>
+                    </li>
                 </ul>
             </li>
             <li class=""> 

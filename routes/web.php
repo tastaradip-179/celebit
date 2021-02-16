@@ -65,6 +65,8 @@ Route::middleware(['auth','transaction'])->namespace('Admin')->name('backend.adm
 	
 	Route::resource('packages', 'PackageController')->except(['show']);
 
+	Route::resource('categories', 'CategoryController');
+
 	Route::resource('tags', 'TagController');
 
 	Route::resource('requests', 'BookController');

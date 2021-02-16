@@ -43,7 +43,7 @@
 		return this;
 	};
 	$.hoverPlay.defaults = {
-		playDelay: 100,
+		playDelay: 20,
 		pauseDelay: 0,
 		callbacks: {
 			play: function(el,  video) {

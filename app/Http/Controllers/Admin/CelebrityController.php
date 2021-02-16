@@ -64,7 +64,7 @@ class CelebrityController extends Controller
         if ($request->has('create_type') && $request->create_type == 'celebrity_info') {
            $request->validate([
                 'name' => 'required | string',
-                'email' => 'email | unique:celebrities,email',
+                'email' => 'email | unique:celebrities,id',
                 'designation' => 'required | string',
                 'gender' => 'required',
                 'password' => 'required | confirmed | min:6',
