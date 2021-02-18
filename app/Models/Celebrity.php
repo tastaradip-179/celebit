@@ -17,7 +17,7 @@ class Celebrity extends Authenticatable implements Sortable
 
     protected $guard = 'celebrity';
     protected $fillable = [
-    	'name','username','email','password','designation','gender','mobile','social_link', 'status', 'about'
+    	'name','username','email','password','category','designation','gender','mobile','social_link', 'status', 'about'
     ];
 
     public static function boot()

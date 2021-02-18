@@ -26,7 +26,7 @@ class CategoryController extends Controller
     {
         $data['title']     = $this->title;
         $data['route']     = $this->route;
-        $data['categories']  = Category::latest()->get();
+        $data['categories']  = Category::orderBy('id','ASC')->get();
         $data['tags'] = Tag::withType('categories')->ordered()->get();
 
         return view($this->view.'index', $data);

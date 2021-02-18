@@ -115,7 +115,20 @@
                                           <textarea name="about" class="form-control" rows="4" style="margin-bottom: 30px">{{$celebrity->about ? $celebrity->about:''}}</textarea>
                                         </div>
                                     </div>
-                                    
+                                    @php
+                                      $category = $celebrity->category;
+                                    @endphp
+                                    <div class="form-group">
+                                        <label class="form-label" for="category">Select Category</label>
+                                          <div class="controls">
+                                                <select class="form-control" id="category" name="category">
+                                                      <option value=""></option>
+                                                      @foreach($categories as $cat)
+                                                        <option @if($cat->name == $category) selected="selected" @endif>{{$cat->name}}</option>
+                                                      @endforeach
+                                                </select>
+                                          </div>
+                                    </div>
                                     @php
                                       $social_links = $celebrity->social_link;
                                     @endphp
@@ -149,7 +162,7 @@
                                     <div class="form-group">
                                         <label class="form-label">Select Tags</label>
                                           <div class="controls">
-                                                <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                <select class="form-control" id="tags" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
                                                     @if( !empty($tags) ) 
                                                       @foreach($tags as $tag)
@@ -209,8 +222,12 @@
 <script type="text/javascript">
       $(document).ready(function() {
           $('.dropify').dropify();
-
-          $('.select2').select2({
+      });   
+      $(document).ready(function() {    
+          $('#category').select2() 
+      });
+      $(document).ready(function() {    
+          $('#tags').select2({
             placeholder: "Select tags or type and enter",
             tags: true,
             tokenSeparators: [',', ' ']

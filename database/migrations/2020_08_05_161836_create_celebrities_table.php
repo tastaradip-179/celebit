@@ -24,6 +24,7 @@ class CreateCelebritiesTable extends Migration
             $table->string('gender');
             $table->string('mobile')->nullable();
             $table->string('designation');
+            $table->string('category');
             $table->json('social_link')->nullable();
             $table->text('about')->nullable();
             $table->boolean('status')->default(1);

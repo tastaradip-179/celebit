@@ -33,13 +33,14 @@
                                     <span class="uprofile-status online"></span>
                                 </h3>
                                 <p class="uprofile-title">{{$celebrity->designation}}</p>
+                                <p class="uprofile-title">Category: {{$celebrity->category}}</p>
                             </div>
-                            {{-- <div class="uprofile-info">
+                            <div class="uprofile-info">
                                 <ul class="list-unstyled">
                                     <li><i class='fa fa-home'></i> New York, USA</li>
                                     <li><i class='fa fa-user'></i> 340 Contacts</li>
                                 </ul>
-                            </div> --}}
+                            </div> 
                             <div class="uprofile-buttons">
                                 <a class="btn btn-md btn-primary">Send Message</a>
                             </div>

@@ -71,15 +71,19 @@ Route::middleware(['auth','transaction'])->namespace('Admin')->name('backend.adm
 
 	Route::resource('requests', 'BookController');
 });
-
-Route::middleware(['transaction'])->namespace('Customer')->name('backend.admin.')->prefix('backend/admin')->group(function () {
+// Admin-Customer
+Route::middleware(['auth','transaction'])->namespace('Customer')->name('backend.admin.')->prefix('backend/admin')->group(function () {
 	Route::resource('customers', 'CustomerController')->only(['index','destroy']);
 });
 
-Route::middleware(['transaction'])->name('backend.')->namespace('Auth')->prefix('backend/celebrity')->group(function () {
-	Route::get('/login', 'CelebrityLoginController@showLoginForm')->name('celebrity.login');
-	Route::post('/login-check', 'CelebrityLoginController@login')->name('celebrity.check');
-    Route::post('/logout', 'CelebrityLoginController@logout')->name('celebrity.logout');
+// Celebrity-Celebrity
+Route::middleware(['transaction'])->namespace('Auth')->name('backend.celebrity.')->prefix('backend/celebrity')->group(function () {
+	Route::get('/login', 'CelebrityLoginController@showLoginForm')->name('login');
+	Route::post('/login-check', 'CelebrityLoginController@login')->name('check');
+    Route::post('/logout', 'CelebrityLoginController@logout')->name('logout');
+});
+Route::middleware(['auth', 'transaction'])->namespace('Admin')->name('backend.')->prefix('backend/celebrity')->group(function () {
+	Route::resource('celebrities', 'CelebrityController')->except(['index','destroy']);
 });
 /* Backend routes 
 ===============================================

@@ -8,6 +8,24 @@ section .content-body {
 .select2-container {
 	width: 100% !important;
 } 
+.select2-container--default .select2-selection--single {
+    border: 1px solid #e1e1e1 !important;
+    height: 38px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 35px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    margin-top: 4px;
+}
+.select2-container--default .select2-selection--multiple {
+    border: solid #e1e1e1 1px !important;
+    height: 38px;
+}
+
+a.text-white{
+    color: #ffffff !important;
+}
 
 #celebritySerial .uk-nestable-item{
     position: relative;
@@ -43,6 +61,9 @@ section .content-body {
 }
 .notification-widget{
 	height: auto;
+}
+.notification-widget li .name a{
+    color: #888 !important;
 }
 .notification-widget li .user-img img {
     width: 50px;

@@ -111,9 +111,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="form-label" for="category">Select Category</label>
+                                          <div class="controls">
+                                                <select class="form-control" name="category" id="category">
+                                                      <option value=""></option>
+                                                      @foreach($categories as $cat)
+                                                        <option>{{$cat->name}}</option>
+                                                      @endforeach
+                                                </select>
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="form-label" for="tags">Select Tags</label>
                                           <div class="controls">
-                                                <select class="form-control select2" name="tags[]" multiple="multiple">
+                                                <select class="form-control" id="tags" name="tags[]" multiple="multiple">
                                                       <option value=""></option>
                                                       @foreach($tags as $tag)
                                                         <option>{{$tag->name}}</option>
@@ -199,7 +210,12 @@
 <script type="text/javascript">
       $(document).ready(function() {
           $('.dropify').dropify();
-          $('.select2').select2({
+      });   
+      $(document).ready(function() {    
+          $('#category').select2() 
+      });
+      $(document).ready(function() {    
+          $('#tags').select2({
             placeholder: "Select tags or type and enter",
             tags: true,
             tokenSeparators: [',', ' ']

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Spatie\Tags\Tag;
 use App\Models\Image;
 use App\Models\Celebrity;
+use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,7 +49,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['tags'] = Tag::withType('celebrities')->latest()->get();
-        
+        $data['categories']  = Category::orderBy('id','ASC')->get();
         
         return view($this->view.'create', $data);
     }
@@ -71,7 +72,7 @@ class CelebrityController extends Controller
                 // 'file' => 'required',
                 // 'tags' => 'required',
             ]);
-            $input = $request->only(['name','email','designation','gender','mobile','social_link','about']);
+            $input = $request->only(['name','email','designation','gender','mobile','category','social_link','about']);
             if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }
@@ -138,7 +139,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['celebrity'] = $celebrity;
-
+        $data['categories']  = Category::orderBy('id','ASC')->get();
         $data['tags'] = Tag::withType('celebrities')->latest()->get();
 
         return view($this->view.'.edit', $data);
@@ -162,7 +163,7 @@ class CelebrityController extends Controller
             'tags' => 'required',
          ]);
 
-        $input = $request->only(['name','email','designation','gender','mobile','social_link','about', 'status']); 
+        $input = $request->only(['name','email','designation','gender','mobile','category','social_link','about', 'status']); 
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
         }

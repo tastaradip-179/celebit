@@ -45,13 +45,14 @@ class CelebrityLoginController extends Controller
 
     public function login(Request $request)
     {
-     // 	$this->validate($request, [
-		   //  'email'   => 'required|email',
-		   //  'password' => 'required'
-		   // ]);
+     	$this->validate($request, [
+		    'email'   => 'required|email',
+		    'password' => 'required'
+		   ]);
+        
 	  	if( Auth::guard('celebrity')->attempt( ['email' => $request->email, 'password' => $request->password] )){
-            return redirect()->route('web.home');
-       		//return redirect()->intended(route('customer.profile', $customer));
+            $celebrity = Auth::guard('celebrity')->user();
+       		return redirect()->intended(route('backend.celebrities.show', $celebrity));
         }
         return redirect()->back()->withErrors([
             'msg'   =>  'Please check your credentials'
