@@ -60,7 +60,7 @@
                                     <h6>For: {{$book->wishto->fullname}} ({{$book->wishto->pronoun}})</h6>
                                     <h6>From: {{$book->from}}</h6>
                                     @else
-                                    <h6>For: {{$customer->fullname}}(ownself)</h6>
+                                    <h6>For: {{$customer->fullname}} (ownself)</h6>
                                     @endif
                                     <h6>Occasion: {{$book->subject}}</h6>
                                     <h6>Message: {{$book->message}}</h6>
@@ -68,9 +68,24 @@
                                 </div>
                                 <hr/>
                                 <div class="status">
-                                     <h3>Status</h3>
+                                    <h3>Status</h3>
+                                    <ul  class="list-group list-group-horizontal">
+                                        <li class="list-group-item list-group-item-borderless">
+                                            <form id="getAccepted{{$book->id}}" action="{{route('backend.celebrities.requests.accept',[$book->id])}}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="status" value="1" />
+                                            <button type="submit" class="btn btn-info"> Accept</button>
+                                        </form>
+                                        </li>
+                                        <li class="list-group-item list-group-item-borderless">
+                                            <form id="getRejected{{$book->id}}" action="{{route('backend.celebrities.requests.reject',[$book->id])}}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="status" value="2" />
+                                            <button type="submit" class="btn btn-danger"> Reject</button>
+                                        </form>
+                                        </li>
+                                    </ul>
                                 </div>
-                            	
                                 <div class="clearfix"></div>
                             </div>
                         </div>

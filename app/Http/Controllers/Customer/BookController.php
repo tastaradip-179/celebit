@@ -59,7 +59,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time']);   
+        $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time', 'status']);   
         $book = Book::create($input); 
         if ($request->has('name') && $request['name']!=null) {  
             $input2 = $request->only(['name', 'pronoun']);      

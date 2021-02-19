@@ -37,8 +37,9 @@
                             </div>
                             <div class="uprofile-info">
                                 <ul class="list-unstyled">
-                                    <li><i class='fa fa-home'></i> New York, USA</li>
-                                    <li><i class='fa fa-user'></i> 340 Contacts</li>
+                                    <li><a href=""><i class='fa fa-plus-square-o'></i> New Requests</a></li>
+                                    <li><a href="{{route('backend.celebrities.requests', [$celebrity->username])}}"><i class='fa fa-address-book-o'></i> All Requests</a></li>
+                                    <li><a href=""><i class='fa fa-video-camera'></i> My Videos</a></li>
                                 </ul>
                             </div> 
                             <div class="uprofile-buttons">

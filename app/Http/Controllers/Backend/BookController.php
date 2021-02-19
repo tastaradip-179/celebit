@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,6 +37,32 @@ class BookController extends Controller
         $data['celebrity_package'] = $request->celebrity_package;
         $data['wishto'] = $request->wishto;
         return view ($this->view.'show',$data);
+    }
+
+    public function destroy(Book $request)
+    {
+        $request->delete();
+
+        toastr()->success('Data has been deleted successfully!');
+        return redirect()->back();
+    }
+
+    public function getAccepted($id, Request $request){
+        $book = Book::findOrFail($id);
+        $input = $request->only(['status']); 
+        $book->update($input);
+
+        toastr()->success('Data has been accepted successfully!');
+        return redirect()->back();
+    }
+
+    public function getRejected($id, Request $request){
+        $book = Book::findOrFail($id);
+        $input = $request->only(['status']); 
+        $book->update($input);
+
+        toastr()->success('Data has been rejected successfully!');
+        return redirect()->back();
     }
 
 

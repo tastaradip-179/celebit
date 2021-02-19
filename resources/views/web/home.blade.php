@@ -42,7 +42,7 @@
                                         @endforeach
 									</div>
 									<div class="info-short">
-										<h3><a href="" title="">{{$celebrity->name}}</a></h3>
+										<h3><a href="{{route('celebrities.show',[$celebrity->username])}}" title="">{{$celebrity->name}}</a></h3>
 										<h5>{{$celebrity->designation}}</h5>
 									</div>
 									<div class="price">

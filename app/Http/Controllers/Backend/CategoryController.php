@@ -1,32 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Package;
+use App\Models\Category;
 use Spatie\Tags\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class PackageController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct () 
     {
-        $this->title = 'Package';
-        $this->route = 'backend.admin.packages.';
-        $this->view  = 'backend.package.';
+        $this->title = 'Categories';
+        $this->route = 'backend.admin.categories.';
+        $this->view  = 'backend.category.';
     }
 
     public function index()
     {
         $data['title']     = $this->title;
         $data['route']     = $this->route;
-        $data['packages']  = Package::latest()->get();
+        $data['categories']  = Category::orderBy('id','ASC')->get();
+        $data['tags'] = Tag::withType('categories')->ordered()->get();
 
         return view($this->view.'index', $data);
     }
@@ -50,22 +51,23 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                'name' => 'required | string | unique:packages,id',
+                'name' => 'required | string | unique:categories,id',
             ]);
         $input = $request->only(['name']);
-        $package = Package::create($input);  
+        $category = Category::create($input);  
+        $category->attachTag(Str::slug($request->name), 'categories');
 
         toastr()->success('Data has been saved successfully!');
-        return redirect()->back();    
+        return redirect()->back();  
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function show(Category $category)
     {
         //
     }
@@ -73,10 +75,10 @@ class PackageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Package $package)
+    public function edit(Category $category)
     {
         //
     }
@@ -85,16 +87,17 @@ class PackageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Package  $package
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
                 'name' => 'required | string',
             ]);
-        $input = $request->only(['name','status']); 
-        $package->update($input);
+        $input = $request->only(['name']); 
+        $category->update($input);
+        $category->syncTagsWithType($request->tags, 'categories');
 
         toastr()->success('Data has been updated successfully!');
         return redirect()->back();
@@ -103,14 +106,14 @@ class PackageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function destroy(Category $category)
     {
-        // $package->delete();
+        $category->delete();
 
-        toastr()->warning('You can not delete it!');
+        toastr()->success('Data has been deleted successfully!');
         return redirect()->back();
     }
 }

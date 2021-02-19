@@ -17,7 +17,7 @@
         <div class="clearfix"></div>
 
         <div class="row margin-0">
-            <div class="col-xl-10">
+            <div class="col-xl-12">
                 <section class="box ">
                     <header class="panel_header">
                         <h2 class="title float-left">All the {{$title}}s </h2>

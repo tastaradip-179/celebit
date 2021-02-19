@@ -20,6 +20,7 @@
 							@endphp
 						@endif
 						<input type="hidden" name="customer_id" value="{{$logged_id}}" />
+						<input type="hidden" name="status" value="0" />
 						<input type="hidden" name="celebrity_package_id" value="{{$celebrity_package->id}}" />
 						<div class="radio-inputs-inline form-group">
 							<label class="label"><h4>Who is this for?</h4></label>
