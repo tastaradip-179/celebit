@@ -57,9 +57,9 @@
                                     <td>{{$book->created_at}}</td>
                                     <td>
                                         @if($book->status=='1')
-                                        <a href="" title="Video"><i class="fa fa-video-camera icon-primary icon-square icon-square-o"></i></a>
+                                        <a href="{{route('backend.celebrities.videos.index', [$book->id])}}" title="Video"><i class="fa fa-video-camera icon-primary icon-square icon-square-o"></i></a>
                                         @endif
-                                        <a href="{{route('backend.admin.requests.show', [$book->id])}}" title="Request details">
+                                        <a href="{{route('backend.celebrities.requests.show', [$book->id])}}" title="Request details">
                                             <i class="fa fa-eye icon-info icon-square icon-square-o"></i>
                                         </a>
                                         <a onclick="alertFunction('Delete', {{$book->id}});" title="Delete" href="javascript:void(0)"> 

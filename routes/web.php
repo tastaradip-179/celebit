@@ -60,7 +60,6 @@ Route::middleware(['auth','transaction'])->namespace('Backend')->name('backend.a
 	Route::get('/celebrities/{celebrity}/requests', 'CelebrityController@books')->name('celebrities.requests');
 	
 	Route::resource('celebritypackages', 'CelebrityPackageController')->except(['show']);
-	
 	Route::get('celebrity-package/{celebrity}', 'CelebrityPackageController@celebrityPackage')->name('celebrity.package');
 	
 	Route::resource('packages', 'PackageController')->except(['show']);
@@ -83,12 +82,17 @@ Route::namespace('Auth')->name('backend.celebrity.')->prefix('backend/celebrity'
 	Route::post('/login-check', 'CelebrityLoginController@login')->name('check');
     Route::post('/logout', 'CelebrityLoginController@logout')->name('logout');
 });
-Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.')->prefix('backend/celebrities')->group(function () {
-	Route::resource('/', 'CelebrityController')->except(['index','destroy']);
-	Route::get('/{celebrity}/requests', 'CelebrityController@books')->name('celebrities.requests');
-	Route::post('/requests/{request}', 'BookController@destroy')->name('celebrities.requests.delete');
-	Route::post('/requests/{request}/getAccepted', 'BookController@getAccepted')->name('celebrities.requests.accept');
-	Route::post('/requests/{request}/getRejected', 'BookController@getRejected')->name('celebrities.requests.reject');
+Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.')->prefix('backend')->group(function () {
+	Route::resource('/celebrities', 'CelebrityController')->except(['index','destroy']);
+});	
+Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.celebrities.')->prefix('backend/celebrities')->group(function () {
+	Route::get('/{celebrity}/requests', 'CelebrityController@books')->name('requests');
+	Route::post('/requests/{request}', 'BookController@destroy')->name('requests.delete');
+	Route::post('/requests/{request}/getAccepted', 'BookController@getAccepted')->name('requests.accept');
+	Route::post('/requests/{request}/getRejected', 'BookController@getRejected')->name('requests.reject');
+	Route::get('/videos/index/{id}', 'VideoController@index')->name('videos.index');
+	Route::post('/videos/store', 'VideoController@store')->name('videos.store');
+	Route::resource('requests', 'BookController');
 });
 /* Backend routes 
 ===============================================
