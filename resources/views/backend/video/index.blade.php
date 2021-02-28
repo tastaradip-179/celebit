@@ -110,10 +110,11 @@
                         </header>
                         <form action="{{route($route.'store')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
+                            <input type="hidden" name="req_id" value="{{$book->id}}" />
                             <div class="content-body">
                                 <div class="form-group">
-                                    <label class="form-label" for="file">Avatar *</label>
-                                    <input type="file" class="" name="file" />
+                                    <label class="form-label" for="file">Select</label>
+                                    <input type="file" class="form-control" name="file"/>
                                 </div>
                             </div>
                             <button class="btn btn-success" type="submit">Submit</button>
@@ -168,7 +169,7 @@
 @endsection
 
 @section('page-js')
-        <script>
+             <script>
             (function() {
                 var params = {},
                     r = /([^&=]+)=?([^&]*)/g;
@@ -361,61 +362,6 @@
                     button.mediaCapturedCallback = function() {
 
                         if(DetectRTC.browser.name !== 'Firefox') { // opera or chrome etc.
-                            button.recordRTC = [];
-
-                            if(!params.bufferSize) {
-                                // it fixes audio issues whilst recording 720p
-                                params.bufferSize = 16384;
-                            }
-
-                            var audioRecorder = RecordRTC(button.stream, {
-                                type: 'audio',
-                                bufferSize: typeof params.bufferSize == 'undefined' ? 0 : parseInt(params.bufferSize),
-                                sampleRate: typeof params.sampleRate == 'undefined' ? 44100 : parseInt(params.sampleRate),
-                                leftChannel: params.leftChannel || false,
-                                disableLogs: params.disableLogs || false,
-                                recorderType: DetectRTC.browser.name === 'Edge' ? StereoAudioRecorder : null
-                            });
-
-                            var videoRecorder = RecordRTC(button.stream, {
-                                type: 'video',
-                                disableLogs: params.disableLogs || false,
-                                canvas: {
-                                    width: params.canvas_width || 320,
-                                    height: params.canvas_height || 240
-                                },
-                                frameInterval: typeof params.frameInterval !== 'undefined' ? parseInt(params.frameInterval) : 20 // minimum time between pushing frames to Whammy (in milliseconds)
-                            });
-
-                            // to sync audio/video playbacks in browser!
-                            videoRecorder.initRecorder(function() {
-                                audioRecorder.initRecorder(function() {
-                                    audioRecorder.startRecording();
-                                    videoRecorder.startRecording();
-                                });
-                            });
-
-                            button.recordRTC.push(audioRecorder, videoRecorder);
-
-                            button.recordingEndedCallback = function() {
-                                var audio = new Audio();
-                                audio.src = audioRecorder.toURL();
-                                audio.controls = true;
-                                audio.autoplay = true;
-
-                                audio.onloadedmetadata = function() {
-                                    recordingPlayer.src = videoRecorder.toURL();
-                                };
-
-                                recordingPlayer.parentNode.appendChild(document.createElement('hr'));
-                                recordingPlayer.parentNode.appendChild(audio);
-
-                                if(audio.paused) audio.play();
-                            };
-                            return;
-                        }
-
-                        if(DetectRTC.browser.name !== 'Chrome') { // opera or chrome etc.
                             button.recordRTC = [];
 
                             if(!params.bufferSize) {
@@ -719,11 +665,10 @@
             // disabling this option because currently this demo
             // doesn't supports publishing two blobs.
             // todo: add support of uploading both WAV/WebM to server.
-            if(DetectRTC.browser.name === 'Chrome') {
+            if(false && DetectRTC.browser.name === 'Chrome') {
                 recordingMedia.innerHTML = '<option value="record-audio-plus-video">Audio+Video</option>'
-                                            + '<option value="record-audio-plus-screen">Audio+Screen</option>'
                                             + recordingMedia.innerHTML;
-                // console.info('This RecordRTC demo merely tries to playback recorded audio/video sync inside the browser. It still generates two separate files (WAV/WebM).');
+                console.info('This RecordRTC demo merely tries to playback recorded audio/video sync inside the browser. It still generates two separate files (WAV/WebM).');
             }
 
             var MY_DOMAIN = 'webrtc-experiment.com';
@@ -800,11 +745,11 @@
                 callback('Uploading ' + fileType + ' recording to server.');
 
                 // var upload_url = 'https://your-domain.com/files-uploader/';
-                var upload_url = 'save.php';
+                var upload_url = '{{route('backend.celebrities.videos.store')}}';
 
                 // var upload_directory = upload_url;
-                var upload_directory = 'uploads/';
-
+                var upload_directory = '/public/videos/';
+                console.log(filename);
                 makeXMLHttpRequest(upload_url, formData, function(progress) {
                     if (progress !== 'upload-ended') {
                         callback(progress);
@@ -817,6 +762,7 @@
                     listOfFilesUploaded.push(upload_directory + fileName);
                 });
             }
+
 
             function makeXMLHttpRequest(url, data, callback) {
                 var request = new XMLHttpRequest();

@@ -40,6 +40,11 @@ class Celebrity extends Authenticatable implements Sortable
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
+    public function videos()
+    {
+        return $this->morphMany('App\Models\Video', 'videoable');
+    }
+
     public function categories()
     {
         return $this->hasMany('App\Models\Category');
