@@ -13,8 +13,11 @@ class HomeController extends Controller
     	return view ('web.home', $data);
     }
 
-public function test (){
+	public function test (){
     	return view ('web.test');
+    }
+    public function bkash (){
+    	return view ('web.bkash');
     }
 
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Video;
 use App\Models\Book;
+use App\Models\Celebrity;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,13 +22,24 @@ class VideoController extends Controller
         $this->file_path_view = \Request::root().'/storage/videos/';
     }
 
-    public function index($id){
+
+    public function index(){
+        $data['title'] = 'My Videos';
+        $data['route'] = $this->route;
+        $data['file_path_view'] = $this->file_path_view;
+        if(Auth::check()){
+            $data['celebrity'] = Auth::guard('celebrity')->user();
+        }
+        return view($this->view.'index', $data);
+    }
+
+    public function create($id){
         $data['title'] = 'Make A Video';
         $data['route'] = $this->route;
 
         $data['book'] = Book::findOrFail($id);
         $data['wishto'] = $data['book']->wishto;  	
-    	return view($this->view.'index', $data);
+    	return view($this->view.'create', $data);
     }
 
     public function store(Request $request){
@@ -62,6 +74,13 @@ class VideoController extends Controller
         }
 
         abort(404);
+    }
+
+    public function destroy($id){
+        Video::find($id)->delete();
+
+        toastr()->success('Data has been deleted successfully!');
+        return redirect()->back();
     }
 
 }

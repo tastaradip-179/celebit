@@ -39,7 +39,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href=""><i class='fa fa-plus-square-o'></i> New Requests</a></li>
                                     <li><a href="{{route('backend.celebrities.requests', [$celebrity->username])}}"><i class='fa fa-address-book-o'></i> All Requests</a></li>
-                                    <li><a href=""><i class='fa fa-video-camera'></i> My Videos</a></li>
+                                    <li><a href="{{route('backend.celebrities.videos.index')}}"><i class='fa fa-video-camera'></i> My Videos</a></li>
                                 </ul>
                             </div> 
                             <div class="uprofile-buttons">

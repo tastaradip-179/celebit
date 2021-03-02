@@ -70,13 +70,16 @@
                                 <div class="status">
                                     <h3>Status</h3>
                                     <ul  class="list-group list-group-horizontal">
+                                        @if($book->status=='2' || empty($book->status))
                                         <li class="list-group-item list-group-item-borderless">
                                             <form id="getAccepted{{$book->id}}" action="{{route('backend.celebrities.requests.accept',[$book->id])}}" method="POST">
-                                                {{ csrf_field() }}
+                                            {{ csrf_field() }}
                                                 <input type="hidden" name="status" value="1" />
-                                            <button type="submit" class="btn btn-info"> Accept</button>
-                                        </form>
+                                                <button type="submit" class="btn btn-info">Accept</button> 
+                                            </form>
                                         </li>
+                                        @endif
+                                        @if($book->status=='1' || empty($book->status))
                                         <li class="list-group-item list-group-item-borderless">
                                             <form id="getRejected{{$book->id}}" action="{{route('backend.celebrities.requests.reject',[$book->id])}}" method="POST">
                                                 {{ csrf_field() }}
@@ -84,6 +87,7 @@
                                             <button type="submit" class="btn btn-danger"> Reject</button>
                                         </form>
                                         </li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>
@@ -98,3 +102,4 @@
 </section>
 
 @endsection
+

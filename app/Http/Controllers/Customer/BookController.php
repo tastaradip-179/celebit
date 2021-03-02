@@ -58,15 +58,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time', 'status']);   
+        dd($request->all());
+        $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time', 'status', 'publish']);   
         $book = Book::create($input); 
         if ($request->has('name') && $request['name']!=null) {  
             $input2 = $request->only(['name', 'pronoun']);      
             $input2 = $input2 + ['book_id' => $book->id] ;
             $wishto =  Wishto::create($input2);
         }
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Your request has been sent successfully.')
+        ->with('message-type', 'success');;
     }
 
     /**

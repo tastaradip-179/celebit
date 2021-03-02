@@ -10,6 +10,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
 
 class CelebrityController extends Controller
@@ -20,6 +21,7 @@ class CelebrityController extends Controller
         $this->title = 'Celebrity';
         $this->route = 'backend.admin.celebrities.';
         $this->view  = 'backend.celebrity.';
+        $this->file_stored = '/public/celebrities/';
         $this->file_path = storage_path('app/public/celebrities');
         $this->file_path_view = \Request::root().'/storage/celebrities/';
     }
@@ -160,7 +162,7 @@ class CelebrityController extends Controller
             'designation' => 'required | string',
             'gender' => 'required',
             'password' => 'nullable | confirmed',
-            'tags' => 'required',
+            //'tags' => 'required',
          ]);
 
         $input = $request->only(['name','email','designation','gender','mobile','category','social_link','about', 'status']); 
@@ -185,8 +187,15 @@ class CelebrityController extends Controller
                
                 $celebrity_image = $celebrity->images[0] ;
                 $old_image = $celebrity->images[0]->url;
-                 
-                unlink($this->file_path.'/'.$old_image);
+                
+                if(!empty($old_image) && file_exists($old_image)) {
+                    unlink($this->file_path.'/'.$old_image);
+                }
+
+                if(Storage::exists($this->file_stored.$old_image)){
+                    Storage::delete($this->file_stored.$old_image) ;
+                }
+                
                 
                 $celebrity_image->update([
                     'url' => $filename,
@@ -210,6 +219,11 @@ class CelebrityController extends Controller
      */
     public function destroy(Celebrity $celebrity)
     {
+        $celebrity_image = $celebrity->images[0]->url ;
+
+        if(Storage::exists($this->file_stored.$celebrity_image)){
+            Storage::delete($this->file_stored.$celebrity_image) ;
+        }
         $celebrity->delete();
 
         toastr()->success('Data has been deleted successfully!');
