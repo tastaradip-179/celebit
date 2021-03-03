@@ -110,7 +110,7 @@
                         </header>
                         <form action="{{route($route.'store')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
-                            <input type="hidden" name="req_id" value="{{$book->id}}" />
+                            <input type="hidden" name="book_id" value="{{$book->id}}" />
                             <div class="content-body">
                                 <div class="form-group">
                                     <label class="form-label" for="file">Select</label>
@@ -163,6 +163,28 @@
                     </section>
                 </div>
             </div>
+
+            <hr/>
+
+            <div class="row margin-0">
+                @if(Auth::guard('celebrity')->check())
+                @php($video = $book->video)
+                    @if(!empty($video))
+                    <div class="col-xl-12">
+                        <div class="page-title">
+                             <div class="float-left">
+                                 <h1 class="title">Uploaded Video</h2>
+                             </div>
+                        </div> 
+                    </div>      
+                    <div class="col-xl-3" style="margin-top: 30px;">
+                        <video width="100%" height="290" controls>
+                            <source src="{{$file_path_view.$video->video_url}}" type="video/mp4">
+                        </video>
+                    </div>
+                    @endif
+                @endif
+            </div>    
 
     </section>
 </section>

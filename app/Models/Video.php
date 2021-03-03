@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     protected $fillable = [
-    	'description','video_url','status','videoable_id','videoable_type'
+    	'book_id','description','video_url','status','videoable_id','videoable_type'
     ];
 
-    public function imageable()
+    public function videoable()
     {
        return $this->morphTo();
+    }
+
+    public function book()
+    {
+        return $this->belongsTo('App\Models\Book');
     }
 
 }

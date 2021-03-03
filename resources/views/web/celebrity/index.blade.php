@@ -1,7 +1,8 @@
 @extends('web.common.master')
 
 @section('page-css')
-<link rel="stylesheet" href="{{asset('web/plugins//videoPopup/css/jquery.popVideo.css')}}">
+<link rel="stylesheet" href="{{asset('web/plugins/videoPopup/css/jquery.popVideo.css')}}">
+
 @endsection
 
 @section('content')
@@ -91,34 +92,63 @@
 		<div class="container">
 			<div class="vidz_list m-0">
 				<div class="row">
+					@if(!empty($celebrity->videos))
+					@foreach($celebrity->videos as $key=>$video)
 					<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
-						<div class="videoo">
-							<video src="{{asset('web/videos/tae.mp4')}}" webkit-playsinline playsinline data-video="{{asset('web/videos/tae.mp4')}}"
-							       loop muted id="video" class="video" style="width: 100%">
-							</video>
-
-						</div><!--videoo end-->
+						<a href="javascript:void(0)">
+							<div class="video">
+								<video src="{{$video_path_view.$video->video_url}}" webkit-playsinline playsinline data-video="{{$video_path_view.$video->video_url}}"
+								       loop muted id="video">    
+								</video>
+								<div class="play"></div>
+								<div class="pause" style="display:none"></div>
+							</div><!--videoo end-->
+						</a>
 					</div>
+					@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
+
 @endsection
 
 @section('page-js')
 <script type="text/javascript" src="{{asset('web/plugins/videoPopup/js/jquery.popVideo.js')}}"></script>
 <script type="text/javascript">
-    $('#video').click(function () {
-        $('#video').popVideo({
-            playOnOpen: true,
-            title: "jQueryScript.net Demo Page",
-          closeOnEnd: true,
-            pauseOnClose: true,
-        }).open();
-        $('.content').show();
-    });
+	$(document).ready(function(){
+		$( "#video" ).each(function(index) {
+		    $(this).click(function () {
+		    	console.log('fff');
+		        $(this).popVideo({
+		            playOnOpen: true,
+		            title: "jQueryScript.net Demo Page",
+		          	closeOnEnd: true,
+		            pauseOnClose: true,
+		        }).open();
+		        $('.content').show();
+		    });
+
+	    $(this).parent().click(function () {
+			  if($(this).children("#video").get(0).paused)
+			  	{        
+			  		$(this).children("#video").get(0).play();   
+			  		$(this).children(".play").fadeOut();
+			  		$(this).children(".pause").fadeIn();
+			    }
+			    else
+			    {       
+			    	$(this).children("#video").get(0).pause();
+			  		$(this).children(".play").fadeIn();
+			  		$(this).children(".pause").fadeOut();
+			    }
+			});
+	   });
+	});
+    
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -146,4 +176,5 @@
 	  });
 	});
 </script>
+
 @endsection

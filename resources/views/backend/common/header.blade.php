@@ -132,26 +132,44 @@
                         </li>
                     </ul>
                 </li>
+                @if(Auth::check())
+                    @if(Auth::user()->name=='Admin')
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.admin.celebrities.create')}}" class="btn btn-primary"> Add Celebrity</a>
+                    </li>
 
-                <li class="list-inline-item">
-                    <a href="{{route('backend.admin.celebrities.create')}}" class="btn btn-primary"> Add Celebrity</a>
-                </li>
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.admin.celebrities.index')}}" class="btn btn-warning"> Manage celebrities</a>
+                    </li>
 
-                <li class="list-inline-item">
-                    <a href="{{route('backend.admin.celebrities.index')}}" class="btn btn-warning"> Manage celebrities</a>
-                </li>
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.admin.celebritypackages.create')}}" class="btn btn-info"> Create celebrity package</a>
+                    </li>
 
-                <li class="list-inline-item">
-                    <a href="{{route('backend.admin.celebritypackages.create')}}" class="btn btn-info"> Create celebrity package</a>
-                </li>
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.admin.packages.index')}}" class="btn btn-orange"> Manage package type</a>
+                    </li>
 
-                <li class="list-inline-item">
-                    <a href="{{route('backend.admin.packages.index')}}" class="btn btn-orange"> Manage package type</a>
-                </li>
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.admin.tags.index')}}" class="btn btn-purple"> Manage tags</a>
+                    </li>
 
-                <li class="list-inline-item">
-                    <a href="{{route('backend.admin.tags.index')}}" class="btn btn-purple"> Manage tags</a>
-                </li>
+                    @else
+                    @php($celebrity = Auth::guard('celebrity')->user())
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.celebrities.show', [$celebrity])}}" class="btn btn-primary"> My Profile</a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.celebrities.requests', [$celebrity])}}" class="btn btn-info"> My Requests</a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="{{route('backend.celebrities.videos.index', [$celebrity])}}" class="btn btn-purple"> My Videos</a>
+                    </li>
+
+                    @endif
+                @endif
             </ul>
         </div>		
         <div class='float-right'>

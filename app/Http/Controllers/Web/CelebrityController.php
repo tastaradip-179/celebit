@@ -15,6 +15,7 @@ class CelebrityController extends Controller
         $this->route = 'web.celebrities.';
         $this->view  = 'web.celebrity.';
         $this->file_path_view = \Request::root().'/storage/celebrities/';
+        $this->video_path_view = \Request::root().'/storage/videos/';
     }
 
 	public function index(){
@@ -25,6 +26,7 @@ class CelebrityController extends Controller
         $data['title']     = $this->title;
         $data['route']     = $this->route;
         $data['file_path_view'] = $this->file_path_view;
+        $data['video_path_view'] = $this->video_path_view;
 
         $data['celebrity'] = $celebrity;
         $data['celebrity_packages'] = $celebrity->celebrity_packages;

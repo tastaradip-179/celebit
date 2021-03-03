@@ -93,10 +93,11 @@ Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name
 	Route::post('/requests/{request}', 'BookController@destroy')->name('requests.delete');
 	Route::post('/requests/{request}/getAccepted', 'BookController@getAccepted')->name('requests.accept');
 	Route::post('/requests/{request}/getRejected', 'BookController@getRejected')->name('requests.reject');
-	Route::get('/videos/index', 'VideoController@index')->name('videos.index');
+	Route::get('/videos/index/{celebrity}', 'VideoController@index')->name('videos.index');
 	Route::get('/videos/create/{id}', 'VideoController@create')->name('videos.create');
 	Route::post('/videos/store', 'VideoController@store')->name('videos.store');
 	Route::delete('/videos/delete/{id}', 'VideoController@destroy')->name('videos.destroy');
+	Route::get('/videos/{id}/make-featured', 'VideoController@featured')->name('videos.make.featured');
 	Route::resource('requests', 'BookController');
 });
 /* Backend routes 

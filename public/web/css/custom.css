@@ -30,6 +30,7 @@ button.close:hover, button.close:active{
 	color: #111111;
 }
 
+
 .md-form input:not([type]):focus:not([readonly]),.md-form input[type="text"]:not(.browser-default):focus:not([readonly]),.md-form input[type="password"]:not(.browser-default):focus:not([readonly]),.md-form input[type="email"]:not(.browser-default):focus:not([readonly]),.md-form input[type="url"]:not(.browser-default):focus:not([readonly]),.md-form input[type="time"]:not(.browser-default):focus:not([readonly]),.md-form input[type="date"]:not(.browser-default):focus:not([readonly]),.md-form input[type="datetime"]:not(.browser-default):focus:not([readonly]),.md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),.md-form input[type="tel"]:not(.browser-default):focus:not([readonly]),.md-form input[type="number"]:not(.browser-default):focus:not([readonly]),.md-form input[type="search"]:not(.browser-default):focus:not([readonly]),.md-form input[type="phone"]:not(.browser-default):focus:not([readonly]),.md-form input[type="search-md"]:focus:not([readonly]),.md-form textarea.md-textarea:focus:not([readonly])
 {
 	border-bottom:1px solid #272626 !important;
@@ -248,6 +249,38 @@ button.close:hover, button.close:active{
 }
 .celebrity-profile-container .other-buttons .buttons a:hover{	
 	font-weight: 600;
+}
+.vds-main .video video{
+	height: 400px;
+	width: 100%;
+}
+.vds-main .play {
+    background-image:url('../images/icon/play-button.png');
+    background-repeat:no-repeat;
+    width:10%;
+    height:10%;
+    position:absolute;
+    left:70%;
+    right:0%;
+    top:80%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+}
+.vds-main .pause {
+    background-image:url('../images/icon/video-pause-button.png');
+    background-repeat:no-repeat;
+    width:10%;
+    height:10%;
+    position:absolute;
+    left:70%;
+    right:0%;
+    top:80%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
 }
 /*celebrity profile*/
 

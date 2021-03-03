@@ -8,9 +8,21 @@ use App\Models\Celebrity;
 
 class HomeController extends Controller
 {
+
+    public function __construct () 
+    {
+        $this->route = 'web..';
+        $this->view  = 'web.';
+        $this->image_path_view = \Request::root().'/storage/celebrities/';
+        $this->video_path_view = \Request::root().'/storage/videos/';
+    }
+
     public function index (){
+        $data['image_path_view'] = $this->image_path_view;
+        $data['video_path_view'] = $this->video_path_view;
+
     	$data['celebrities'] = Celebrity::latest()->get();
-    	return view ('web.home', $data);
+    	return view ($this->view.'home', $data);
     }
 
 	public function test (){

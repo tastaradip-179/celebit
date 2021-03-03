@@ -32,14 +32,14 @@
 							<div class="col-lg-3 col-md-4 col-sm-6 col-6 full_wdth">
 								<div class="mg-inf">
 									<div class="img-sr">
-										@foreach($celebrity->images as $image)
-                                            <a href="{{route('celebrities.show',[$celebrity->username])}}" title="" class="celeb-anchor">
-                                            	<img class="celeb-img" id="celeb-img" src="{{ asset( '/storage/celebrities/'.$image->url ) }}" alt="Thumbnail">
-                                            	<video controls data-play="hover" muted="muted" class="celeb-video" id="celeb-video" style="display: none;">
-		 										 <source src="{{asset('web/videos/tae.mp4')}}" type="video/mp4">
-                                                </video>
-                                            </a>
-                                        @endforeach
+                                        <a href="{{route('celebrities.show',[$celebrity->username])}}" title="" class="celeb-anchor">
+                                        	<img class="celeb-img" id="celeb-img" src="{{$image_path_view.$celebrity->profileImage()}}" alt="Thumbnail">
+                                        	@if(!empty($celebrity->profileVideo()))
+                                        	<video controls data-play="hover" muted="muted" class="celeb-video" id="celeb-video" style="display: none;">
+	 										 <source src="{{$video_path_view.$celebrity->profileVideo()}}" type="video/mp4">
+                                            </video>
+                                            @endif
+                                        </a>                                      
 									</div>
 									<div class="info-short">
 										<h3><a href="{{route('celebrities.show',[$celebrity->username])}}" title="">{{$celebrity->name}}</a></h3>

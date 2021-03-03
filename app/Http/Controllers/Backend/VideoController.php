@@ -23,20 +23,23 @@ class VideoController extends Controller
     }
 
 
-    public function index(){
+    public function index(Celebrity $celebrity){
         $data['title'] = 'My Videos';
         $data['route'] = $this->route;
         $data['file_path_view'] = $this->file_path_view;
-        if(Auth::check()){
-            $data['celebrity'] = Auth::guard('celebrity')->user();
-        }
+        $data['celebrity'] = $celebrity;
+
         return view($this->view.'index', $data);
     }
 
     public function create($id){
         $data['title'] = 'Make A Video';
         $data['route'] = $this->route;
+        $data['file_path_view'] = $this->file_path_view;
 
+        if(Auth::guard('celebrity')->check()){
+            $data['celebrity'] = Auth::guard('celebrity');
+        }
         $data['book'] = Book::findOrFail($id);
         $data['wishto'] = $data['book']->wishto;  	
     	return view($this->view.'create', $data);
@@ -44,7 +47,7 @@ class VideoController extends Controller
 
     public function store(Request $request){
 
-        $book = Book::findOrFail($request->req_id);
+        $book = Book::findOrFail($request->book_id);
         if(Auth::check()){
             $celebrity = Auth::guard('celebrity')->user();
         }
@@ -64,6 +67,7 @@ class VideoController extends Controller
                 
 
                 $videoUpload = new Video([
+                    'book_id' => $request->book_id,
                     'video_url' => $filename,
                     'status' => 1
                 ]);
@@ -80,6 +84,15 @@ class VideoController extends Controller
         Video::find($id)->delete();
 
         toastr()->success('Data has been deleted successfully!');
+        return redirect()->back();
+    }
+
+    public function featured($id){
+        $video = Video::findOrFail($id);
+        $video->update([
+            'status'=>2,
+        ]);
+        toastr()->success('Data has been saved successfully!');
         return redirect()->back();
     }
 

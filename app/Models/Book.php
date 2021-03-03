@@ -25,4 +25,9 @@ class Book extends Model
         return $this->hasOne('App\Models\Wishto');
     }
 
+    public function video()
+    {
+        return $this->hasOne('App\Models\Video');
+    }
+
 }

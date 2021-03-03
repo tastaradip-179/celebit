@@ -72,6 +72,15 @@ class Celebrity extends Authenticatable implements Sortable
         return '';
     }
 
+    public function profileVideo()
+    {
+        $video = $this->videos()->where('status', 2)->latest()->first();
+        if (!empty($video)) {
+            return $video->video_url;
+        }
+        return '';
+    }
+
     public function packageWithPaginate($paginate=15)
     {
         return $this->celebrity_packages()->paginate($paginate);

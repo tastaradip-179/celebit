@@ -85,7 +85,7 @@
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="status" value="2" />
                                             <button type="submit" class="btn btn-danger"> Reject</button>
-                                        </form>
+                                            </form>
                                         </li>
                                         @endif
                                     </ul>
