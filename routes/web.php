@@ -89,16 +89,20 @@ Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name
 	Route::resource('/celebrities', 'CelebrityController')->except(['index','destroy']);
 });	
 Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.celebrities.')->prefix('backend/celebrities')->group(function () {
-	Route::get('/{celebrity}/requests', 'CelebrityController@books')->name('requests');
-	Route::post('/requests/{request}', 'BookController@destroy')->name('requests.delete');
-	Route::post('/requests/{request}/getAccepted', 'BookController@getAccepted')->name('requests.accept');
-	Route::post('/requests/{request}/getRejected', 'BookController@getRejected')->name('requests.reject');
-	Route::get('/videos/index/{celebrity}', 'VideoController@index')->name('videos.index');
-	Route::get('/videos/create/{id}', 'VideoController@create')->name('videos.create');
-	Route::post('/videos/store', 'VideoController@store')->name('videos.store');
-	Route::delete('/videos/delete/{id}', 'VideoController@destroy')->name('videos.destroy');
-	Route::get('/videos/{id}/make-featured', 'VideoController@featured')->name('videos.make.featured');
-	Route::resource('requests', 'BookController');
+		Route::resource('requests', 'BookController');
+});
+Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.celebrities.requests')->prefix('backend/celebrities/requests')->group(function () {
+	Route::get('/celeb/{celebrity}', 'CelebrityController@books');
+	Route::post('/{request}', 'BookController@destroy')->name('.delete');
+	Route::post('/{request}/getAccepted', 'BookController@getAccepted')->name('.accept');
+	Route::post('/{request}/getRejected', 'BookController@getRejected')->name('.reject');
+});
+Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name('backend.celebrities.videos.')->prefix('backend/celebrities/videos')->group(function () {
+	Route::get('/index/{celebrity}', 'VideoController@index')->name('index');
+	Route::get('/create/{id}', 'VideoController@create')->name('create');
+	Route::post('/store', 'VideoController@store')->name('store');
+	Route::delete('/delete/{id}', 'VideoController@destroy')->name('destroy');
+	Route::get('/{id}/make-featured', 'VideoController@featured')->name('make.featured');
 });
 /* Backend routes 
 ===============================================

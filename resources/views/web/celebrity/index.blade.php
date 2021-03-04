@@ -32,7 +32,7 @@
 								<a href="#reviews" class="btn btn-white btn-block waves-effect waves-light">Reviews</a>
 							</div>
 							<div class="col-12 col-lg-4 col-md-6 col-sm-12 buttons">
-								<a href="request-process" class="btn btn-white btn-block waves-effect waves-light">Videos</a>
+								<a href="#vds-main" class="btn btn-white btn-block waves-effect waves-light">Videos</a>
 							</div>
 						</div>
 					</div>	
@@ -87,7 +87,7 @@
 	</div>
 </section>
 
-<section class="vds-main">
+<section class="vds-main" id="vds-main">
 	<div class="vidz-row">
 		<div class="container">
 			<div class="vidz_list m-0">
@@ -96,9 +96,9 @@
 					@foreach($celebrity->videos as $key=>$video)
 					<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
 						<a href="javascript:void(0)">
-							<div class="video">
+							<div class="videoo">
 								<video src="{{$video_path_view.$video->video_url}}" webkit-playsinline playsinline data-video="{{$video_path_view.$video->video_url}}"
-								       loop muted id="video">    
+								       loop muted id="video" class="video">    
 								</video>
 								<div class="play"></div>
 								<div class="pause" style="display:none"></div>
@@ -119,20 +119,19 @@
 @section('page-js')
 <script type="text/javascript" src="{{asset('web/plugins/videoPopup/js/jquery.popVideo.js')}}"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$( "#video" ).each(function(index) {
+	$(document).ready(function(index){
+		$( ".video" ).each(function() {
 		    $(this).click(function () {
-		    	console.log('fff');
 		        $(this).popVideo({
 		            playOnOpen: true,
-		            title: "jQueryScript.net Demo Page",
+		            title: '{{$celebrity->name}}', 
 		          	closeOnEnd: true,
 		            pauseOnClose: true,
 		        }).open();
 		        $('.content').show();
 		    });
 
-	    $(this).parent().click(function () {
+	    	$(this).parent().click(function () {
 			  if($(this).children("#video").get(0).paused)
 			  	{        
 			  		$(this).children("#video").get(0).play();   

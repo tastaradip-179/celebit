@@ -103,7 +103,7 @@
 }
 
 .popvideo-close:hover {
-  color: #ff6e0b;
+  color: #e60606;
 }
 
 .popvideo-title {
@@ -180,8 +180,8 @@
   height: 10px;
   border-radius: 100%;
   background-color: #fff;
-  -webkit-box-shadow: 0 0 15px #ff6e0b;
-          box-shadow: 0 0 15px #ff6e0b;
+  -webkit-box-shadow: 0 0 15px #e60606;
+          box-shadow: 0 0 15px #e60606;
 }
 
 .popvideo_progress_list {
@@ -202,7 +202,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  background-color: #ff6e0b;
+  background-color: #e60606;
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
@@ -229,7 +229,7 @@
 }
 
 .popvideo_btn:hover .popvideo_icon {
-  fill: #ff6e0b;
+  fill: #e60606;
   cursor: pointer;
 }
 
@@ -449,7 +449,7 @@
 }
 
 .popvideo_volume_range_current {
-  background-color: #ff6e0b;
+  background-color: #e60606;
   height: 100%;
   border-radius: 2px;
 }
@@ -465,8 +465,8 @@
 }
 
 .popvideo_volume_handle:hover {
-  -webkit-box-shadow: 0 0 4px 4px #ff6e0b;
-          box-shadow: 0 0 4px 4px #ff6e0b;
+  -webkit-box-shadow: 0 0 4px 4px #e60606;
+          box-shadow: 0 0 4px 4px #e60606;
 }
 
 @-webkit-keyframes popvideo_btn_rotate {
@@ -560,3 +560,20 @@
 }
 
 /*# sourceMappingURL=maps/jquery.popVideo.css.map */
+
+
+
+/*custome*/
+.popvideo-content .content{
+  margin: 100px 50px;
+}
+.popvideo-content .content ul{
+  list-style: none;
+}
+.popvideo-content .content ul li{
+  display: inline-flex;
+  margin-right: 40px;
+}
+.popvideo-content .content h2{
+  margin-top: 30px;
+}
