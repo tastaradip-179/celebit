@@ -18,7 +18,7 @@ class RegistrationSuccess extends Mailable
      */
     public function __construct($customer)
     {
-        $this->customer = $customer;
+        $this->customer=$customer;
     }
 
     /**
