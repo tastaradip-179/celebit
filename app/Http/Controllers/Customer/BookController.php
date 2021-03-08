@@ -6,8 +6,11 @@ use Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\CelebrityPackage;
+use App\Models\Customer;
 use App\Models\Wishto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendBookingRequest;
 
 class BookController extends Controller
 {
@@ -58,7 +61,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $input = $request->only(['celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time', 'status', 'publish']);   
         $book = Book::create($input); 
         if ($request->has('name') && $request['name']!=null) {  
@@ -66,6 +68,9 @@ class BookController extends Controller
             $input2 = $input2 + ['book_id' => $book->id] ;
             $wishto =  Wishto::create($input2);
         }
+        $data['customer'] = Customer::findOrFail($request->customer_id);
+        $data['subject'] = 'Booking Request';
+        Mail::to($data['customer']->email)->send(new SendBookingRequest($data));
         return redirect()->back()->with('message', 'Your request has been sent successfully.')
         ->with('message-type', 'success');;
     }

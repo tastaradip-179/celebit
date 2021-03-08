@@ -57,7 +57,7 @@
                                 <div class="request-desc">
                                     <h3>{{$title}} Details</h3>
                                     @if(!empty($wishto))
-                                    <h6>For: {{$book->wishto->fullname}} ({{$book->wishto->pronoun}})</h6>
+                                    <h6>For: {{$book->wishto->name}} ({{$book->wishto->pronoun}})</h6>
                                     <h6>From: {{$book->from}}</h6>
                                     @else
                                     <h6>For: {{$customer->fullname}} (ownself)</h6>

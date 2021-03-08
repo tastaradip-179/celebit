@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RegistrationSuccess extends Mailable
+class SendBookingRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class RegistrationSuccess extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->data['subject'])->view('mail.registration_success');
+        return $this->subject($this->data['subject'])->view('mail.send_booking_request');
     }
 }

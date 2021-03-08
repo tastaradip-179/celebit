@@ -55,10 +55,11 @@ class CustomerRegisterController extends Controller
                 $input = $input + ['password' => Hash::make($request->password)];
             }
 
-        $customer = Customer::create($input);  
-        $this->guard()->login($customer);
-        Mail::to($customer->email)->send(new RegistrationSuccess($customer));
-        return redirect()->route('web.customer.show', $customer) ;   
+        $data['customer'] = Customer::create($input);  
+        $this->guard()->login($data['customer']);
+        $data['subject'] = 'Successful Registration';
+        Mail::to($data['customer']->email)->send(new RegistrationSuccess($data));
+        return redirect()->route('web.customer.show', $data) ;   
         
         
     }
