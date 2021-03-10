@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Customer;
 use App\Models\Wishto;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentRequest;
 
 class BookController extends Controller
 {
@@ -49,10 +52,14 @@ class BookController extends Controller
 
     public function getAccepted($id, Request $request){
         $book = Book::findOrFail($id);
+        $data['customer'] = Customer::findOrFail($book->customer_id);
+        $data['subject'] = 'Payment Request';
         $input = $request->only(['status']); 
         $book->update($input);
 
         toastr()->success('Data has been accepted successfully!');
+        Mail::to($data['customer']->email)->send(new PaymentRequest($data));
+
         return redirect()->back();
     }
 
