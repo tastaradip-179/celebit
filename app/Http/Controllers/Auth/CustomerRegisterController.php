@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationSuccess;
 
 class CustomerRegisterController extends Controller
 {
@@ -53,9 +55,11 @@ class CustomerRegisterController extends Controller
                 $input = $input + ['password' => Hash::make($request->password)];
             }
 
-        $customer = Customer::create($input);  
-        $this->guard()->login($customer);
-        return redirect()->route('customer.profile', $customer) ;   
+        $data['customer'] = Customer::create($input);  
+        $this->guard()->login($data['customer']);
+        $data['subject'] = 'Successful Registration';
+        Mail::to($data['customer']->email)->send(new RegistrationSuccess($data));
+        return redirect()->route('web.customer.show', $data) ;   
         
         
     }

@@ -33,13 +33,15 @@
                                     <span class="uprofile-status online"></span>
                                 </h3>
                                 <p class="uprofile-title">{{$celebrity->designation}}</p>
+                                <p class="uprofile-title">Category: {{$celebrity->category}}</p>
                             </div>
-                            {{-- <div class="uprofile-info">
+                            <div class="uprofile-info">
                                 <ul class="list-unstyled">
-                                    <li><i class='fa fa-home'></i> New York, USA</li>
-                                    <li><i class='fa fa-user'></i> 340 Contacts</li>
+                                    <li><a href=""><i class='fa fa-plus-square-o'></i> New Requests</a></li>
+                                    <li><a href="{{route('backend.celebrities.requests', [$celebrity->username])}}"><i class='fa fa-address-book-o'></i> All Requests</a></li>
+                                    <li><a href="{{route('backend.celebrities.videos.index', [$celebrity])}}"><i class='fa fa-video-camera'></i> My Videos</a></li>
                                 </ul>
-                            </div> --}}
+                            </div> 
                             <div class="uprofile-buttons">
                                 <a class="btn btn-md btn-primary">Send Message</a>
                             </div>
@@ -56,14 +58,14 @@
                                     <h3>About:</h3>
                                     <p>{!! $celebrity->about !!}</p>
                                         <div class="clearfix"></div>
-                                        <h3>Package list <a href="{{route('admin.celebrity.package',['celebrity' => $celebrity->username])}}" class="pull-right btn btn-info"> Add Package </a></h3>
+                                        <h3>Package list <a href="{{route('backend.admin.celebrity.package',['celebrity' => $celebrity->username])}}" class="pull-right btn btn-info"> Add Package </a></h3>
                                         <hr>
                                         <div class="wid-notification">
 
                                             @if(!empty($celebrity->celebrity_packages))
                                                 <ul id="celebritySerial" class="list-unstyled notification-widget uk-nestable" data-uk-nestable="{maxDepth:1}">
-                                                    @foreach($celebrity->celebrity_packages as $package)
-                                                    <li data-item="{{$package->id}}">
+                                                    @foreach($celebrity->celebrity_packages as $celebrity_package)
+                                                    <li data-item="{{$celebrity_package->id}}">
                                                         <div class="uk-nestable-item">
                                                             <div class="uk-nestable-handle"></div>
                                                             <div data-nestable-action="toggle"></div>
@@ -74,25 +76,25 @@
                                                                 </div>
                                                                 <div>
                                                                     <span class="name">
-                                                                        <strong><a href="{{route('admin.celebrity.package',['celebrity' => $celebrity->username])}}">{{$package->packageType->name}}</a></strong>
+                                                                        <strong><a href="{{route('backend.admin.celebrity.package',['celebrity' => $celebrity->username])}}">{{$celebrity_package->packageType->name}}</a></strong>
                                                                         <span class="pull-right">
-                                                                            <a title="Edit" href="{{ route('admin.celebritypackages.edit', [$package->id]) }}">
+                                                                            <a title="Edit" href="{{ route('backend.admin.celebritypackages.edit', [$celebrity_package->id]) }}">
                                                                                 <i class='fa fa-pencil icon-xs icon-rounded icon-primary'></i>
                                                                             </a>
-                                                                            <a onclick="alertFunction('Delete', {{$package->id}});" title="Delete"  href="javascript:void(0)"> 
+                                                                            <a onclick="alertFunction('Delete', {{$celebrity_package->id}});" title="Delete"  href="javascript:void(0)"> 
                                                                                 <i class='fa fa-trash-o icon-xs  icon-rounded icon-danger'></i>
                                                                             </a>
-                                                                            <form id="Delete{{$package->id}}" action="{{ route('admin.celebritypackages.destroy', [$package->id]) }}" method="POST" style="display: none;">
+                                                                            <form id="Delete{{$celebrity_package->id}}" action="{{ route('backend.admin.celebritypackages.destroy', [$celebrity_package->id]) }}" method="POST" style="display: none;">
                                                                                 {{ csrf_field() }}
                                                                                 @method('DELETE')
                                                                             </form>
                                                                         </span>
                                                                     </span>
                                                                     <span class="desc">
-                                                                        Offer Time: {{$package->duration}} | Price (in BDT): {{$package->total}} | Extra Per Min Price (in BDT): {{$package->extra_per_minute_fee}}
+                                                                        Offer Time: {{$celebrity_package->duration}} | Price (in BDT): {{$celebrity_package->total}} | Extra Per Min Price (in BDT): {{$celebrity_package->extra_per_minute_fee}}
                                                                     </span>
                                                                     <span class="desc">
-                                                                        <b>Tag:</b> {!! $package->AllTags() !!}
+                                                                        <b>Tag:</b> {!! $celebrity_package->AllTags() !!}
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -125,7 +127,7 @@
         var serialized = $(this).data('nestable').serialize();
         //     str = '';
         $.ajax({
-            url: '{{route('admin.data.serialize')}}',
+            url: '{{route('backend.admin.data.serialize')}}',
             method: 'get',
             data: {data: serialized, sort: 'celebrity-package'},
             success:function(response){

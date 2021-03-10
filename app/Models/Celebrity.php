@@ -14,9 +14,10 @@ class Celebrity extends Authenticatable implements Sortable
 {
     use SoftDeletes, SortableTrait;
 	use HasTags, TagTrait;
-	
+
+    protected $guard = 'celebrity';
     protected $fillable = [
-    	'name','username','email','designation','gender','mobile','social_link', 'status', 'about'
+    	'name','username','email','password','category','designation','gender','mobile','social_link', 'status', 'about'
     ];
 
     public static function boot()
@@ -39,6 +40,16 @@ class Celebrity extends Authenticatable implements Sortable
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
+    public function videos()
+    {
+        return $this->morphMany('App\Models\Video', 'videoable');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Category');
+    }
+
     public function celebrity_packages()
     {
         return $this->hasMany('App\Models\CelebrityPackage')->ordered();
@@ -57,6 +68,15 @@ class Celebrity extends Authenticatable implements Sortable
         $image = $this->images()->where('type', 1)->first();
         if (!empty($image)) {
             return $image->url;
+        }
+        return '';
+    }
+
+    public function profileVideo()
+    {
+        $video = $this->videos()->where('status', 2)->latest()->first();
+        if (!empty($video)) {
+            return $video->video_url;
         }
         return '';
     }

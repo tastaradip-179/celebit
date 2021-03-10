@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use Spatie\Tags\Tag;
 use App\Models\Package;
@@ -15,7 +15,7 @@ class CelebrityPackageController extends Controller
     public function __construct () 
     {
         $this->title = 'Celebrity Package';
-        $this->route = 'admin.celebritypackages.';
+        $this->route = 'backend.admin.celebritypackages.';
         $this->view  = 'backend.celebritypackage.';
         $this->file_path = storage_path('app/public/videos');
         $this->file_path_view = \Request::root().'/storage/videos/';

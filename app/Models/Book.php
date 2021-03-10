@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-    	'celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time'
+    	'celebrity_package_id', 'customer_id', 'from', 'subject', 'message', 'upload_time', 'status', 'publish'
     ];
 
     public function customer()
@@ -23,6 +23,11 @@ class Book extends Model
     public function wishto()
     {
         return $this->hasOne('App\Models\Wishto');
+    }
+
+    public function video()
+    {
+        return $this->hasOne('App\Models\Video');
     }
 
 }

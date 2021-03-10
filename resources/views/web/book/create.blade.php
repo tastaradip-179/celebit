@@ -1,8 +1,16 @@
 @extends('web.common.master')
 
 @section('content')
+
+
 <section class="request">
 	<div class="container">
+		@if(Session::has('message'))
+		    <div class="alert alert-{{ Session::get('message-type') }} alert-dismissable">
+		        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="line-height: 0.5">×</button>
+		        <i class="glyphicon glyphicon-{{ Session::get('message-type') == 'success' ? 'ok' : 'remove'}}"></i> {{ Session::get('message') }}
+		    </div>
+		@endif
 		<div class="request-container">
 			<div class="header">
 				<img src="{{ $file_path_view.$celebrity->profileImage() }}" alt="dp" class="img-mini" />
@@ -20,6 +28,7 @@
 							@endphp
 						@endif
 						<input type="hidden" name="customer_id" value="{{$logged_id}}" />
+						<input type="hidden" name="status" value="0" />
 						<input type="hidden" name="celebrity_package_id" value="{{$celebrity_package->id}}" />
 						<div class="radio-inputs-inline form-group">
 							<label class="label"><h4>Who is this for?</h4></label>
@@ -43,7 +52,7 @@
 							</div>
 							<div class="form-group">
 								<label class="label" for="to">To</label>
-								<input type="text" class="form-control" name="fullname" id="for-other" placeholder="Full Name or Group Name"/>
+								<input type="text" class="form-control" name="name" id="for-other" placeholder="Full Name or Group Name"/>
 							</div>
 							<div class="form-group">
 								<label class="label" for="pronoun-other">Pronoun</label>
@@ -91,7 +100,7 @@
 						</div>
 						<div class="form-group">
 						  <label class="label" for="public">
-						    <input type="checkbox" class="option-input checkbox" />
+						    <input type="checkbox" class="option-input checkbox" name="publish" value="1"/>
 						    Publish on Website
 						  </label>
 						</div>
@@ -128,12 +137,6 @@
 		        }
 		    });
 		});
-
-
-
-
-
-
 	});
 </script>
 @endsection

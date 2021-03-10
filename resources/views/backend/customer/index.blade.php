@@ -17,7 +17,7 @@
         <div class="clearfix"></div>
 
         <div class="row margin-0">
-            <div class="col-xl-10">
+            <div class="col-xl-12">
                 <section class="box ">
                     <header class="panel_header">
                         <h2 class="title float-left">All the {{$title}}s </h2>
@@ -53,11 +53,13 @@
                                     <td>{{$customer->dob}}</td>
                                     <td>{{$customer->address}}</td>
                                     <td>
-	                                    <form id="delete-customer" action="{{ route($route.'destroy', [$customer->username]) }}" method="POST">
-	                                            {{ csrf_field() }}
-	                                            @method('DELETE')
-	                                            <button class="btn btn-danger">Delete</button>
-	                                    </form>
+                                        <a onclick="alertFunction('Delete', {{$customer->id}});" title="Delete" href="javascript:void(0)"> 
+                                            <i class="fa fa-trash icon-danger icon-square icon-square-o"></i>
+                                        </a>
+                                        <form id="Delete{{$customer->id}}" action="{{ route($route.'destroy', [$customer->username]) }}" method="POST" style="display: none;">
+                                          {{ csrf_field() }}
+                                          @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr> 
                                 @endif 

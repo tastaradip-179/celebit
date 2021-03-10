@@ -15,10 +15,16 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->bigInteger('book_id')->unsigned();
             $table->text('description')->nullable();
             $table->string('video_url');
             $table->boolean('status')->default(1);
+            $table->BigInteger('videoable_id');
+            $table->string('videoable_type');
+
+            $table->foreign('book_id')
+                  ->references('id')->on('books')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

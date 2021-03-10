@@ -21,6 +21,8 @@ class CreateBooksTable extends Migration
             $table->string('subject');
             $table->string('message')->nullable();
             $table->datetime('upload_time');
+            $table->integer('status')->default('0');
+            $table->integer('publish')->default('0');
             $table->timestamps();
         });
     }

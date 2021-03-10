@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Spatie\Tags\Tag;
@@ -11,7 +11,7 @@ class TagController extends Controller
     public function __construct () 
     {
         $this->title = 'Tag';
-        $this->route = 'admin.tags.';
+        $this->route = 'backend.admin.tags.';
         $this->view  = 'backend.tags.';
     }
 

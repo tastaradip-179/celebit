@@ -1,7 +1,8 @@
 @extends('web.common.master')
 
 @section('page-css')
-<link rel="stylesheet" href="{{asset('web/plugins//videoPopup/css/jquery.popVideo.css')}}">
+<link rel="stylesheet" href="{{asset('web/plugins/videoPopup/css/jquery.popVideo.css')}}">
+
 @endsection
 
 @section('content')
@@ -31,7 +32,7 @@
 								<a href="#reviews" class="btn btn-white btn-block waves-effect waves-light">Reviews</a>
 							</div>
 							<div class="col-12 col-lg-4 col-md-6 col-sm-12 buttons">
-								<a href="request-process" class="btn btn-white btn-block waves-effect waves-light">Videos</a>
+								<a href="#vds-main" class="btn btn-white btn-block waves-effect waves-light">Videos</a>
 							</div>
 						</div>
 					</div>	
@@ -42,7 +43,7 @@
 							@if(!empty($celebrity_packages))
 							<div class="col-12 col-lg-4 col-md-6 col-sm-12 service-btn">
 								@if(Auth::guard('customer')->check())
-				                <a href="{{route('request.create',['id'=>$celebrity_packages[$key]->id])}}">
+				                <a href="{{route('web.books.create',['id'=>$celebrity_packages[$key]->id])}}">
 				                @else
 				                <a href="#" type="button" data-toggle="modal" data-target="#elegantLoginModalForm" title="">
 				                @endif	
@@ -86,39 +87,67 @@
 	</div>
 </section>
 
-<section class="vds-main">
+<section class="vds-main" id="vds-main">
 	<div class="vidz-row">
 		<div class="container">
 			<div class="vidz_list m-0">
 				<div class="row">
+					@if(!empty($celebrity->videos))
+					@foreach($celebrity->videos as $key=>$video)
 					<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
-						<div class="videoo">
-							<video src="{{asset('web/videos/tae.mp4')}}" webkit-playsinline playsinline data-video="{{asset('web/videos/tae.mp4')}}"
-							       loop muted id="video" class="video" style="width: 100%">
-							</video>
-
-						</div><!--videoo end-->
+						<a href="javascript:void(0)">
+							<div class="videoo">
+								<video src="{{$video_path_view.$video->video_url}}" webkit-playsinline playsinline data-video="{{$video_path_view.$video->video_url}}"
+								       loop muted id="video" class="video">    
+								</video>
+								<div class="play"></div>
+								<div class="pause" style="display:none"></div>
+							</div><!--videoo end-->
+						</a>
 					</div>
+					@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
+
 @endsection
 
 @section('page-js')
 <script type="text/javascript" src="{{asset('web/plugins/videoPopup/js/jquery.popVideo.js')}}"></script>
 <script type="text/javascript">
-    $('#video').click(function () {
-        $('#video').popVideo({
-            playOnOpen: true,
-            title: "jQueryScript.net Demo Page",
-          closeOnEnd: true,
-            pauseOnClose: true,
-        }).open();
-        $('.content').show();
-    });
+	$(document).ready(function(index){
+		$( ".video" ).each(function() {
+		    $(this).click(function () {
+		        $(this).popVideo({
+		            playOnOpen: true,
+		            title: '{{$celebrity->name}}', 
+		          	closeOnEnd: true,
+		            pauseOnClose: true,
+		        }).open();
+		        $('.content').show();
+		    });
+
+	    	$(this).parent().click(function () {
+			  if($(this).children("#video").get(0).paused)
+			  	{        
+			  		$(this).children("#video").get(0).play();   
+			  		$(this).children(".play").fadeOut();
+			  		$(this).children(".pause").fadeIn();
+			    }
+			    else
+			    {       
+			    	$(this).children("#video").get(0).pause();
+			  		$(this).children(".play").fadeIn();
+			  		$(this).children(".pause").fadeOut();
+			    }
+			});
+	   });
+	});
+    
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -146,4 +175,5 @@
 	  });
 	});
 </script>
+
 @endsection

@@ -17,7 +17,7 @@
         <div class="clearfix"></div>
 
         <div class="row margin-0">
-            <div class="col-xl-10">
+            <div class="col-xl-12">
                 <section class="box ">
                     <header class="panel_header">
                         <h2 class="title float-left">All the Requests</h2>
@@ -39,6 +39,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                            @if(!empty($books))
                            @foreach($books as $key=>$book)
                             <tbody>
                                 @if(!empty($book))
@@ -46,17 +47,33 @@
                                     <td>{{$book->id}}</td>
                                     <td>{{$book->customer->fullname}}</td>
                                     <td>{{$book->celebrity_package->packageType->name}}</td>
-                                    <td></td>
+                                    <td><a href="#" class="badge 
+                                        @if($book->status=='0') badge-warning"> Pending 
+                                        @elseif($book->status=='1') badge-info"> Accepted 
+                                        @elseif($book->status=='2') badge-danger"> Rejected 
+                                        @elseif($book->status=='3') badge-primary"> Completed  
+                                        @endif</a>
+                                    </td>
                                     <td>{{$book->created_at}}</td>
                                     <td>
-                                        <a href="{{route('admin.requests.show', [$book->id])}}" title="request details">
-                                            <i class="fa fa-eye icon-primary icon-square icon-square-o"></i>
+                                        @if($book->status=='1')
+                                        <a href="{{route('backend.celebrities.videos.create', [$book->id])}}" title="Video"><i class="fa fa-video-camera icon-primary icon-square icon-square-o"></i></a>
+                                        @endif
+                                        <a href="{{route('backend.celebrities.requests.show', [$book->id])}}" title="Request details">
+                                            <i class="fa fa-eye icon-info icon-square icon-square-o"></i>
                                         </a>
+                                        <a onclick="alertFunction('Delete', {{$book->id}});" title="Delete" href="javascript:void(0)"> 
+                                            <i class="fa fa-trash icon-danger icon-square icon-square-o"></i>
+                                        </a>
+                                        <form id="Delete{{$book->id}}" action="{{ route('backend.celebrities.requests.delete', [$book->id]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </td>
                                 </tr> 
                                 @endif
                             </tbody>
                             @endforeach
+                            @endif
                         </table>
                     </div>
                 </section>

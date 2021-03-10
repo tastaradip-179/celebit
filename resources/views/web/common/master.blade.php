@@ -24,12 +24,19 @@
 
 		@yield('content')
 
+
 		@include('web.common.footer')
+
 	</div><!--wrapper end-->
 
 	@include('web.common.includes.script')
 
 	@yield('page-js')
+	<script type="text/javascript">
+		function openLoginModal(){
+		    $('#elegantLoginModalForm').modal();
+		} 
+	</script>
 
 </body>
 

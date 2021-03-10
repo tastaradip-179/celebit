@@ -40,6 +40,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                            @if(!empty($books))
                             @foreach($books as $key=>$book)
                             <tbody>
                                 @if(!empty($book))
@@ -48,7 +49,13 @@
                                     <td>{{$book->celebrity_package->celebrity->name}}</td>
                                     <td>{{$book->customer->fullname}}</td>
                                     <td>{{$book->celebrity_package->packageType->name}}</td>
-                                    <td></td>
+                                    <td><a href="#" class="badge 
+                                        @if($book->status=='0') badge-warning"> Pending 
+                                        @elseif($book->status=='1') badge-info"> Accepted 
+                                        @elseif($book->status=='2') badge-danger"> Rejected 
+                                        @elseif($book->status=='3') badge-primary"> Completed  
+                                        @endif</a>
+                                    </td>
                                     <td>{{$book->created_at}}</td>
                                     <td>
                                         <a href="{{route($route.('show'),[$book->id])}}" title="request details">
@@ -59,6 +66,7 @@
                                 @endif
                             </tbody>
                             @endforeach
+                            @endif
                         </table>
                     </div>
                 </section>

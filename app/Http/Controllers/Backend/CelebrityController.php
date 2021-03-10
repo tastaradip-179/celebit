@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use Spatie\Tags\Tag;
 use App\Models\Image;
 use App\Models\Celebrity;
+use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
 
 class CelebrityController extends Controller
@@ -17,8 +19,9 @@ class CelebrityController extends Controller
     public function __construct () 
     {
         $this->title = 'Celebrity';
-        $this->route = 'admin.celebrities.';
+        $this->route = 'backend.admin.celebrities.';
         $this->view  = 'backend.celebrity.';
+        $this->file_stored = '/public/celebrities/';
         $this->file_path = storage_path('app/public/celebrities');
         $this->file_path_view = \Request::root().'/storage/celebrities/';
     }
@@ -48,7 +51,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['tags'] = Tag::withType('celebrities')->latest()->get();
-        
+        $data['categories']  = Category::orderBy('id','ASC')->get();
         
         return view($this->view.'create', $data);
     }
@@ -64,18 +67,18 @@ class CelebrityController extends Controller
         if ($request->has('create_type') && $request->create_type == 'celebrity_info') {
            $request->validate([
                 'name' => 'required | string',
-                'email' => 'nullable | email |unique:celebrities,email',
+                'email' => 'email | unique:celebrities,id',
                 'designation' => 'required | string',
                 'gender' => 'required',
-                'password' => 'nullable | confirmed',
-                'file' => 'required',
-                'tags' => 'required',
+                'password' => 'required | confirmed | min:6',
+                // 'file' => 'required',
+                // 'tags' => 'required',
             ]);
-            $input = $request->only(['name','email','designation','gender','mobile','social_link','about']);
+            $input = $request->only(['name','email','designation','gender','mobile','category','social_link','about']);
             if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
             }
-            // dd($input);
+            //dd($input);
 
             $celebrity = Celebrity::create($input);
             
@@ -138,7 +141,7 @@ class CelebrityController extends Controller
         $data['title'] = $this->title;
         $data['route'] = $this->route;
         $data['celebrity'] = $celebrity;
-
+        $data['categories']  = Category::orderBy('id','ASC')->get();
         $data['tags'] = Tag::withType('celebrities')->latest()->get();
 
         return view($this->view.'.edit', $data);
@@ -159,10 +162,10 @@ class CelebrityController extends Controller
             'designation' => 'required | string',
             'gender' => 'required',
             'password' => 'nullable | confirmed',
-            'tags' => 'required',
+            //'tags' => 'required',
          ]);
 
-        $input = $request->only(['name','email','designation','gender','mobile','social_link','about', 'status']); 
+        $input = $request->only(['name','email','designation','gender','mobile','category','social_link','about', 'status']); 
         if ($request->has('password')) {
                 $input = $input + ['password' => Hash::make($request->password)];
         }
@@ -184,8 +187,15 @@ class CelebrityController extends Controller
                
                 $celebrity_image = $celebrity->images[0] ;
                 $old_image = $celebrity->images[0]->url;
-                 
-                unlink($this->file_path.'/'.$old_image);
+                
+                if(!empty($old_image) && file_exists($old_image)) {
+                    unlink($this->file_path.'/'.$old_image);
+                }
+
+                if(Storage::exists($this->file_stored.$old_image)){
+                    Storage::delete($this->file_stored.$old_image) ;
+                }
+                
                 
                 $celebrity_image->update([
                     'url' => $filename,
@@ -209,6 +219,11 @@ class CelebrityController extends Controller
      */
     public function destroy(Celebrity $celebrity)
     {
+        $celebrity_image = $celebrity->images[0]->url ;
+
+        if(Storage::exists($this->file_stored.$celebrity_image)){
+            Storage::delete($this->file_stored.$celebrity_image) ;
+        }
         $celebrity->delete();
 
         toastr()->success('Data has been deleted successfully!');

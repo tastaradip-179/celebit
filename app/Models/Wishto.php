@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wishto extends Model
 {
     protected $fillable = [
-    	'book_id', 'fullname', 'pronoun'
+    	'book_id', 'name', 'pronoun'
     ];
 
     public function book()

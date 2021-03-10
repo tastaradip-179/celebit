@@ -17,7 +17,7 @@
       		</div>
       	</div>
       	<div class="col-md-9">
-      		<form action="{{route('customer.store')}}" method="post" enctype="multipart/form-data">
+      		<form action="{{route('web.customer.store')}}" method="post" enctype="multipart/form-data">
 					{{csrf_field()}}
 	      			<!--Body-->
 			    <div class="modal-body mx-4">

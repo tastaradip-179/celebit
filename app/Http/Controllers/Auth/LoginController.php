@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "/backend/dashboard";
+    protected $redirectTo = "/backend/admin/dashboard";
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if(Auth::check()){
-            return redirect()->route('admin.backend.dashboard');
+            return redirect()->route('backend.admin.dashboard');
         }
         else{
             return view('backend.auth.login');
@@ -58,7 +58,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){ 
-            return redirect(route('admin.backend.dashboard'));
+            return redirect(route('backend.admin.dashboard'));
         }
         return redirect()->back()->withErrors([
             'msg'   =>  'Please check your credentials'
@@ -68,13 +68,13 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('backend.admin.login');
     }
 
     public function __construct()
     {
          $this->middleware('guest')->except('logout');
-         $this->redirectTo = route('admin.backend.dashboard');
+         $this->redirectTo = route('backend.admin.dashboard');
     }
 
  

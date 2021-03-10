@@ -49,7 +49,7 @@
 
 
                     <p class="submit">
-                        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange btn-block" value="Sign In" />
+                        <button type="submit" class="btn btn-orange btn-block" >Sign In </button>
                     </p>
                 </form>
 
