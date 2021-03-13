@@ -49,7 +49,6 @@ class BookController extends Controller
         $data['file_path_view'] = $this->file_path_view;
         $data['celebrity_package'] = CelebrityPackage::findOrFail($id);
         $data['celebrity'] = $data['celebrity_package']->celebrity;
-
         return view($this->view.'create', $data);
     }
 
