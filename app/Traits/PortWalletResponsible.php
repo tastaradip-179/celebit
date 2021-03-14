@@ -39,19 +39,11 @@ trait PortWalletResponsible
                 'redirect_url' 	=> $config['redirect_url']
             ]
         ]);
-//        dd($response->getStatusCode());
         if($response->getStatusCode() == 200)
         {
-
             $body = $response->getBody();
-//            dd($body);
-            $obj  = json_decode($body);
-//            dd('https://payment.portwallet.com/payment/?invoice='.$obj->data->invoice_id);
-            $redirect = 'https://payment.portwallet.com/payment/?invoice='.$obj->data->invoice_id;
-            return redirect()->away($redirect);
-
+            return $obj  = json_decode($body);
         }
-        return redirect()->back();
     }
 
 

@@ -11,6 +11,8 @@ use App\Models\Wishto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendBookingRequest;
+use App\Traits\PortWalletResponsible;
+use GuzzleHttp\Client as GuzzleClient;
 
 class BookController extends Controller
 {
@@ -19,7 +21,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    use PortwalletResponsible;
 
     public function __construct () 
     {        
@@ -69,6 +71,35 @@ class BookController extends Controller
         }
         $data['customer'] = Customer::findOrFail($request->customer_id);
         $data['subject'] = 'Booking Request';
+
+        $celebrity_package = CelebrityPackage::findOrFail($request->celebrity_package_id);
+
+        $config = config('portwallet');
+        $client = new GuzzleClient();
+
+       
+        $data['amount']         = $celebrity_package->total;
+        $data['product_name']   = $celebrity_package->celebrity->name;
+        $data['product_des']    = $celebrity_package->packageType->name;
+        $data['buyer_name']     = $data['customer']->fullname;
+        $data['buyer_email']    = $data['customer']->email;
+        $data['buyer_phone']    = '1';
+        $data['buyer_address']  = '1';
+        $data['buyer_city']     = '1';
+        $data['buyer_state']    = '1';
+        $data['buyer_zipcode']  = '1234';
+        $data['order_id']       = $book->id;
+        $data['invoice_id']     = $book->id;
+        $data['identity']       = 'package';
+         
+
+        $obj = $this->createInvoice($data);
+        if ($obj->status == 200) {
+            dd($obj->status);
+            $redirect =  $config['payment_url']."?invoice=".$obj->data->invoice_id;
+            return redirect()->away($redirect);
+        }
+
         Mail::to($data['customer']->email)->send(new SendBookingRequest($data));
         return redirect()->back()->with('message', 'Your request has been sent successfully.')
         ->with('message-type', 'success');;
