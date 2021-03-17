@@ -12,7 +12,7 @@
 				</div><!--menu_logo end-->
 				<div class="search_form">
 					<form>
-						<input type="text" name="search" placeholder="Search celebrity">
+						<input type="text" name="celebrity" id="celebrity" placeholder="Search celebrity">
 						<button type="submit">
 							<i class="icon-search"></i>
 						</button>

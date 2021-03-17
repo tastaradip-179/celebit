@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 /* Website routes */
 Route::get('/','Web\HomeController@index')->name('web.home');
+Route::get('/search','Web\HomeController@search')->name('web.search');
+Route::get('search/live', 'Web\HomeController@search_live')->name('web.search.live');
 Route::get('/test','Web\HomeController@test');
-Route::get('/bkash','Web\HomeController@bkash');
 
 
 

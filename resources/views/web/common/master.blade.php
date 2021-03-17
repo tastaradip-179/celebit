@@ -22,6 +22,8 @@
 
 		@include('web.common.sidebar')
 
+        @include('web.common.search')
+
 		@yield('content')
 
 
