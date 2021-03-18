@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','Web\HomeController@index')->name('web.home');
 Route::get('/search','Web\HomeController@search')->name('web.search');
 Route::get('search/live', 'Web\HomeController@search_live')->name('web.search.live');
+Route::get('videos/{id}/download', 'Web\VideoController@download')->name('web.videos.download');
 Route::get('/test','Web\HomeController@test');
 
 

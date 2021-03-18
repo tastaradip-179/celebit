@@ -7,7 +7,7 @@
 
 @section('content')
 
-<section class="celebrity-profile">
+<section class="celebrity-profile" id="celebrity-profile">
 	<div class="container">
 		<div class="celebrity-profile-container">
 			<div class="row">
@@ -104,6 +104,9 @@
 								<div class="pause" style="display:none"></div>
 							</div><!--videoo end-->
 						</a>
+						 <input type="text" id="copy_{{ $video->id }}" value="{{ $video->video_url }}">
+                         <button value="copy" onclick="copyToClipboard('copy_{{ $video->id }}')">Copy!</button>
+						<a href="{{route('web.videos.download',[$video->id])}}">Download</a>
 					</div>
 					@endforeach
 					@endif
@@ -175,5 +178,10 @@
 	  });
 	});
 </script>
-
+ <script type="text/javascript">
+      function copyToClipboard(id) {
+        document.getElementById(id).select();
+        document.execCommand('copy');
+    }
+    </script
 @endsection

@@ -39,7 +39,7 @@
                 data:{'celebrity': query},
                
                 success:function (data) {
-                    document.getElementById("filtered_celebrities").style.display = "block"; 
+                    document.getElementById("filtered_celebrities").style.display = "block";   
 
                     $('#celebrity_filter_list').html(data);
 
@@ -52,6 +52,16 @@
                             $(this).find("#celeb-video").hide();   
                             $(this).find("#celeb-img").show();  
                     });
+
+                    if($(location).attr("href") == "{!! route('web.home') !!}/"){
+                        document.getElementById("banner-section").style.display = "none"; 
+                        document.getElementById("more_items_sec").style.display = "none";
+                    }    
+                    else{
+                        document.getElementById("celebrity-profile").style.display = "none"; 
+                        document.getElementById("reviews").style.display = "none"; 
+                        document.getElementById("vds-main").style.display = "none";  
+                    }                    
                 }
 
             })

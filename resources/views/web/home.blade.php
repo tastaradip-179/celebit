@@ -1,7 +1,7 @@
 @extends('web.common.master')
 
 @section('content')
-	<section class="banner-section">
+	<section class="banner-section" id="banner-section">
 		<div class="container">
 			<div class="banner-text">
 				<h2>We make your special day unforgettable</h2>
@@ -15,7 +15,7 @@
 			<h3 class="headline">Video of the Day by <a href="#" title="">newfox media</a></h3>
 		</div>
 	</section><!--banner-section end-->
-	<section class="more_items_sec">
+	<section class="more_items_sec" id="more_items_sec">
   		<div class="container">
 	  		<div class="amz_products_content">
 	  			<div class="amazon">

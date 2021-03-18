@@ -156,10 +156,12 @@
             '<div class="popvideo-head"><a href="javascript:void(0)" class="popvideo-close">&times;</a><h4 class="popvideo-title">' + this.options.title + '</h4></div>' +
             '<div class="popvideo-content">' + '<video webkit-playsinline="true"></video><div class="content">' 
             + '<ul><li><a href="">' + ' <img src= ' + ' "https://img.icons8.com/metro/1x/ffffff/link.png" ' + '/>' 
-            + '<span>Copy Link</span></a></li><li><a href="">' + ' <img src= ' + ' "https://img.icons8.com/small/2x/ffffff/download.png" ' + '/>' + '<span>Download</span></a></li></ul>' 
-            + '<h2>Reviews</h2>' + '</div></div>' +
-            control +
-            '</div></div>';
+            + '<span>Copy Link</span></a></li><li><a href=\"' + '\">' 
+            + '<img src= ' + ' "https://img.icons8.com/small/2x/ffffff/download.png" ' + '/>' 
+            + '<span>Download</span></a></li></ul>' 
+            + '<h2>Reviews</h2>' + '</div></div>' 
+            +  control 
+            +  '</div></div>';
         $('body').append(tpl);
         this.$wrapper = $('#' + popid);
         this.$video = this.$wrapper.find('video');
