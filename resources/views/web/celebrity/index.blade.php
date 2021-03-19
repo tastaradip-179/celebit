@@ -98,7 +98,7 @@
 						<a href="javascript:void(0)">
 							<div class="videoo">
 								<video src="{{$video_path_view.$video->video_url}}" webkit-playsinline playsinline data-video="{{$video_path_view.$video->video_url}}"
-								       loop muted id="video" class="video">    
+								       loop muted id="video" class="video" value="{{$video->id}}">    
 								</video>
 								<div class="play"></div>
 								<div class="pause" style="display:none"></div>
@@ -106,7 +106,6 @@
 						</a>
 						 <input type="text" id="copy_{{ $video->id }}" value="{{ $video->video_url }}">
                          <button value="copy" onclick="copyToClipboard('copy_{{ $video->id }}')">Copy!</button>
-						<a href="{{route('web.videos.download',[$video->id])}}">Download</a>
 					</div>
 					@endforeach
 					@endif
@@ -125,9 +124,11 @@
 	$(document).ready(function(index){
 		$( ".video" ).each(function() {
 		    $(this).click(function () {
+		    	var video_id=document.getElementById("video").value;
 		        $(this).popVideo({
 		            playOnOpen: true,
 		            title: '{{$celebrity->name}}', 
+		            rt: '{{route('web.videos.download',[$video_id])}}',
 		          	closeOnEnd: true,
 		            pauseOnClose: true,
 		        }).open();

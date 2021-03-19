@@ -20,4 +20,9 @@ class Video extends Model
         return $this->belongsTo('App\Models\Book');
     }
 
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
 }
