@@ -98,7 +98,7 @@
 						<a href="javascript:void(0)">
 							<div class="videoo">
 								<video src="{{$video_path_view.$video->video_url}}" webkit-playsinline playsinline data-video="{{$video_path_view.$video->video_url}}"
-								       loop muted id="video" class="video" value="{{$video->id}}">    
+								       loop muted id="video" class="video" >   {{$video->id}} 
 								</video>
 								<div class="play"></div>
 								<div class="pause" style="display:none"></div>
@@ -121,14 +121,18 @@
 @section('page-js')
 <script type="text/javascript" src="{{asset('web/plugins/videoPopup/js/jquery.popVideo.js')}}"></script>
 <script type="text/javascript">
-	$(document).ready(function(index){
-		$( ".video" ).each(function() {
+	$(document).ready(function(){
+
+		$( ".video" ).each(function(index) {
+			var video_id = $(this).text();
+			
 		    $(this).click(function () {
-		    	var video_id=document.getElementById("video").value;
+		    	
+		    	
 		        $(this).popVideo({
 		            playOnOpen: true,
 		            title: '{{$celebrity->name}}', 
-		            rt: '{{route('web.videos.download',[$video_id])}}',
+		            rt: "{{url("/videos/download")}}" + "/" + video_id,
 		          	closeOnEnd: true,
 		            pauseOnClose: true,
 		        }).open();
