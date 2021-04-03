@@ -102,7 +102,7 @@ class BookController extends Controller
 
         Mail::to($data['customer']->email)->send(new SendBookingRequest($data));
         return redirect()->back()->with('message', 'Your request has been sent successfully.')
-        ->with('message-type', 'success');;
+        ->with('message-type', 'success');
     }
 
     /**

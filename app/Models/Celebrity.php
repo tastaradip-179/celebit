@@ -57,7 +57,7 @@ class Celebrity extends Authenticatable implements Sortable
 
     public function reviews()
     {
-        return $this->morphMany(Review::class, 'reviewable');
+        return $this->morphMany('App\Models\Review', 'reviewable');
     }
 
     public function setSocialLinkAttribute( $value ) {

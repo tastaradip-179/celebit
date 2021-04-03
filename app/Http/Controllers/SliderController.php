@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Celebrity;
-use App\Models\Review;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,24 +35,16 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $celebrity = Celebrity::findOrFail($request->celebrity);
-        $review = new Review([
-            'customer_id' => $request->customer_id,
-            'body' => $request->body
-        ]);
-        $celebrity->reviews()->save($review);
-
-        return redirect()->back()->with('message', 'Your review has been submitted successfully.')
-        ->with('message-type', 'success');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show(Slider $slider)
     {
         //
     }
@@ -62,10 +52,10 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -74,10 +64,10 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -85,10 +75,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Slider $slider)
     {
         //
     }

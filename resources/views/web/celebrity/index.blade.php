@@ -9,6 +9,12 @@
 
 <section class="celebrity-profile" id="celebrity-profile">
 	<div class="container">
+		@if(Session::has('message'))
+		    <div class="alert alert-{{ Session::get('message-type') }} alert-dismissable">
+		        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="line-height: 0.5">×</button>
+		        <i class="glyphicon glyphicon-{{ Session::get('message-type') == 'success' ? 'ok' : 'remove'}}"></i> {{ Session::get('message') }}
+		    </div>
+		@endif
 		<div class="celebrity-profile-container">
 			<div class="row">
 				<div class="col-md-5">
@@ -68,26 +74,55 @@
 
 <section class="reviews" id="reviews">
 	<div class="container">
+		@if(count($celebrity->reviews))
 		<div class="row">
 	        <div class="col-12 col-md-12">
 	           <div class="section-title-left">
 	              <h5>Reviews of {{$celebrity->name}}</h5>
 	            </div>
 	            <div class="section-title-right">
-	              <h6><a>See all 29 reviews</a></h6>
+	              <h6><a>See all {{$celebrity->reviews->count()}} reviews</a></h6>
 	            </div>
 	        </div>
 	    </div>
 	    <div class="row">
 	    	<div class="col-12 col-md-12">
-	    		<div class="review-box"><p>Love you P! Thank you for the encouragement, I am definitely grateful for so much! I have people who care for me including a wonderful husband! I will absolutely take your advice and show love and help to ones in nee</p></div>
-	    		<div class="review-box"><p>Love you P! Thank you for the encouragement, I am definitely grateful for so much! I have people who care for me including a wonderful husband! I will absolutely take your advice and show love and help to ones in nee</p></div>
+	    		@foreach($celebrity->reviews as $key=>$review)
+	    		@php($customer = \App\Models\Customer::findOrFail($review->customer_id))
+	    		<div class="review-box">
+	    			<p>{{$review->body}} - {{$customer->fullname}}</p>
+	    		</div>
+	    		@endforeach
 	    	</div>
 	    </div>
+	    @endif
+	    @if(Auth::guard('customer')->check())
+	    @php($loggedin_customer = Auth::guard('customer')->user())
+	    <div class="row mt-20">
+	        <div class="col-12 col-md-12">
+	           <div class="section-title-left">
+	              <h5>Write a Review</h5>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-12 col-md-12">
+		    	<form action="{{route('web.customer.reviews.store')}}" method="post" class="review-form">
+		    		{{csrf_field()}}
+		    			<input type="hidden" name="celebrity" value="{{$celebrity->id}}">
+		    			<input type="hidden" name="customer_id" value="{{$loggedin_customer->id}}">
+						<div class="form-group">
+							<textarea rows="5" name="body" placeholder="Your review"></textarea>
+						</div>
+						<button class="btn btn-default">Submit</button>
+				</form>
+			</div>
+		</div>
+		@endif
 	</div>
 </section>
 
-<section class="vds-main" id="vds-main">
+<section class="vds-main mt-10" id="vds-main">
 	<div class="vidz-row">
 		<div class="container">
 			<div class="vidz_list m-0">
@@ -104,8 +139,8 @@
 								<div class="pause" style="display:none"></div>
 							</div><!--videoo end-->
 						</a>
-						 <input type="text" id="copy_{{ $video->id }}" value="{{ $video->video_url }}">
-                         <button value="copy" onclick="copyToClipboard('copy_{{ $video->id }}')">Copy!</button>
+						 
+                         <!-- <button value="copy" onclick="copyToClipboard('copy_{{ $video_path_view.$video->video_url }}')">Copy!</button> -->
 					</div>
 					@endforeach
 					@endif
@@ -114,6 +149,7 @@
 		</div>
 	</div>
 </section>
+
 
 
 @endsection
@@ -125,7 +161,7 @@
 
 		$( ".video" ).each(function(index) {
 			var video_id = $(this).text();
-			
+			var video_src = $(this).attr('src');
 		    $(this).click(function () {
 		    	
 		    	
@@ -133,6 +169,7 @@
 		            playOnOpen: true,
 		            title: '{{$celebrity->name}}', 
 		            rt: "{{url("/videos/download")}}" + "/" + video_id,
+		            oc: "copy_"+"http://127.0.0.1:8000/storage/videos/req-2v_1615564591.m4v",
 		          	closeOnEnd: true,
 		            pauseOnClose: true,
 		        }).open();
@@ -185,8 +222,9 @@
 </script>
  <script type="text/javascript">
       function copyToClipboard(id) {
+      	
         document.getElementById(id).select();
         document.execCommand('copy');
     }
-    </script
+ </script>
 @endsection

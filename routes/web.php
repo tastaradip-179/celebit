@@ -34,6 +34,7 @@ Route::namespace('Auth')->name('web.customer.')->prefix('customer')->group(funct
 Route::middleware(['auth:customer', 'transaction'])->namespace('Customer')->name('web.customer.')->prefix('customer')->group(function () {
 	Route::get('edit', 'CustomerController@edit')->name('edit');
 	Route::get('{customer}','CustomerController@show')->name('show');
+	Route::resource('reviews','ReviewController');
 });
 
 Route::middleware(['auth:customer', 'transaction'])->namespace('Customer')->prefix('customer')->group(function () {

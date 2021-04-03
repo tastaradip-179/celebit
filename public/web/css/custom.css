@@ -41,6 +41,16 @@ button.close:hover, button.close:active{
 	color: #272626 !important;
 }
 
+.mb-10{
+	margin-bottom: 10px;
+}
+.mt-10{
+	margin-top: 10px;
+}
+.mtb-10{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 .mb-20{
 	margin-bottom: 20px;
 }
@@ -324,6 +334,13 @@ button.close:hover, button.close:active{
 	text-align: center;
 	padding: 30px;
 	margin: 5px 0;
+}
+.review-form textarea{
+	width: 100%;
+	padding: 20px;
+}
+.review-form{
+	text-align: right;
 }
 /*reviews*/
 
