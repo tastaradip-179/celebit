@@ -6,5 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    protected $fillable = ['type', 'caption'];
+    protected $fillable = ['title', 'type', 'caption'];
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
+    }
+
+    public function getImage()
+    {
+        $image = $this->images()->first();
+        if (!empty($image)) {
+            return $image->url;
+        }
+        return '';
+    }
 }

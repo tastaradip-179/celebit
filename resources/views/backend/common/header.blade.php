@@ -133,7 +133,7 @@
                     </ul>
                 </li>
                 @if(Auth::check())
-                    @if(Auth::user()->name=='Admin')
+                    @if(Auth::user()->email=='admin@celebrityapp.com')
                     <li class="list-inline-item">
                         <a href="{{route('backend.admin.celebrities.create')}}" class="btn btn-primary"> Add Celebrity</a>
                     </li>

@@ -37,7 +37,6 @@ class CelebrityController extends Controller
         $data['file_path'] = $this->file_path_view;
 
         $data['celebrities'] = Celebrity::ordered()->paginate(15);
-        
         return view($this->view.'index', $data);
     }
 

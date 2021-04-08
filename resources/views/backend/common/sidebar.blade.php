@@ -72,6 +72,21 @@
                     </li>
                 </ul>
             </li>
+            <li class=""> 
+                <a href="javascript:;">
+                    <i class="fa fa-photo"></i>
+                    <span class="title">Sliders</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu" >
+                    <li>
+                        <a class="" href="{{route('backend.admin.sliders.index')}}" >All Sliders</a>
+                    </li>
+                    <li>
+                        <a class="" href="{{route('backend.admin.sliders.create')}}" >Add Slider</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
 

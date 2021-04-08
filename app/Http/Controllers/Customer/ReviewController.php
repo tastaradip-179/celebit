@@ -37,6 +37,8 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request->all());
         $celebrity = Celebrity::findOrFail($request->celebrity);
         $review = new Review([
             'customer_id' => $request->customer_id,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Celebrity;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -15,13 +16,18 @@ class HomeController extends Controller
         $this->view  = 'web.';
         $this->image_path_view = \Request::root().'/storage/celebrities/';
         $this->video_path_view = \Request::root().'/storage/videos/';
+        $this->slider_path_view = \Request::root().'/storage/sliders/';
     }
 
     public function index (){
         $data['image_path_view'] = $this->image_path_view;
         $data['video_path_view'] = $this->video_path_view;
+        $data['slider_path_view'] = $this->slider_path_view;
 
     	$data['celebrities'] = Celebrity::latest()->get();
+        $data['sliders'] = Slider::latest()->get();
+        $data['celebrity_img_sliders'] = Slider::where('type','celebrity')->latest()->get();
+        $data['news_sliders'] = Slider::where('type','news')->latest()->get();
     	return view ($this->view.'home', $data);
     }
 
@@ -78,6 +84,9 @@ class HomeController extends Controller
 
 	public function test (){
     	return view ('web.test');
+    }
+    public function test2 (){
+        return view ('web.test2');
     }
 
 

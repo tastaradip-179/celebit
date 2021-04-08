@@ -87,7 +87,13 @@
 	    </div>
 	    <div class="row">
 	    	<div class="col-12 col-md-12">
-	    		@foreach($celebrity->reviews as $key=>$review)
+	    		@foreach($latest_reviews as $key=>$review)
+	    		@php($customer = \App\Models\Customer::findOrFail($review->customer_id))
+	    		<div class="review-box">
+	    			<p>{{$review->body}} - {{$customer->fullname}}</p>
+	    		</div>
+	    		@endforeach
+	    		@foreach($more_reviews as $key=>$review)
 	    		@php($customer = \App\Models\Customer::findOrFail($review->customer_id))
 	    		<div class="review-box">
 	    			<p>{{$review->body}} - {{$customer->fullname}}</p>
@@ -170,6 +176,8 @@
 		            title: '{{$celebrity->name}}', 
 		            rt: "{{url("/videos/download")}}" + "/" + video_id,
 		            oc: "copy_"+"http://127.0.0.1:8000/storage/videos/req-2v_1615564591.m4v",
+		            id: '{{$celebrity->id}}',
+		            act: "{{route('web.customer.reviews.store')}}",
 		          	closeOnEnd: true,
 		            pauseOnClose: true,
 		        }).open();

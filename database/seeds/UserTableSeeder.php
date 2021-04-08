@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin', 
             'email' => 'admin@celebrityapp.com', 
             'password' => bcrypt('Gonzo1982'),  
+            'role' => 'Super Admin'
         ]);
         $admin->save();
     }

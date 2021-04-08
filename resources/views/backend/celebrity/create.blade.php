@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="file">Avatar *</label>
+                                        <label class="form-label" for="file">Profile Pic *</label>
                                         <span class="desc">e.g. "character.jpg"</span>
                                         <div class="controls">
                                             <input type="file" class="dropify" name="file" data-max-file-size="3M" data-height="120" data-allowed-file-extensions="jpg png jpeg"/>
@@ -195,9 +195,6 @@
               },
               gender: {
                   required: true
-              },
-              file: {
-                  required: true,
               },
               password_confirmed: {
                   required: true,

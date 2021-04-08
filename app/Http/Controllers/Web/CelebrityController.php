@@ -30,6 +30,8 @@ class CelebrityController extends Controller
 
         $data['celebrity'] = $celebrity;
         $data['celebrity_packages'] = $celebrity->celebrity_packages;
+        $data['latest_reviews'] = $celebrity->reviews->take(3);
+        $data['more_reviews'] = $celebrity->reviews->skip(3);
         
         return view ($this->view.'index', $data);
     }

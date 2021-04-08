@@ -57,6 +57,7 @@ class CustomerRegisterController extends Controller
 
         $data['customer'] = Customer::create($input);  
         $this->guard()->login($data['customer']);
+
         $data['subject'] = 'Successful Registration';
         Mail::to($data['customer']->email)->send(new RegistrationSuccess($data));
         return redirect()->route('web.customer.show', $data) ;   

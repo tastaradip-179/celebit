@@ -4,7 +4,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="ft-logo">
-							<img src="{{asset('web/images/ft-logo.png')}}" alt="">
+							<img src="{{asset('web/images/icon/logo.png')}}" alt="logo">
 						</div><!--ft-logo end-->
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 				</div>
 		</div><!--top-footer end-->
 		<div class="bottom-strip">
-			<p>© <?php echo date('Y') ?> Celebrity App <i class="icon-like"></i> Crafted by Arcturus Technology</p>
+			<p>© <?php echo date('Y') ?> Celebit <i class="icon-like"></i> Crafted by Arcturus Technology</p>
 			<ul class="social-links">
 				<li><a href="#" title=""><i class="icon-facebook-official"></i></a></li>
 				<li><a href="#" title=""><i class="icon-twitter"></i></a></li>

@@ -7,7 +7,7 @@
 						<i class="icon-menu"></i>
 					</a>
 					<a href="{{URL::to('/')}}" title="" class="logo">
-						<img src="{{asset('web/images/logo.png')}}" alt="">
+						<img src="{{asset('web/images/icon/logo.png')}}" alt="logo">
 					</a>
 				</div><!--menu_logo end-->
 				<div class="search_form">

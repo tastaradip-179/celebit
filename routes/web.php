@@ -19,6 +19,7 @@ Route::get('/search','Web\HomeController@search')->name('web.search');
 Route::get('search/live', 'Web\HomeController@search_live')->name('web.search.live');
 Route::get('videos/download/{id}', 'Web\VideoController@download')->name('web.videos.download');
 Route::get('/test','Web\HomeController@test');
+Route::get('/test2','Web\HomeController@test2');
 
 
 
@@ -56,10 +57,9 @@ Route::namespace('Auth')->name('backend.admin.')->prefix('backend/admin')->group
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
-/*Dasboard, Celebrity & Packages*/
+/*Dasboard, Sliders, Celebrity & Packages*/
 Route::middleware(['auth','transaction'])->namespace('Backend')->name('backend.admin.')->prefix('backend/admin')->group(function () {
-	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-	
+	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');	
 	Route::get('/sort/data', 'DashboardController@serialize')->name('data.serialize');
 	
 	Route::resource('celebrities', 'CelebrityController');
@@ -75,6 +75,8 @@ Route::middleware(['auth','transaction'])->namespace('Backend')->name('backend.a
 	Route::resource('tags', 'TagController');
 
 	Route::resource('requests', 'BookController')->except(['destroy']);
+
+	Route::resource('sliders', 'SliderController');
 });
 
 // Admin-Customer
@@ -107,6 +109,8 @@ Route::middleware(['auth:celebrity', 'transaction'])->namespace('Backend')->name
 	Route::delete('/delete/{id}', 'VideoController@destroy')->name('destroy');
 	Route::get('/{id}/make-featured', 'VideoController@featured')->name('make.featured');
 });
+
+
 /* Backend routes 
 ===============================================
 */

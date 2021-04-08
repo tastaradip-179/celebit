@@ -160,10 +160,28 @@
             + '<span>Copy Link</span></a></li><li><a href="' + this.options.rt + '">' 
             + '<img src= ' + ' "https://img.icons8.com/small/2x/ffffff/download.png" ' + '/>' 
             + '<span>Download</span></a></li></ul>' 
-            + '<h2>Reviews</h2>' + '</div></div>' 
+            + '<h2>Reviews</h2>' 
+            + '<div>'
+            + '<p>abcde - abcde</p>'
+            + '<p>mnopqr - mnopqr</p>'
+            + '</div>'
+                +'<form action=' + this.options.act + ' method="post" class="booking-form">'
+
+                        +'<input type="hidden" name="celebrity" value=' + this.options.id + '>'
+                        +'<div class="form-group">'
+                           + '<textarea rows="5" name="body" placeholder="Your review"></textarea>'
+                        +'</div>'
+                        +'<button class="btn btn-default">Submit</button>'
+                +'</form>'
+            + '</div></div>'     
             +  control 
             +  '</div></div>';
         $('body').append(tpl);
+        // $('form').append('{{csrf_field()}}');
+        function copyToClipboard(id) {        
+            document.getElementById(id).select();
+            document.execCommand('copy');
+        }
         this.$wrapper = $('#' + popid);
         this.$video = this.$wrapper.find('video');
         this.$playbtn = this.$wrapper.find('.popvideo_btn_play');
