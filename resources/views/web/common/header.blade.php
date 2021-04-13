@@ -13,9 +13,9 @@
 				<div class="search_form">
 					<form>
 						<input type="text" name="celebrity" id="celebrity" placeholder="Search celebrity">
-						<button type="submit">
+						<!-- <button type="submit">
 							<i class="icon-search"></i>
-						</button>
+						</button> -->
 					</form>
 				</div><!--search_form end-->
 				<ul class="controls-lv">
