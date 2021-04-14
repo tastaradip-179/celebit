@@ -35,6 +35,7 @@
 	@include('web.common.includes.script')
 
 	@yield('page-js')
+
 	<script type="text/javascript">
 		function openLoginModal(){
 		    $('#elegantLoginModalForm').modal();

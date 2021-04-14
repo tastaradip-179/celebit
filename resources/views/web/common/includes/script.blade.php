@@ -9,6 +9,14 @@
 
 <!-- auto play on hover -->
 <script type="text/javascript" src="{{asset('web/plugins/hoverPlay/jquery.hoverplay.js')}}"></script>
+
+
+
+
+<!-- 🚨 Our custom JavaScript  -->
+<script type="text/javascript" src="{{asset('web/plugins/mode/mode.js')}}"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
 	    $('.celeb-anchor')

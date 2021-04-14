@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('web/css/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('web/css/color.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('web/css/custom.css')}}">
+<link id="dark-theme-style" rel="stylesheet" />
 
 
 

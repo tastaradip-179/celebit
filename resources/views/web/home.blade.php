@@ -3,7 +3,7 @@
 @section('page-css')
 <link rel="stylesheet" href="{{asset('web/plugins/slider/swiper.min.css')}}" integrity="sha512-uCQmAoax6aJTxC03VlH0uCEtE0iLi83TW1Qh6VezEZ5Y17rTrIE+8irz4H4ehM7Fbfbm8rb30OkxVkuwhXxrRg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="{{asset('web/plugins/slider/slider.css')}}">
-
+  
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
 	                <div class="mps-slide">
 	                    <div class="mps-img img-lg"><img data-src="{{$slider_path_view.$slider->getImage()}}" alt="" class="swiper-lazy object-fit"></div>
                         <a href="" type="button" class="btn btn-default slider-btn">{{$slider->title}}</a>
-                        <p>{{$slider->caption}}</p>
+                        <p class="slider-capt">{{$slider->caption}}</p>
 	                    <div class="swiper-lazy-preloader"></div>
 	                </div>
 	            </div>
@@ -36,7 +36,7 @@
 	                <div class="mps-slide">
 	                    <div class="mps-img img-sm"><img data-src="{{$slider_path_view.$slider->getImage()}}" alt="" class="swiper-lazy object-fit"></div>
                         <a href="" type="button" class="btn btn-default slider-btn">{{$slider->title}}</a>
-                         <p>{{$slider->caption}}</p>
+                        <p class="slider-capt">{{$slider->caption}}</p>
 	                    <div class="swiper-lazy-preloader"></div>
 	                </div>
 	            </div>
@@ -120,9 +120,7 @@
 
 @section('page-js')
 <script src="{{asset('web/plugins/slider/swiper.min.js')}}" integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww==" crossorigin="anonymous"></script>
-
 <script type="text/javascript" src="{{asset('web/plugins/slider/slider.js')}}"></script>
-
 @endsection
 
 

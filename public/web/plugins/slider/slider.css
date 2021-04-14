@@ -121,3 +121,11 @@ button.mps-arrow { border: 0; padding: 1rem 1rem; background-color: #272626; col
 .slider-btn:hover, .slider-btn:active, .slider-btn:focus{
 	background-color: #e60606 !important;
 }
+p.slider-capt{
+	position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%,-90%);
+    color: #ffffff;
+}

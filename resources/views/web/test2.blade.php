@@ -1,250 +1,118 @@
-@extends('web.common.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Celebit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="icon" href="{{asset('web/images/Favicon.png')}}">
+@include('web.common.includes.style')
+    <!-- Bootstrap CSS -->
+   
 
-@section('page-css')
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css" integrity="sha512-uCQmAoax6aJTxC03VlH0uCEtE0iLi83TW1Qh6VezEZ5Y17rTrIE+8irz4H4ehM7Fbfbm8rb30OkxVkuwhXxrRg==" crossorigin="anonymous" />
-<link rel="stylesheet" href="{{asset('web/css/slider.css')}}">
-<style>
-    button { border: 0; padding: 1rem 2rem; background-color: #222; color: #fff; cursor: pointer; }
-</style>
-@endsection
+    <!-- 🚨 Notice this link -->
+    <link id="dark-theme-style" rel="stylesheet" />
 
-@section('content')
+  @yield('page-css')
 
-<div class="multi-px-slider loading">
 
-    <div class="swiper-container lg-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-lg"><img data-src="https://source.unsplash.com/TWCSYLJMoVc/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-lg"><img data-src="https://source.unsplash.com/yHaburAEFo4/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-lg"><img data-src="https://source.unsplash.com/ihzhMA2-l4Q/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-        </div>
-        <div class="pattern-2" data-swiper-parallax="-50%"></div>
-    </div>
+  </head>
+  <body>
+    <div class="wrapper hp_1">
 
-    <div class="swiper-container sm-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-sm"><img data-src="https://source.unsplash.com/Dz5j0QKVUGY/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-sm"><img data-src="https://source.unsplash.com/HGa7kULkQWY/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="mps-slide">
-                    <div class="mps-img img-sm"><img data-src="https://source.unsplash.com/RRSXLJPbqEQ/1280x960" alt="" class="swiper-lazy object-fit"></div>
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('web.common.header')
+  <a
+        href="javascript:void()"
+        class="btn btn-outline-info btn-lg ml-auto font-weight-bold"
+        id="theme-toggler"
+        onclick="toggleTheme()"
+      ></a>
+    @include('web.common.sidebar')
 
-    <button type="button" class="mps-arrow mps-prev" aria-label="Previous">Previous</button>
-    <button type="button" class="mps-arrow mps-next" aria-label="Next">Next</button>
+        @include('web.common.search')
 
-    <div class="curtain"></div>
+    @yield('content')
 
-</div>
+
+    @include('web.common.footer')
+
+  </div><!--wrapper end-->
+
+
+    
+   
 
 @include('web.common.includes.script')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww==" crossorigin="anonymous"></script>
 
-<script>
-    // Params
-    const mpSlider = document.querySelector('.multi-px-slider');
-    let interleaveOffset = 0.5;
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
 
-    // init small slider
-    const smallSlider = new Swiper('.sm-slider', {
-        touchRatio: 0, // disable swipe
-        loop: true,
-        slidesPerView: 'auto',
-        preloadImages: false,
-        lazy: {
-            loadPrevNext: true,
-            loadPrevNextAmount: 2,
-        },
-        watchSlidesProgress: true,
-        watchSlidesVisibility: true,
-        on: {
-            init: function(){
-                let swiper = this;
-            },
-            lazyImageReady: function(){
-                let swiper = this;
+    <!-- 🚨 Our custom JavaScript  -->
+    <script>
+      // you can use app's unique identifier here
+const LOCAL_STORAGE_KEY = "toggle-bootstrap-theme";
 
-                setTimeout(function() {
-                    swiper.update();
-                }, 500);
-            },
-            progress: function(){
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    let slideProgress = swiper.slides[i].progress,
-                        innerOffset = swiper.width * interleaveOffset,
-                        innerTranslate = slideProgress * innerOffset;
-                    swiper.slides[i].querySelector(".img-sm").style.transform = "translateX(" + innerTranslate + "px)";
-                }
-            },
-            touchStart: function() {
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    swiper.slides[i].style.transition = "";
-                }
-            },
-            setTransition: function(speed) {
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    swiper.slides[i].style.transition = speed + "ms";
-                    swiper.slides[i].querySelector(".img-sm").style.transition = speed + "ms";
-                }
-            }
-        }
-    });
+const LOCAL_META_DATA = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+
+// you can change this url as needed
+const DARK_THEME_PATH = "https://bootswatch.com/4/cyborg/bootstrap.min.css";
+
+const DARK_STYLE_LINK = document.getElementById("dark-theme-style");
+const THEME_TOGGLER = document.getElementById("theme-toggler");
+
+let isDark = LOCAL_META_DATA && LOCAL_META_DATA.isDark;
+
+// check if user has already selected dark theme earlier
+if (isDark) {
+  enableDarkTheme();
+} else {
+  disableDarkTheme();
+}
 
 
-    // init large slider
-    const largeSlider = new Swiper('.lg-slider', {
-        parallax: true,
-        loop: true,
-        speed: 2000,
-        slidesPerView: 'auto',
-        preloadImages: false,
-        lazy: {
-            loadPrevNext: true,
-            loadPrevNextAmount: 2,
-        },
-        watchSlidesProgress: true,
-        watchSlidesVisibility: true,
-        touchEventsTarget: 'wrapper',
-        controller: {
-            control: smallSlider
-        },
-        on: {
-            init: function(){
-                let swiper = this;
-            },
-            lazyImageReady: function(){
-                let swiper = this;
+/**
+ * Apart from toggling themes, this will also store user's theme preference in local storage.
+ * So when user visits next time, we can load the same theme.
+ *
+ */
+function toggleTheme() {
+  isDark = !isDark;
+  if (isDark) {
+    enableDarkTheme();
+  } else {
+    disableDarkTheme();
+  }
+  const META = { isDark };
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(META));
+}
 
-                setTimeout(function() {
-                    swiper.update();
-                    mpSlider.classList.remove('loading');
-                }, 500);
-            },
-            progress: function(){
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    let slideProgress = swiper.slides[i].progress,
-                        innerOffset = swiper.width * interleaveOffset,
-                        innerTranslate = slideProgress * innerOffset;
-                    swiper.slides[i].querySelector(".img-lg").style.transform = "translateX(" + innerTranslate + "px)";
-                }
-            },
-            touchStart: function() {
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    swiper.slides[i].style.transition = "";
-                }
-            },
-            setTransition: function(speed) {
-                let swiper = this;
-                for (let i = 0; i < swiper.slides.length; i++) {
-                    swiper.slides[i].style.transition = speed + "ms";
-                    swiper.slides[i].querySelector(".img-lg").style.transition = speed + "ms";
-                }
-            }
-        }
-    });
+function enableDarkTheme() {
+  DARK_STYLE_LINK.setAttribute("href", DARK_THEME_PATH);
+  THEME_TOGGLER.innerHTML = "🌙 Dark";
+}
 
+function disableDarkTheme() {
+  DARK_STYLE_LINK.setAttribute("href", "");
+  THEME_TOGGLER.innerHTML = "🌞 Light";
+}
 
-    // Set up animations
-    let slideDelay = 2000;
-    let $mpsArrow = $('.mps-arrow');
-
-    function runAnimation() {
-        mpSlider.classList.add('is-animating');
-    }
-
-    function endAnimation() {
-        mpSlider.classList.remove('is-animating');
-    }
-
-
-    // custom arrows
-    $mpsArrow.each((i, el) => {
-        const _this = $(el);
-
-       _this.on('click', function() {
-
-            // disable arrows
-            $mpsArrow.prop('disabled', true);
-            // run animation
-            runAnimation();
-
-            // go to prev/next slide
-            if (_this.hasClass('mps-prev')) {
-                setTimeout(() => {
-                    largeSlider.slidePrev();
-                }, slideDelay)
-            } else if (_this.hasClass('mps-next')) {
-                setTimeout(() => {
-                    largeSlider.slideNext();
-                }, slideDelay)
-            }
-
-            // detect animation end
-            const curtain = document.querySelector('.curtain');
-            curtain.addEventListener('animationend', () => {
-                // re-enable arrows
-                $mpsArrow.prop('disabled', false);
-                // end animation
-                endAnimation();
-            });
-
-       })
-
-    })
-
-
-   // TO DO: check if slider is in viewport?
-   let mpsInViewport = true;
-
-   if (mpsInViewport) {
-        $(document).off('keyup').on('keyup', function(e) {
-            if (e.keyCode == '37') {
-                $('.mps-prev').trigger('click');
-            } else if (e.keyCode == '39') {
-                $('.mps-next').trigger('click');
-            }
-       });
-   }
-
-
-
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
