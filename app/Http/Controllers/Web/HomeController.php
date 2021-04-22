@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Celebrity;
+use App\Models\Category;
 use App\Models\Slider;
 
 class HomeController extends Controller
@@ -25,6 +26,7 @@ class HomeController extends Controller
         $data['slider_path_view'] = $this->slider_path_view;
 
     	$data['celebrities'] = Celebrity::latest()->get();
+        $data['categories'] = Category::all();
         $data['sliders'] = Slider::latest()->get();
         $data['celebrity_img_sliders'] = Slider::where('type','celebrity')->latest()->get();
         $data['news_sliders'] = Slider::where('type','news')->latest()->get();

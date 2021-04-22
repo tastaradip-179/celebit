@@ -48,7 +48,7 @@
                                                     <div class="team-img col-xl-4 col-lg-4 col-md-4 col-4">
                                                         <a href="{{route($route.'show', $slider->id)}}">
                                                             <div class="thumb">
-                                                                <img class="img-fluid" src="{{ $file_path_view.$slider->getImage() }}" alt="Thumbnail">
+                                                                <img class="img-fluid" src="{{ $file_path_view.$slider->getImage() }}" style="height: 280px;" alt="Thumbnail">
                                                             </div>
                                                         </a>
                                                     </div>

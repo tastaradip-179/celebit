@@ -67,5 +67,5 @@
 @include('web.common.customer-registration')
 
 <marquee width="100%" direction="left" height="44px" style="background:#272626; ">
-  <h3 style="color:#e60606; font-size: 30px">It's a Demo website. All the information and content are fake. Please don't take it seriously.</h3>
+  <h3 style="color:#e60606; font-size: 30px">It's a Demo website. All the information and contents are fake. Please don't take it seriously.</h3>
 </marquee>

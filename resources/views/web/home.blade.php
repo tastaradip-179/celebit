@@ -8,7 +8,7 @@
 
 @section('content')
 
-	<div class="multi-px-slider loading">
+	<section class="multi-px-slider loading">
 
 	    <div class="swiper-container lg-slider">
 	        <div class="swiper-wrapper">
@@ -21,9 +21,7 @@
 	                    <div class="swiper-lazy-preloader"></div>
 	                </div>
 	            </div>
-
 	            @endforeach
-
 	        </div>
 
 	        <div class="pattern-2" data-swiper-parallax="-50%"></div>
@@ -49,9 +47,7 @@
 
 	    <div class="curtain"></div>
 
-	</div>
-
-	
+	</section>
 
 
 	<section class="more_items_sec" id="more_items_sec">
@@ -97,7 +93,13 @@
   		</div>
 	</section><!--more_items_sec end-->
 
-
+    <section class="mb-50">
+        <div class="container">
+            @foreach($categories as $category)
+                <a href="" class="btn btn-default">{{$category->name}}</a>
+            @endforeach
+        </div>
+    </section>
 
     <section class="banner-section" id="banner-section">
         <div class="container">

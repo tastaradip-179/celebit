@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Carbon\Carbon;
+use App\Events\CelebrityLoginHistory;
+use App\Listeners\StoreCelebrityLoginHistory;
 
 class CelebrityLoginController extends Controller
 {
@@ -52,6 +54,7 @@ class CelebrityLoginController extends Controller
         
 	  	if( Auth::guard('celebrity')->attempt( ['email' => $request->email, 'password' => $request->password] )){
             $celebrity = Auth::guard('celebrity')->user();
+            event(new CelebrityLoginHistory($celebrity));
        		return redirect()->intended(route('backend.celebrities.show', $celebrity));
         }
         return redirect()->back()->withErrors([

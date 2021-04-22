@@ -61,6 +61,16 @@ button.close:hover, button.close:active{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+.mb-50{
+	margin-bottom: 50px;
+}
+.mt-50{
+	margin-top: 50px;
+}
+.mtb-50{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
 
 .pt-32{
 	padding-top: 32px;
